@@ -2,17 +2,18 @@
 import { useEffect, useRef, useState } from 'react';
 import { Download, LoaderCircle, RotateCcw, SlidersHorizontal, ZoomIn, ZoomOut } from 'lucide-react';
 import type { Garment, PoseId, ProductListing } from '@/lib/schema';
-import { type AvatarProfile, studioProfile } from '@/lib/avatar/profile';
+import { avatarProfileSchema, type AvatarProfile, studioProfile } from '@/lib/avatar/profile';
+import exampleProfileData from '@/lib/avatar/example-profile.json';
 import { profileMatches } from '@/lib/avatar/proportions';
 import { analyzePerson } from '@/lib/avatar/analysis';
 import type { AvatarRenderer } from '@/lib/avatar/renderer';
 
-export type AvatarStageProps = {profile:AvatarProfile|null;personUrl:string;personId:string;sourceHash:string;faceUrl?:string;faceReferenceId?:string;outfitUrl?:string;garments:Garment[];products:ProductListing[];pose:PoseId;onProfile:(profile:AvatarProfile)=>void;onError:(message:string)=>void};
+export type AvatarStageProps = {profile:AvatarProfile|null;personUrl:string;personId:string;sourceHash:string;faceUrl?:string;faceReferenceId?:string;outfitUrl?:string;exampleId?:'fitexample-v1';garments:Garment[];products:ProductListing[];pose:PoseId;onProfile:(profile:AvatarProfile)=>void;onError:(message:string)=>void};
 export function AvatarStage(props:AvatarStageProps) {
   const host=useRef<HTMLDivElement>(null),engine=useRef<AvatarRenderer|null>(null),callbacks=useRef(props),downloadUrls=useRef(new Set<string>());
   callbacks.current=props;
   const [ready,setReady]=useState(false),[failed,setFailed]=useState(''),[analysis,setAnalysis]=useState(''),[adjusting,setAdjusting]=useState(false),[snapshotting,setSnapshotting]=useState(false);
-  const [localProfile,setLocalProfile]=useState<AvatarProfile>(studioProfile);
+  const [localProfile,setLocalProfile]=useState<AvatarProfile>(()=>props.exampleId ? avatarProfileSchema.parse(exampleProfileData) : studioProfile());
   const [engineVersion,setEngineVersion]=useState(0);
   const [textureNotice,setTextureNotice]=useState('');
   const profile=props.profile && profileMatches(props.profile,props.personId,props.sourceHash,props.faceReferenceId) ? props.profile : profileMatches(localProfile,props.personId,props.sourceHash,props.faceReferenceId) ? localProfile : {...studioProfile(),referenceId:props.personId,sourceHash:props.sourceHash,...(props.faceReferenceId?{faceReferenceId:props.faceReferenceId}:{})};
@@ -22,18 +23,18 @@ export function AvatarStage(props:AvatarStageProps) {
     const controller=new AbortController();let active=true;
     void import('@/lib/avatar/renderer').then(async ({createAvatarRenderer})=>{
       if(!host.current || !active)return;
-      const renderer=await createAvatarRenderer(host.current,(message)=>{if(!active)return;setFailed(message);callbacks.current.onError(message);},controller.signal,(message)=>{if(active)setTextureNotice(message);});
+      const renderer=await createAvatarRenderer(host.current,(message)=>{if(!active)return;setFailed(message);callbacks.current.onError(message);},controller.signal,(message)=>{if(active)setTextureNotice(message);},{exampleId:props.exampleId});
       if(!active){renderer.dispose();return;}
       engine.current=renderer;setReady(true);setEngineVersion(v=>v+1);
     }).catch(error=>{if(!active || controller.signal.aborted)return;const message=`The 3D avatar could not start. Enable WebGL in your browser or try another browser. ${error instanceof Error?error.message:''}`;setFailed(message);callbacks.current.onError(message);});
     const urls=downloadUrls.current;
     return ()=>{active=false;controller.abort();engine.current?.dispose();engine.current=null;urls.forEach(url=>URL.revokeObjectURL(url));urls.clear();};
-  },[]);
+  },[props.exampleId]);
   useEffect(()=>{
     const controller=new AbortController();let active=true;
     const {personId,sourceHash,faceReferenceId,faceUrl,personUrl}=props;
     if(props.profile && profileMatches(props.profile,personId,sourceHash,faceReferenceId)){setAnalysis('');return ()=>controller.abort();}
-    if(personId==='studio' && !faceUrl){const p={...studioProfile(),sourceHash};setLocalProfile(p);setAnalysis('Fictional adult studio model');callbacks.current.onProfile(p);return ()=>controller.abort();}
+    if(personId==='studio' && !faceUrl){const p={...(props.exampleId ? avatarProfileSchema.parse(exampleProfileData) : studioProfile()),sourceHash};setLocalProfile(p);setAnalysis('Fictional adult studio model');callbacks.current.onProfile(p);return ()=>controller.abort();}
     setAnalysis('Analyzing your photo locally…');
     void analyzePerson({personId,sourceHash,faceReferenceId,faceUrl,personUrl},controller.signal).then(result=>{
       if(!active || controller.signal.aborted)return;
@@ -47,7 +48,7 @@ export function AvatarStage(props:AvatarStageProps) {
     const active=engine.current;if(!active)return;
     const controller=new AbortController();
     const current=profileRef.current;
-    void active.setProfile(current,current.referenceId==='studio' && !props.faceUrl ? undefined : props.faceUrl || props.personUrl).catch(error=>{if(!controller.signal.aborted)setAnalysis(error instanceof Error?error.message:'Face texture could not be loaded.');});
+    void active.setProfile(current,props.exampleId && current.faceLandmarks ? '/demo/fitexample-v1/before-runway.webp' : current.referenceId==='studio' && !props.faceUrl ? undefined : props.faceUrl || props.personUrl).catch(error=>{if(!controller.signal.aborted)setAnalysis(error instanceof Error?error.message:'Face texture could not be loaded.');});
     return ()=>controller.abort();
   },[profileKey,props.faceUrl,props.personUrl,engineVersion]);
   useEffect(()=>{const current=callbacks.current;engine.current?.setOutfit(current.garments,current.products,current.outfitUrl);},[outfitKey,engineVersion]);

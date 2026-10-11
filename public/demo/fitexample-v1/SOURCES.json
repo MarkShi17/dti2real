@@ -1,0 +1,98 @@
+{
+  "id": "fitexample-v1",
+  "source": "docs/dti_example/fitEXAMPLE.png",
+  "tool": "built-in image_gen",
+  "assets": "Fictional adult and illustrative clothing samples; pre-generated locally, no runtime inference.",
+  "files": {
+    "source.webp": {
+      "width": 798,
+      "height": 1971,
+      "bytes": 160348,
+      "sha256": "3aa848778d8ab6c94555b493e3d2d9604e914ece66399269488481d175f1a23d"
+    },
+    "runway.webp": {
+      "width": 1024,
+      "height": 1536,
+      "bytes": 131480,
+      "sha256": "d1b60dbe12eec4b8c5cdb6118199a539a5b0e5a9d0fef4563e4ca3fcc83a6590"
+    },
+    "before-runway.webp": {
+      "width": 1024,
+      "height": 1536,
+      "bytes": 100768,
+      "sha256": "6bbd3448e7749a1a50fbc950db4ac1b5a5457e552a8966674a035719aa5b8a15"
+    },
+    "hip.webp": {
+      "width": 1024,
+      "height": 1536,
+      "bytes": 128676,
+      "sha256": "3f7e55bf49146592bcfa014206374f4e71bef81ed925feab0c02ca711b26f3cf"
+    },
+    "before-hip.webp": {
+      "width": 1024,
+      "height": 1536,
+      "bytes": 116446,
+      "sha256": "363a1fbbb4456501aeec90e184cff3500fcca3ef0395f8cefb2c25a9ff332ee8"
+    },
+    "peace.webp": {
+      "width": 1024,
+      "height": 1536,
+      "bytes": 124834,
+      "sha256": "3e63c44529a761d7aecec33c53e173427aaa54b9776a8c043bf4b0c1853a4826"
+    },
+    "before-peace.webp": {
+      "width": 1024,
+      "height": 1536,
+      "bytes": 110600,
+      "sha256": "cfe3026e0ffa16e8912636feb9c4ba9c7f30dc081fc596dbeeced04733e64136"
+    },
+    "shoulder.webp": {
+      "width": 1024,
+      "height": 1536,
+      "bytes": 102034,
+      "sha256": "513b468048b5ac697f6b24844ca039c540ef423ee739d7ea2f56006404163da4"
+    },
+    "before-shoulder.webp": {
+      "width": 1024,
+      "height": 1536,
+      "bytes": 77908,
+      "sha256": "d701aa14dd36e31e30aab6abd209a8e3ea7d3f8607ef89c40ddd269f6c5a370f"
+    },
+    "lean.webp": {
+      "width": 1024,
+      "height": 1536,
+      "bytes": 122070,
+      "sha256": "92891fc2db2e218d316ed4748881dae9c89053dae65aa66a650deb2c07b7d529"
+    },
+    "before-lean.webp": {
+      "width": 1024,
+      "height": 1536,
+      "bytes": 102006,
+      "sha256": "965168d633767ed508d874d26937a7746fc1362b4453f9f71edc8bed45ba5696"
+    },
+    "products/top.webp": {
+      "width": 768,
+      "height": 1152,
+      "bytes": 183456,
+      "sha256": "6a6abed4879df97fd5e39b363c58296ecef640baebe195340a2e370d83da088b"
+    },
+    "products/bottom.webp": {
+      "width": 768,
+      "height": 1152,
+      "bytes": 56660,
+      "sha256": "c10831791acdbae8455fa19127abc31633c18a211ccdbe0fdf72b9f2008eec42"
+    },
+    "products/bag.webp": {
+      "width": 768,
+      "height": 1152,
+      "bytes": 83084,
+      "sha256": "923b78bb67ae28933e092bff8c221a418caa488c0c8571374464640aaa4e0023"
+    },
+    "products/shoes.webp": {
+      "width": 768,
+      "height": 1152,
+      "bytes": 74942,
+      "sha256": "a6a4951b00b6f3050daab411706650163d895be6955749de8275845756d318af"
+    }
+  }
+}

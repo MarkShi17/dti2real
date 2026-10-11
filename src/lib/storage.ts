@@ -61,6 +61,7 @@ export class FileStorage implements StorageProvider {
   async getImage(id: string, imageId: string): Promise<Buffer> {
     if (imageId === 'sample') return readFile(join(process.cwd(), 'public/demo/sample.webp'));
     if (imageId === 'studio') return readFile(join(process.cwd(), 'public/demo/base-runway.webp'));
+    if (imageId === 'sample-fitexample-v1') return readFile(join(process.cwd(), 'public/demo/fitexample-v1/source.webp'));
     const d = await this.read(id); if (!validId(imageId) || !d.images[imageId]) throw new AppError('Image not found in this session.', 404);
     return readFile(join(sessionDir(id), `${imageId}.webp`));
   }
@@ -68,6 +69,6 @@ export class FileStorage implements StorageProvider {
 }
 export const storage: StorageProvider = new FileStorage();
 export async function sampleAsset(path: string) {
-  if (!/^\/avatar\/pose-guides\/(runway|hip|peace|shoulder|lean)\.png$/.test(path) && !/^\/demo\/(base|silver|burgundy)-(runway|hip|peace|shoulder|lean)\.webp$/.test(path) && path !== '/demo/sample.webp' && !/^\/demo\/products\/[a-z-]+\.webp$/.test(path)) throw new AppError('Invalid sample asset.');
+  if (!/^\/avatar\/pose-guides\/(runway|hip|peace|shoulder|lean)\.png$/.test(path) && !/^\/demo\/(base|silver|burgundy)-(runway|hip|peace|shoulder|lean)\.webp$/.test(path) && path !== '/demo/sample.webp' && !/^\/demo\/products\/[a-z-]+\.webp$/.test(path) && !/^\/demo\/fitexample-v1\/(source|before-runway|runway|hip|peace|shoulder|lean)\.webp$/.test(path) && !/^\/demo\/fitexample-v1\/products\/(top|bottom|bag|shoes)\.webp$/.test(path)) throw new AppError('Invalid sample asset.');
   return readFile(join(process.cwd(), 'public', path));
 }

@@ -8,6 +8,7 @@ import { FashnHosted, FashnLocal } from './providers/tryon';
 import { FalPose, FluxLocalPose } from './providers/pose';
 import { compositionOrder, outfitSignature } from './outfit';
 import { demoRender, POSES } from './fixtures';
+import { EXAMPLE_GARMENTS, EXAMPLE_ID, EXAMPLE_PRODUCTS, EXAMPLE_SOURCE_ID, exampleRender, isSupportedExampleOutfit } from './examples';
 import { normalizeImage } from './images';
 import { poseIdentity } from './pose-identity';
 import { avatarProfileSchema } from './avatar/profile';
@@ -143,7 +144,24 @@ function selectedGarments(garments: Garment[], products: ProductListing[]) {
   return pieces.map(g => ({ garment: g, product: map[g.id] }));
 }
 export async function queueTryon(sessionId: string, input: OutfitInput) {
-  const status = providerStatus().tryon, data = await storage.read(sessionId);
+  const data = await storage.read(sessionId);
+  const fixtureProducts = input.productIds.map(id => data.products[id]);
+  if (input.screenshotId === EXAMPLE_SOURCE_ID) {
+    if (input.personId !== 'studio') throw new AppError('The fitEXAMPLE fixture uses the studio model only. Choose Studio before rendering.', 422);
+    if (input.faceId) throw new AppError('The fitEXAMPLE fixture has a fixed studio identity. Remove the face override to use its pre-rendered poses.', 422);
+    if (input.retryGarmentId) throw new AppError('The fitEXAMPLE fixture has one approved four-piece outfit and cannot retry an individual garment.', 422);
+    if (fixtureProducts.some(p => !p) || !isSupportedExampleOutfit(input.garments, fixtureProducts as ProductListing[])) throw new AppError('The fitEXAMPLE preview requires the complete, unedited four-piece outfit and its canonical listings. Re-analyze the example and select all four products.', 422);
+    const selection = Object.fromEntries(EXAMPLE_PRODUCTS.map(p => [p.garmentId, p.id]));
+    const outfitKey = outfitSignature('studio', selection, EXAMPLE_GARMENTS, { screenshotId: EXAMPLE_SOURCE_ID });
+    const key = digest(['fitexample-v1', 'render-v1', outfitKey, EXAMPLE_SOURCE_ID, EXAMPLE_PRODUCTS.map(p => p.id)]);
+    return schedule(sessionId, key, input.force, async progress => {
+      await progress('Preparing the fitEXAMPLE outfit');
+      const resultId = randomUUID();
+      return { id: resultId, baseRenderId: resultId, createdAt: new Date().toISOString(), pose: 'runway' as const, provider: 'fitEXAMPLE fixture', outfitKey, personId: 'studio', productIds: EXAMPLE_PRODUCTS.map(p => p.id), image: exampleRender('runway'), isDemo: true, exampleId: EXAMPLE_ID,
+        note: 'Pre-rendered fitEXAMPLE studio fixture using the complete approved four-piece outfit. This is a fixed visual example, not a live try-on.' };
+    });
+  }
+  const status = providerStatus().tryon;
   if (status.mode === 'unavailable') throw new AppError('Try-on provider credentials are incomplete. Check your environment settings.', 503);
   if (status.name === 'openai_outfit' && status.mode === 'live') return queueCompleteOutfit(sessionId, input);
   if (status.name === 'fashn_local') { const readiness = (await providerReadiness()).tryon; if (!readiness.ready) throw new AppError(readiness.detail, 503); }
@@ -192,6 +210,14 @@ export async function queueTryon(sessionId: string, input: OutfitInput) {
 export async function queuePose(sessionId: string, renderId: string, pose: PoseId, faceId?: string) {
   const data = await storage.read(sessionId), source = data.renders[renderId];
   if (!source) throw new AppError('Render not found in this session.', 404);
+  if (source.exampleId === EXAMPLE_ID) {
+    if (faceId) throw new AppError('The fitEXAMPLE fixture has a fixed studio identity and does not accept a face override.', 422);
+    const key = digest(['fitexample-v1', 'pose-v1', source.outfitKey, source.id, pose, EXAMPLE_SOURCE_ID]);
+    return schedule(sessionId, key, false, async progress => {
+      await progress(`Creating ${POSES.find(p => p.id === pose)?.name.toLowerCase()}`);
+      return { ...source, id: randomUUID(), pose, image: exampleRender(pose), createdAt: new Date().toISOString() };
+    });
+  }
   const status = providerStatus().pose;
   if (source.outfit && status.name !== 'openai_outfit') throw new AppError('Complete outfit photo poses require POSE_PROVIDER=openai_outfit so every edit receives product and quality checks. Your accepted preview is preserved.', 503);
   if (!source.isDemo && status.mode !== 'live') throw new AppError('Pose editing is not configured. Your try-on remains available in the photo’s original pose.', 503);

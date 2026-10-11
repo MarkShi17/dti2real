@@ -1,8 +1,10 @@
 import { type Page } from '@playwright/test';
-import { test, expect, saved } from './helpers';
+import { test, expect, saved, seed, ready, DEMO_GARMENTS } from './helpers';
 import path from 'node:path';
-async function enterExample(page: Page, mobile: boolean) {
-  await page.goto('/'); await page.getByRole('button', { name: 'Explore an example', exact: true }).click();
+async function enterLegacySample(page: Page, mobile: boolean) {
+  // Legacy variant coverage stays separate from the curated fitEXAMPLE journey.
+  await seed(page.request, DEMO_GARMENTS, DEMO_GARMENTS.map(g => g.category));
+  await ready(page);
   if (mobile) await page.getByRole('button', { name: '1 Inspiration', exact: true }).click();
   await expect(page.getByText('5 pieces in this look')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Edit Midnight knit' })).toBeVisible();
@@ -10,7 +12,7 @@ async function enterExample(page: Page, mobile: boolean) {
 async function fittingRoom(page: Page, mobile: boolean) { if (mobile) await page.getByRole('button', { name: '3 Fitting room', exact: true }).click(); }
 test('sample outfit, individual skirt swap, five distinct poses, save and persistence', async ({ page }, info) => {
   const mobile = info.project.name.includes('mobile');
-  await enterExample(page, mobile);
+  await enterLegacySample(page, mobile);
   await fittingRoom(page, mobile);
   await expect(page.getByTestId('wardrobe-image')).toHaveCount(0);
   await expect(page.getByTestId('wardrobe-placeholder')).toBeVisible();
@@ -34,7 +36,7 @@ test('sample outfit, individual skirt swap, five distinct poses, save and persis
   await info.attach('studio', { body: await page.screenshot({ fullPage: true }), contentType: 'image/png' });
 });
 test('manual corrections, price filters, own-photo consent, honest demo limits and deletion', async ({ page }, info) => {
-  const mobile = info.project.name.includes('mobile'); await enterExample(page, mobile);
+  const mobile = info.project.name.includes('mobile'); await enterLegacySample(page, mobile);
   await page.getByRole('button', { name: 'Edit City ankle boots', exact: true }).click(); await page.getByLabel('Piece name').fill('Platform ankle boots');
   await page.getByRole('button', { name: 'Save & search', exact: true }).click(); await expect(page.getByRole('button', { name: 'Edit Platform ankle boots' })).toBeVisible();
   if (mobile) await page.getByRole('button', { name: '2 Find pieces', exact: true }).click();

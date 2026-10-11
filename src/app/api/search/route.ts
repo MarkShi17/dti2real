@@ -10,11 +10,18 @@ import { demoProducts } from '@/lib/fixtures';
 import { filterAndRank, generateQueries } from '@/lib/ranking';
 import { storage } from '@/lib/storage';
 import { AppError } from '@/lib/security';
+import { EXAMPLE_GARMENTS, EXAMPLE_PRODUCTS, isExampleSource } from '@/lib/examples';
 export const runtime = 'nodejs';
 export const maxDuration = 300;
 export async function POST(req: NextRequest) {
   try {
     const id = await session(req, true), input = await body(req, z.object({ garment: garmentSchema, filters: filtersSchema, imageId: imageIdSchema.optional() }));
+    const exampleGarment = EXAMPLE_GARMENTS.find(g => JSON.stringify(g) === JSON.stringify(input.garment));
+    if (isExampleSource(input.imageId) && exampleGarment) {
+      const products = filterAndRank(EXAMPLE_PRODUCTS.filter(p => p.garmentId === exampleGarment.id), input.garment, input.filters);
+      await storage.update(id, d => { for (const p of products) d.products[p.id] = p; });
+      return json({ products, warnings: [], strictMatching: false, isDemo: true, exampleId: 'fitexample-v1', queries: generateQueries(input.garment) });
+    }
     const provider = providerStatus().shopping;
     if (provider.mode === 'unavailable') throw new AppError('Shopping credentials are incomplete.', 503);
     const strictMatching = provider.mode === 'live' && process.env.STRICT_SHOPPING_MATCH !== 'false';

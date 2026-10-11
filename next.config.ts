@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 const config: NextConfig = {
   output: 'standalone',
+  distDir: process.env.NEXT_DIST_DIR || '.next',
   allowedDevOrigins: ['127.0.0.1', 'localhost', 'host.docker.internal'],
   poweredByHeader: false,
   async headers() {

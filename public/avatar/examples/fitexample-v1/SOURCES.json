@@ -1,0 +1,15 @@
+{
+  "id": "fitexample-v1",
+  "provenance": {
+    "reference": "docs/dti_example/fitEXAMPLE.png",
+    "referenceUse": "silhouette and palette study only; no reference pixels included",
+    "baseAvatar": "public/avatar/studio.glb (CC0 MakeHuman derivative)"
+  },
+  "files": {
+    "avatar.glb": {
+      "sha256": "a4b99395ff27294a902f9e532b28c5c6cf4f1781d3aa03a2c40c6c2b72a92f87",
+      "bytes": 3545336
+    }
+  },
+  "generator": "scripts/package-example-avatar.mjs"
+}

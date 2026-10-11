@@ -9,6 +9,7 @@ import { outfitPlan, type OutfitPiece, type GarmentAppearance } from './garments
 import { createReferenceLoader } from './texture-reference';
 import { garmentReferenceSource, garmentUV, projectionBounds } from './textures';
 import { createFaceMapping } from './face';
+import { coveredByExampleClothing, exampleFixtureId, exampleMeshNames, isExampleOutfitSelection } from './example-outfit';
 
 type MeshState = {mesh:THREE.SkinnedMesh;position:Float32Array;uv:Float32Array;index:THREE.BufferAttribute|null};
 export type AvatarRenderer = {
@@ -20,6 +21,7 @@ export type AvatarRenderer = {
   snapshot:()=>Promise<Blob>;
   dispose:()=>void;
 };
+export type AvatarRendererOptions = { exampleId?: typeof exampleFixtureId };
 function materialList(mesh:THREE.Mesh) {return Array.isArray(mesh.material)?mesh.material:[mesh.material];}
 function disposeGroup(group:THREE.Object3D) {
   const textures=new Set<THREE.Texture>(), materials=new Set<THREE.Material>(),geometries=new Set<THREE.BufferGeometry>();
@@ -41,7 +43,7 @@ function patterned(a:GarmentAppearance) {
   return new THREE.MeshStandardMaterial({map:texture,roughness:a.roughness,metalness:a.metalness,side:THREE.DoubleSide});
 }
 
-export async function createAvatarRenderer(host:HTMLElement, onError:(message:string)=>void, signal:AbortSignal,onTextureNotice:(message:string)=>void=()=>{}):Promise<AvatarRenderer> {
+export async function createAvatarRenderer(host:HTMLElement, onError:(message:string)=>void, signal:AbortSignal,onTextureNotice:(message:string)=>void=()=>{},options:AvatarRendererOptions={}):Promise<AvatarRenderer> {
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,preserveDrawingBuffer:true,powerPreference:'high-performance'});
   let disposed=false,frame=0,faceRevision=0,outfitRevision=0;
   const references=createReferenceLoader();let outfitAbort=new AbortController();
@@ -53,9 +55,10 @@ export async function createAvatarRenderer(host:HTMLElement, onError:(message:st
   renderer.domElement.style.cssText='display:block;width:100%;height:100%;touch-action:none;outline-offset:-4px';renderer.domElement.tabIndex=0;
   host.appendChild(renderer.domElement);
   const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,.83,0);controls.enablePan=false;controls.minDistance=1.6;controls.maxDistance=5.8;controls.minPolarAngle=.2;controls.maxPolarAngle=Math.PI-.2;controls.rotateSpeed=.65;controls.zoomSpeed=.65;controls.enableDamping=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;controls.dampingFactor=.16;
-  scene.add(new THREE.HemisphereLight('#fff6eb','#96808d',2.2));
-  const key=new THREE.DirectionalLight('#fff7ee',3.1);key.position.set(-2,4,4);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-1.5;key.shadow.camera.right=1.5;key.shadow.camera.top=2.5;key.shadow.camera.bottom=-.5;key.shadow.camera.near=.5;key.shadow.camera.far=10;key.shadow.bias=-.0005;key.shadow.normalBias=.01;scene.add(key);
-  const fill=new THREE.DirectionalLight('#dae2ff',1.1);fill.position.set(2,2,-2);scene.add(fill);
+  const demo=options.exampleId===exampleFixtureId;
+  scene.add(new THREE.HemisphereLight('#fff6eb','#96808d',demo?2.55:2.2));
+  const key=new THREE.DirectionalLight('#fff7ee',demo?2.65:3.1);key.position.set(-2,4,4);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-1.5;key.shadow.camera.right=1.5;key.shadow.camera.top=2.5;key.shadow.camera.bottom=-.5;key.shadow.camera.near=.5;key.shadow.camera.far=10;key.shadow.bias=-.0005;key.shadow.normalBias=.01;scene.add(key);
+  const fill=new THREE.DirectionalLight('#dae2ff',demo?1.35:1.1);fill.position.set(2,2,-2);scene.add(fill);if(demo){const rim=new THREE.DirectionalLight('#f2d7ce',.75);rim.position.set(-3,2,-3);scene.add(rim);}
   const ground=new THREE.Mesh(new THREE.CircleGeometry(5,96),new THREE.MeshStandardMaterial({color:'#e9e3dc',roughness:1}));ground.rotation.x=-Math.PI/2;ground.position.y=-.005;ground.receiveShadow=true;scene.add(ground);
   const pedestal=new THREE.Mesh(new THREE.CylinderGeometry(.47,.49,.025,64),new THREE.MeshStandardMaterial({color:'#ded5ce',roughness:.85}));pedestal.position.y=-.018;pedestal.receiveShadow=true;scene.add(pedestal);
   const accessories=new THREE.Group();scene.add(accessories);
@@ -141,7 +144,7 @@ export async function createAvatarRenderer(host:HTMLElement, onError:(message:st
     profile=next;faceMapping=next.faceLandmarks && next.faceBounds?createFaceMapping(next.faceLandmarks,next.faceBounds):undefined;
     faceRevision++;const revision=faceRevision;removeFace();deform();
     const body=meshes.get('body')?.mesh;
-    if(body && body.material instanceof THREE.MeshStandardMaterial)body.material.color.set(next.skinColor ? new THREE.Color(next.skinColor).lerp(new THREE.Color('#ffffff'),.6) : '#ffffff');
+    if(body && body.material instanceof THREE.MeshStandardMaterial)body.material.color.set(demo ? '#e4bd9e' : next.skinColor ? new THREE.Color(next.skinColor).lerp(new THREE.Color('#ffffff'),.6) : '#ffffff');
     if(!faceUrl || !next.faceBounds || !next.faceLandmarks || !body || !avatar)return;
     const response=await fetch(faceUrl,{credentials:'same-origin',signal:faceAbort.signal});if(!response.ok)throw new Error('The face reference is unavailable. Upload it again.');
     const image=await createImageBitmap(await response.blob());
@@ -189,6 +192,16 @@ export async function createAvatarRenderer(host:HTMLElement, onError:(message:st
     clothing.clear();disposeGroup(accessories);accessories.clear();onTextureNotice('');
     renderer.domElement.dataset.textureReady='false';renderer.domElement.dataset.garmentTextures='0';
     const omitted:string[]=[];const bagReferences:Array<{piece:OutfitPiece;group:THREE.Group}>=[];
+    const fixtureSelected=demo && isExampleOutfitSelection(garments,products);
+    for(const name of exampleMeshNames){const state=meshes.get(name);if(state)state.mesh.visible=fixtureSelected;}
+    if(fixtureSelected){
+      for(const name of ['top','tank','knit','dressbodice','tights','legwarmers','blouse','jacket','trousers','miniskirt','midiskirt','shoes','hair']){const state=meshes.get(name);if(state)state.mesh.visible=false;}
+      renderer.domElement.dataset.exampleFixture=exampleFixtureId;renderer.domElement.dataset.garmentMeshes='example-sweater,example-trousers,example-bag,example-flats';renderer.domElement.dataset.textureReady='true';renderer.domElement.dataset.garmentTextures='0';
+      const body=meshes.get('body');
+      if(body?.index){const keep:number[]=[];for(let i=0;i<body.index.count;i+=3){const tri=[body.index.getX(i),body.index.getX(i+1),body.index.getX(i+2)];if(!tri.every(v=>coveredByExampleClothing([body.position[v*3],body.position[v*3+1],body.position[v*3+2]],handVertices.has(v))))keep.push(...tri);}body.mesh.geometry.setIndex(keep);}
+      deform();updateAccessories();draw();return;
+    }
+    if(demo)renderer.domElement.dataset.exampleFixture='';
     const names=['top','tank','knit','dressbodice','tights','legwarmers','blouse','jacket','trousers','miniskirt','midiskirt','shoes'];
     for(const name of names){const state=meshes.get(name);if(state)state.mesh.visible=false;}
     const apply=(piece:OutfitPiece)=>{const state=meshes.get(piece.mesh);if(!state)return;const previous=clothing.get(piece.mesh);if(previous && previous.garment.id!==piece.garment.id)omitted.push(`${previous.garment.name} (showing ${piece.garment.name} on the same layer)`);state.mesh.visible=true;state.mesh.receiveShadow=piece.mesh!=='tights';state.mesh.renderOrder=piece.mesh==='tights'?1:0;clothing.set(piece.mesh,piece);releaseCloth(state);state.mesh.geometry.setAttribute('uv',new THREE.BufferAttribute(state.uv.slice(),2));state.mesh.material=patterned(piece.appearance);if(piece.appearance.sheer){const mat=state.mesh.material as THREE.MeshStandardMaterial;mat.transparent=true;mat.opacity=.58;mat.depthWrite=false;}};
@@ -229,7 +242,8 @@ export async function createAvatarRenderer(host:HTMLElement, onError:(message:st
     })]).then(()=>{if(disposed || revision!==outfitRevision)return;renderer.domElement.dataset.textureReady='true';const notice=failures?'Some selected product photos are unavailable. Showing their approximate colors until they can be loaded.':requests.length?'Clothing product photos applied.':'';onTextureNotice([notice,...omitted.map(name=>`Cannot layer ${name}.`)].filter(Boolean).join(' '));});
   }
   try {
-    const response=await fetch('/avatar/studio.glb',{signal});if(!response.ok)throw new Error('The bundled avatar body is missing.');
+    const avatarPath=demo?`/avatar/examples/${exampleFixtureId}/avatar.glb`:'/avatar/studio.glb';
+    const response=await fetch(avatarPath,{signal});if(!response.ok)throw new Error('The bundled avatar body is missing.');
     const gltf=await new GLTFLoader().parseAsync(await response.arrayBuffer(),'/avatar/');
     if(disposed || signal.aborted){disposeGroup(gltf.scene);throw new DOMException('Cancelled','AbortError');}
     avatar=gltf.scene;scene.add(avatar);

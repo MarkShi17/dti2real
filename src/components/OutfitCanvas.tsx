@@ -3,6 +3,7 @@ import { useRef, useState, type PointerEvent } from 'react';
 import { Crop, RotateCw, Upload, Plus, ScanLine, Pencil, Eye, EyeOff, X, Check, ImageUp } from 'lucide-react';
 import { useWardrobe } from '@/state/wardrobe';
 import { categories, type Box, type Garment } from '@/lib/schema';
+import { exampleScreenshot } from '@/lib/examples';
 
 function GarmentEditor({ garment, close, draw }: { garment: Garment; close: () => void; draw: () => void }) {
   const w = useWardrobe(), [g, setG] = useState(garment);
@@ -63,7 +64,7 @@ export function OutfitCanvas() {
     </> : <div className={`upload-zone ${dragging ? 'dragging' : ''}`} onDragOver={e => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)} onDrop={e => { e.preventDefault(); setDragging(false); if (!disabled && e.dataTransfer.files[0]) void acceptFile(e.dataTransfer.files[0]); }}>
       <span className="upload-art" aria-hidden="true"><ImageUp size={24} strokeWidth={1.75}/></span><h3>Drop your screenshot here</h3><p>A full-body shot of your avatar works best.</p>
       <button className="button primary" disabled={disabled} onClick={() => fileInput.current?.click()}><Upload size={16}/> Upload a screenshot</button><span className="fine-print">PNG, JPG, WebP or AVIF · up to 8 MB</span>
-      <div className="or-line"><span>or</span></div><button className="sample-button" disabled={disabled} onClick={() => void w.useExample()}><img src="/demo/sample.webp" alt="Silver pleats example outfit"/><span>Try the silver pleats look<small>A ready-made example</small></span></button>
+      <div className="or-line"><span>or</span></div><button className="sample-button" disabled={disabled} onClick={() => void w.useExample()}><img src={exampleScreenshot.url} alt="Forest-green sweater and navy trousers example"/><span>Try the forest-green look<small>A ready-made example · photo + 3D</small></span></button>
     </div>}
     {w.screenshot && <div className="detected"><div className="row-between"><h3>{w.garments.length ? `${w.garments.filter(g => g.visible).length} pieces in this look` : 'Build the breakdown'}</h3><button className="text-button" disabled={disabled || w.garments.length >= 16} onClick={() => { const g = w.addGarment(); setEdit(g.id); }}><Plus size={14}/> Add piece</button></div>
       <div className="garment-list">{w.garments.map((g, i) => <div className={`garment-row ${w.activeId === g.id ? 'selected' : ''} ${!g.visible ? 'hidden-piece' : ''}`} key={g.id}>
