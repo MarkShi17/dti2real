@@ -5,10 +5,12 @@ import { defaultFilters, type Filters, type Garment, type ImageRef, type Job, ty
 import { outfitSignature } from '@/lib/outfit';
 import { sampleImage, studioImage } from '@/lib/fixtures';
 import { baseRenderFor, createSaveQueue, queuedSearchIsCurrent } from '@/lib/state-guards';
+import { usePipelineProgress } from './pipeline';
 
 type SavedState = { screenshotId: string | null; personId: string; garments: Garment[]; selected: Record<string, string>; activeId: string | null; renderId: string | null };
 type SessionResponse = { state?: SavedState; images: Record<string, ImageRef>; products: Record<string, ProductListing>; renders: RenderResult[]; providers: ProviderStatus };
 function useWardrobeState() {
+  const { pipeline, runId: progressRun, report, clear: clearProgress, beginAnalysis, beginTryon } = usePipelineProgress();
   const [ready, setReady] = useState(false), [providers, setProviders] = useState<ProviderStatus | null>(null);
   const [screenshot, setScreenshot] = useState<ImageRef | null>(null), [person, setPerson] = useState<ImageRef | null>(null);
   const [garments, setGarments] = useState<Garment[]>([]), [activeId, setActiveId] = useState<string | null>(null);
@@ -21,8 +23,8 @@ function useWardrobeState() {
   const enqueueSave = useRef(createSaveQueue());
   const sampleRef: ImageRef = { id: 'sample', url: sampleImage, width: 900, height: 1200, kind: 'screenshot', hash: 'sample', isSample: true };
   const reset = useCallback(() => {
-    epoch.current++; setScreenshot(null); setPerson(null); setGarments([]); setProducts({}); setInventory({}); setSelected({}); setActiveId(null); setRender(null); setHistory([]); setBusy(''); setSearching([]); setNotice(''); setError(''); setStep(0); setPendingPose(null);
-  }, []);
+    epoch.current++; clearProgress(); setScreenshot(null); setPerson(null); setGarments([]); setProducts({}); setInventory({}); setSelected({}); setActiveId(null); setRender(null); setHistory([]); setBusy(''); setSearching([]); setNotice(''); setError(''); setStep(0); setPendingPose(null);
+  }, [clearProgress]);
   useEffect(() => {
     alive.current = true;
     async function init() {
@@ -55,6 +57,8 @@ function useWardrobeState() {
   const stale = !!render && render.outfitKey !== signature;
   const search = async (g: Garment, currentFilters = filters, autoSelect = false, imageId = screenshot?.id) => {
     const generation = epoch.current, version = (searchVersions.current[g.id] || 0) + 1; searchVersions.current[g.id] = version;
+    const runId = progressRun.current;
+    report({ type: 'search-start', runId, now: Date.now(), id: g.id, version });
     setSearching(s => [...new Set([...s, g.id])]); setError('');
     try {
       const result = await api<{ products: ProductListing[]; warnings: string[]; isDemo: boolean }>('search', { garment: g, filters: currentFilters, imageId });
@@ -63,11 +67,13 @@ function useWardrobeState() {
       setInventory(s => ({ ...s, ...Object.fromEntries(result.products.map(p => [p.id, p])) }));
       if (autoSelect && result.products[0]) setSelected(s => ({ ...s, [g.id]: result.products[0].id }));
       if (result.warnings.length) setNotice(result.warnings.join(' '));
-    } catch(e) { if (generation === epoch.current && searchVersions.current[g.id] === version) setError((e as Error).message); }
+      report({ type: 'search-end', runId, now: Date.now(), id: g.id, version, outcome: result.products.length ? 'matched' : 'unmatched' });
+    } catch(e) { if (generation === epoch.current && searchVersions.current[g.id] === version) { setError((e as Error).message); report({ type: 'search-end', runId, now: Date.now(), id: g.id, version, outcome: 'failed' }); } }
     finally { if (generation === epoch.current && searchVersions.current[g.id] === version) setSearching(s => s.filter(id => id !== g.id)); }
   };
   const analyze = async (image = screenshot) => {
     if (!image) return; const generation = ++epoch.current; setBusy('Reading the outfit'); setError(''); setSearching([]);
+    const runId = beginAnalysis(!!image.isSample);
     setGarments([]); setProducts({}); setSelected({}); setRender(null);
     try {
       const result = await api<{ garments: Garment[]; note: string }>('analyze', { imageId: image.id });
@@ -76,15 +82,16 @@ function useWardrobeState() {
       setBusy('');
       // Two concurrent garment searches at a time.
       const versionsAtAnalysis = { ...searchVersions.current };
+      report({ type: 'identified', runId, now: Date.now(), items: result.garments.map(g => ({ id: g.id, version: versionsAtAnalysis[g.id] || 0 })) });
       for (let i = 0; i < result.garments.length; i += 2) { if (generation !== epoch.current) break; await Promise.all(result.garments.slice(i, i + 2).filter(g => queuedSearchIsCurrent(g.id, searchVersions.current, versionsAtAnalysis)).map(g => search(g, defaultFilters, true, image.id))); }
-    } catch(e) { if (generation === epoch.current) setError((e as Error).message); }
+    } catch(e) { if (generation === epoch.current) { setError((e as Error).message); report({ type: 'fail', runId, stage: 'analyze', detail: (e as Error).message }); } }
     finally { if (generation === epoch.current) setBusy(''); }
   };
   const useExample = async () => { reset(); setScreenshot(sampleRef); await analyze(sampleRef); };
   const upload = async (file: File, kind: 'screenshot' | 'person', consent = false) => {
     if (file.size > 8 * 1024 * 1024 || !['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) { setError('Choose a PNG, JPEG or WebP under 8 MB.'); return; }
     const generation = kind === 'person' ? epoch.current : ++epoch.current;
-    if (kind === 'screenshot') setSearching([]);
+    if (kind === 'screenshot') { clearProgress(); setSearching([]); }
     setBusy(kind === 'person' ? 'Preparing your photo' : 'Uploading your screenshot'); setError('');
     try {
       const data = new FormData(); data.set('file', file); data.set('kind', kind); data.set('consent', String(consent));
@@ -96,15 +103,17 @@ function useWardrobeState() {
   };
   const editGarment = (updated: Garment) => {
     searchVersions.current[updated.id] = (searchVersions.current[updated.id] || 0) + 1;
+    report({ type: 'invalidate-item', runId: progressRun.current, now: Date.now(), id: updated.id, version: searchVersions.current[updated.id] });
     setSearching(s => s.filter(id => id !== updated.id));
     setGarments(s => s.map(g => g.id === updated.id ? updated : g));
     setSelected(s => { const next = { ...s }; delete next[updated.id]; return next; });
   };
   const addGarment = () => { const g: Garment = { id: crypto.randomUUID(), name: 'New piece', category: 'top', attributes: { color: [] }, confidence: 1, searchQueries: [], visible: true, bbox: { x: .25, y: .25, w: .5, h: .35 } }; setGarments(s => [...s, g]); setActiveId(g.id); return g; };
-  const poll = async (initial: Job, generation: number) => {
+  const poll = async (initial: Job, generation: number, progressId?: number) => {
     let job = initial;
     while (job.status === 'queued' || job.status === 'running') {
       if (generation !== epoch.current || !alive.current) return null;
+      if (progressId !== undefined) report({ type: 'job', runId: progressId, detail: job.progress });
       setBusy(job.progress); await new Promise(r => setTimeout(r, 1000)); job = await api<Job>(`jobs/${job.id}`, undefined, 'GET');
     }
     if (job.status === 'failed') throw new Error(job.error || 'Render failed. Please retry.');
@@ -112,12 +121,13 @@ function useWardrobeState() {
   };
   const generate = async (force = false, retryGarmentId?: string) => {
     const generation = epoch.current; setBusy('Preparing your selected outfit'); setError('');
+    const runId = beginTryon(providers?.tryon.mode === 'demo');
     try {
       const visibleIds = new Set(garments.filter(g => g.visible).map(g => g.id));
       const job = await api<Job>('tryon', { personId: person?.id || 'studio', garments, productIds: Object.entries(selected).filter(([id]) => visibleIds.has(id)).map(([, id]) => id), force, retryGarmentId });
-      const result = await poll(job, generation);
-      if (result && generation === epoch.current) { setRender(result); setHistory(s => [...s.filter(r => r.id !== result.id), result]); setStep(2); }
-    } catch(e) { if (generation === epoch.current) setError((e as Error).message); }
+      const result = await poll(job, generation, runId);
+      if (result && generation === epoch.current) { setRender(result); setHistory(s => [...s.filter(r => r.id !== result.id), result]); setStep(2); report({ type: 'complete', runId }); }
+    } catch(e) { if (generation === epoch.current) { setError((e as Error).message); report({ type: 'fail', runId, stage: 'tryon', detail: (e as Error).message }); } }
     finally { if (generation === epoch.current) setBusy(''); }
   };
   const choosePose = async (pose: PoseId) => {
@@ -132,7 +142,7 @@ function useWardrobeState() {
     finally { if (generation === epoch.current) { setBusy(''); setPendingPose(null); } }
   };
   const deleteSession = async () => {
-    setReady(false); epoch.current++;
+    setReady(false); epoch.current++; clearProgress();
     try { await api('session', undefined, 'DELETE'); reset(); await api('session'); setReady(true); setNotice('Session deleted. Your local photos, selections and cached results have been removed. External providers manage their own retention.'); }
     catch(e) { setError((e as Error).message); setReady(true); }
   };
@@ -145,7 +155,7 @@ function useWardrobeState() {
       const url = URL.createObjectURL(await response.blob()), a = document.createElement('a'); a.href = url; a.download = `dti2irl-${render.pose}.${format}`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 30000); setNotice(format === 'svg' ? 'Saved your look card with clickable product links.' : 'Saved your image card. Choose the linked SVG card for clickable product links.');
     } catch(e) { setError((e as Error).message); } finally { setBusy(''); }
   };
-  return { ready, providers, screenshot, person, personUrl: person?.url || studioImage, garments, activeId, setActiveId, products, inventory, selected, setSelected, filters, setFilters, render, history, setRender, stale, busy, searching, error, setError, notice, step, setStep, pendingPose, search, analyze, useExample, upload, editGarment, addGarment, generate, choosePose, deleteSession, exportLook, setPerson };
+  return { ready, pipeline, providers, screenshot, person, personUrl: person?.url || studioImage, garments, activeId, setActiveId, products, inventory, selected, setSelected, filters, setFilters, render, history, setRender, stale, busy, searching, error, setError, notice, step, setStep, pendingPose, search, analyze, useExample, upload, editGarment, addGarment, generate, choosePose, deleteSession, exportLook, setPerson };
 }
 type Wardrobe = ReturnType<typeof useWardrobeState>;
 const Context = createContext<Wardrobe | null>(null);

@@ -7,6 +7,7 @@ import { ProductGrid } from './ProductGrid';
 import { WardrobeStage } from './WardrobeStage';
 import { ConfirmDialog } from './ConfirmDialog';
 import { compositionOrder } from '@/lib/outfit';
+import { PipelineBanner } from './PipelineBanner';
 function Content() {
   const w = useWardrobe(), [statusOpen, setStatusOpen] = useState(false), [helpOpen, setHelpOpen] = useState(false), [deleteOpen, setDeleteOpen] = useState(false);
   const core = compositionOrder(w.garments);
@@ -18,6 +19,7 @@ function Content() {
     {helpOpen && <aside className="help-panel"><h3>From game fit to real-world outfit.</h3><ol><li>Upload your screenshot or explore the example.</li><li>Review garment regions and select a match for each piece.</li><li>Try on the fit, choose a pose, and save your look.</li></ol><p>Demo listings and renders are illustrative. Your own images need configured AI providers for recognition and generation. Shopping links open in a new tab.</p><button className="text-button" onClick={() => setHelpOpen(false)}>Got it <Check size={14}/></button></aside>}
     <main id="studio"><section className="hero"><div className="hero-copy"><div className="hero-kicker"><span className="little-star">✳</span> Your imagination. Your wardrobe.</div><h1>Your DTI fit, IRL.</h1><p>Screenshot it. Shop it. Wear it.</p></div><div className="hero-aside"><span className="fashion-stamp">Virtual inspiration.<br/>Real-world expression.</span><button disabled={!w.ready || !!w.busy} className="text-button" onClick={() => void w.useExample()}>Explore an example <ArrowUpRight size={17}/></button></div></section>
       <div className="studio-bar"><div className="studio-title"><span className="live-dot"/>Your personal outfit studio</div><div className="studio-meta">One look. Endless possibilities.<span>US / USD</span></div></div>
+      <PipelineBanner progress={w.pipeline} demoSearch={w.providers?.shopping.mode === 'demo'} manualAnalysis={!!w.providers && w.providers.vision.mode !== 'live' && !w.screenshot?.isSample}/>
       <div className="mobile-steps" aria-label="Workflow steps">{['Inspiration', 'Find pieces', 'Fitting room'].map((s,i) => <button key={s} className={w.step === i ? 'selected' : ''} onClick={() => w.setStep(i)}><span>{i+1}</span>{s}</button>)}</div>
       {w.error && <div className="error-banner" role="alert"><div><strong>Something needs your attention</strong><p>{w.error}</p></div><button className="icon-button" aria-label="Dismiss error" onClick={() => w.setError('')}><X size={18}/></button></div>}
       {w.notice && <p className="notice" role="status">{w.notice}</p>}
