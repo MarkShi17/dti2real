@@ -21,7 +21,7 @@ export function safeExternalUrl(value: unknown): string | undefined {
     return u.href;
   } catch { return; }
 }
-const imageHosts = ['gstatic.com', 'googleusercontent.com', 'ebayimg.com', 'cdn.fashn.ai', 'fal.media', 'fashn.ai'];
+const imageHosts = ['gstatic.com', 'googleusercontent.com', 'ebayimg.com', 'media-assets.grailed.com', 'media-photos.depop.com', 'cdn.fashn.ai', 'fal.media', 'fashn.ai'];
 export async function fetchImage(url: string): Promise<Buffer> {
   const valid = safeExternalUrl(url); if (!valid) throw new AppError('This image URL is not a public HTTPS address.');
   const u = new URL(valid);
@@ -33,7 +33,7 @@ export async function fetchImage(url: string): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     const req = https.get(u, { lookup: ((_hostname: string, _options: unknown, callback: (err: Error | null, address: string, family: number) => void) => callback(null, address.address, address.family)) as never, family: address.family, headers: { 'User-Agent': 'DTI2IRL/0.1', Accept: 'image/*' } }, res => {
       if (res.statusCode !== 200) { res.resume(); reject(new AppError('The product image could not be downloaded. Redirects are not followed.', 502)); return; }
-      if (!/^image\/(png|jpeg|webp)(;|$)/i.test(res.headers['content-type'] || '')) { res.resume(); reject(new AppError('Provider returned an unsupported image type.', 502)); return; }
+      if (!/^image\/(png|jpeg|webp|avif)(;|$)/i.test(res.headers['content-type'] || '')) { res.resume(); reject(new AppError('Provider returned an unsupported image type.', 502)); return; }
       let size = 0; const chunks: Buffer[] = [];
       res.on('data', chunk => { size += chunk.length; if (size > 12 * 1024 * 1024) req.destroy(new AppError('Image exceeds 12 MB.')); else chunks.push(chunk); });
       res.on('end', () => resolve(Buffer.concat(chunks))); res.on('error', reject);

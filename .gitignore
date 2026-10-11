@@ -11,3 +11,6 @@ playwright-report/
 __pycache__/
 .venv/
 weights/
+
+.accuracy/
+!.env.accuracy.example

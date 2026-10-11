@@ -23,7 +23,7 @@ export function OutfitCanvas() {
   const origin = useRef<{ x: number; y: number } | null>(null);
   const editable = w.garments.find(g => g.id === edit);
   async function acceptFile(file: File) {
-    if (file.size > 8 * 1024 * 1024 || !['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) { w.setError('Choose a PNG, JPEG or WebP image under 8 MB.'); return; }
+    if (file.size > 8 * 1024 * 1024 || !['image/png', 'image/jpeg', 'image/webp', 'image/avif'].includes(file.type)) { w.setError('Choose a PNG, JPEG, WebP or AVIF image under 8 MB.'); return; }
     const url = URL.createObjectURL(file); setUploadPreview(url);
     try { await w.upload(file, 'screenshot'); }
     finally { setUploadPreview(null); URL.revokeObjectURL(url); }
@@ -44,7 +44,7 @@ export function OutfitCanvas() {
   const disabled = !w.ready || !!w.busy;
   return <section className="panel source-panel" aria-label="Your inspiration">
     <div className="panel-heading"><span className="step-number">01</span><h2>The inspiration</h2><button className="icon-button" disabled={disabled} title="Upload another screenshot" aria-label="Upload screenshot" onClick={() => fileInput.current?.click()}><Upload size={17}/></button></div>
-    <input ref={fileInput} className="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp" aria-label="Outfit screenshot file" onChange={e => { if (e.target.files?.[0]) void acceptFile(e.target.files[0]); e.target.value = ''; }}/>
+    <input ref={fileInput} className="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp,image/avif" aria-label="Outfit screenshot file" onChange={e => { if (e.target.files?.[0]) void acceptFile(e.target.files[0]); e.target.value = ''; }}/>
     {uploadPreview ? <div className="image-canvas"><img src={uploadPreview} alt="Screenshot upload preview"/><p className="image-note" role="status">Preparing your screenshot…</p></div> : w.screenshot ? <>
       <div className="source-toolbar"><span>{w.screenshot.isSample ? 'Created game-style sample' : 'Your screenshot'}</span><div className="inline-actions"><button className="icon-button" disabled={disabled} aria-label="Crop screenshot" onClick={() => { setDrawing(drawing === 'crop' ? null : 'crop'); setBox(null); }}><Crop size={15}/></button><button className="icon-button" disabled={disabled} aria-label="Rotate screenshot clockwise" onClick={() => void transform(true)}><RotateCw size={15}/></button></div></div>
       <div className={`image-canvas ${drawing ? 'drawing' : ''}`} ref={canvasRef} style={{ aspectRatio: `${w.screenshot.width}/${w.screenshot.height}` }} onPointerDown={down} onPointerMove={move} onPointerUp={up}>
@@ -60,7 +60,7 @@ export function OutfitCanvas() {
       {w.garments.length > 0 && <p className="fine-print region-note">Approximate garment regions · click a piece to explore</p>}
     </> : <div className={`upload-zone ${dragging ? 'dragging' : ''}`} onDragOver={e => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)} onDrop={e => { e.preventDefault(); setDragging(false); if (!disabled && e.dataTransfer.files[0]) void acceptFile(e.dataTransfer.files[0]); }}>
       <div className="upload-art"><ScanLine size={40} strokeWidth={1}/><span className="upload-star">✦</span></div><h3>Your next outfit<br/>starts in-game.</h3><p>Drop a screenshot.<br/>We’ll find the pieces.</p>
-      <button className="button pink" disabled={disabled} onClick={() => fileInput.current?.click()}><Upload size={16}/> Upload a screenshot</button><span className="fine-print">PNG, JPG or WebP · up to 8 MB</span>
+      <button className="button pink" disabled={disabled} onClick={() => fileInput.current?.click()}><Upload size={16}/> Upload a screenshot</button><span className="fine-print">PNG, JPG, WebP or AVIF · up to 8 MB</span>
       <div className="or-line"><span>or get inspired</span></div><button className="sample-button" disabled={disabled} onClick={() => void w.useExample()}><img src="/demo/sample.webp" alt="Silver pleats example outfit"/><span>Try the silver pleats look<small>A ready-to-explore sample</small></span><span>↗</span></button>
     </div>}
     {w.screenshot && <div className="detected"><div className="row-between"><h3>{w.garments.length ? `${w.garments.filter(g => g.visible).length} pieces in this look` : 'Build the breakdown'}</h3><button className="text-button" disabled={disabled || w.garments.length >= 16} onClick={() => { const g = w.addGarment(); setEdit(g.id); }}><Plus size={14}/> Add piece</button></div>
