@@ -14,7 +14,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "eval:accuracy": "node scripts/accuracy/cli.mjs"
+    "eval:accuracy": "node scripts/accuracy/cli.mjs",
+    "eval:search": "node scripts/search-precision/run.mjs"
   },
   "dependencies": {
     "lucide-react": "1.46.0",

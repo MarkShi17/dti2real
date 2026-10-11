@@ -1,0 +1,371 @@
+[
+  {
+    "caseId": "fit10",
+    "garmentId": "86a00729-bef9-483b-92f7-f4f46aa91c8d",
+    "image": {
+      "file": "fit10.webp",
+      "sha256": "5180b2fd7f716d92226f00715689cb68ce9dcc6b6bbee8b7d5e43506786d817b",
+      "crop": null
+    },
+    "garment": {
+      "id": "86a00729-bef9-483b-92f7-f4f46aa91c8d",
+      "name": "White fitted camisole top",
+      "category": "top",
+      "attributes": {
+        "color": [
+          "white"
+        ],
+        "material": "stretch jersey",
+        "silhouette": "fitted, cropped, V-neck camisole",
+        "pattern": "",
+        "aesthetic": [
+          "minimal",
+          "casual"
+        ],
+        "details": [
+          "spaghetti straps",
+          "deep V neckline",
+          "slightly asymmetrical hem"
+        ]
+      },
+      "bbox": {
+        "x": 0.454,
+        "y": 0.268,
+        "w": 0.157,
+        "h": 0.248
+      },
+      "confidence": 0.95,
+      "searchQueries": [
+        "white fitted camisole v-neck top",
+        "white spaghetti strap cropped cami",
+        "white stretch jersey camisole top"
+      ],
+      "visible": true
+    }
+  },
+  {
+    "caseId": "fit10",
+    "garmentId": "ca55e21d-2b70-443f-bc1a-de943d6a5ae0",
+    "image": {
+      "file": "fit10.webp",
+      "sha256": "5180b2fd7f716d92226f00715689cb68ce9dcc6b6bbee8b7d5e43506786d817b",
+      "crop": null
+    },
+    "garment": {
+      "id": "ca55e21d-2b70-443f-bc1a-de943d6a5ae0",
+      "name": "Light wash baggy cropped jeans",
+      "category": "bottom",
+      "attributes": {
+        "color": [
+          "light blue"
+        ],
+        "material": "denim",
+        "silhouette": "low-rise, very baggy, wide-leg cropped",
+        "pattern": "",
+        "aesthetic": [
+          "casual",
+          "streetwear",
+          "y2k"
+        ],
+        "details": [
+          "faded wash",
+          "oversized legs",
+          "cropped above ankle"
+        ]
+      },
+      "bbox": {
+        "x": 0.451,
+        "y": 0.468,
+        "w": 0.194,
+        "h": 0.377
+      },
+      "confidence": 0.9,
+      "searchQueries": [
+        "light wash baggy cropped jeans women",
+        "low rise wide leg cropped denim jeans",
+        "y2k oversized light blue capri jeans"
+      ],
+      "visible": true
+    }
+  },
+  {
+    "caseId": "fit5",
+    "garmentId": "84c53b47-1d4b-4219-af74-d75da8ff0e97",
+    "image": {
+      "file": "fit5.jpg",
+      "sha256": "89e24fe29f3fcb8bd4e4a9b7db25420317e3ce6a40b0ff3e78fdff9c076fcf1c",
+      "crop": null
+    },
+    "garment": {
+      "id": "84c53b47-1d4b-4219-af74-d75da8ff0e97",
+      "name": "Black platform Mary Jane heels",
+      "category": "shoes",
+      "attributes": {
+        "color": [
+          "black"
+        ],
+        "material": "patent leather",
+        "silhouette": "platform block-heel Mary Janes",
+        "pattern": "",
+        "aesthetic": [
+          "dollcore",
+          "preppy"
+        ],
+        "details": [
+          "rounded toe",
+          "instep strap",
+          "high block heel",
+          "platform sole"
+        ]
+      },
+      "bbox": {
+        "x": 0.264,
+        "y": 0.855,
+        "w": 0.329,
+        "h": 0.142
+      },
+      "confidence": 0.9,
+      "searchQueries": [
+        "black platform Mary Jane heels",
+        "black patent platform block heel Mary Janes",
+        "black rounded toe strap platform heels"
+      ],
+      "visible": true
+    }
+  },
+  {
+    "caseId": "fit8",
+    "garmentId": "92888eb4-c05b-42d5-83a9-11b21a84a233",
+    "image": {
+      "file": "fit8.avif",
+      "sha256": "4e11f02174e8e06607c6a217e9becf4c9a4f2844671f7ac74036ade7cff55e74",
+      "crop": null
+    },
+    "garment": {
+      "id": "92888eb4-c05b-42d5-83a9-11b21a84a233",
+      "name": "white peep-toe platform heels",
+      "category": "shoes",
+      "attributes": {
+        "color": [
+          "white"
+        ],
+        "material": "satin or faux leather",
+        "silhouette": "high heel pumps with platform",
+        "pattern": "",
+        "aesthetic": [
+          "glam",
+          "bridal",
+          "party"
+        ],
+        "details": [
+          "peep toe",
+          "high heel",
+          "front platform"
+        ]
+      },
+      "bbox": {
+        "x": 0.431,
+        "y": 0.839,
+        "w": 0.09,
+        "h": 0.103
+      },
+      "confidence": 0.84,
+      "searchQueries": [
+        "white peep toe platform heels",
+        "ivory platform high heels peep toe",
+        "white bridal peep toe pumps"
+      ],
+      "visible": true
+    }
+  },
+  {
+    "caseId": "fit9",
+    "garmentId": "5b95b29b-5259-46c8-b035-51410bde17e6",
+    "image": {
+      "file": "fit9.jpeg",
+      "sha256": "687d1d711cd06bfcc4601c0b255f11d5d148675c0ead2c0a8a42c70fea408026",
+      "crop": null
+    },
+    "garment": {
+      "id": "5b95b29b-5259-46c8-b035-51410bde17e6",
+      "name": "White and black Mary Jane heels",
+      "category": "shoes",
+      "attributes": {
+        "color": [
+          "white",
+          "black"
+        ],
+        "material": "patent leather",
+        "silhouette": "pointed-toe Mary Jane pumps",
+        "pattern": "",
+        "aesthetic": [
+          "retro",
+          "coquette"
+        ],
+        "details": [
+          "high heel",
+          "dark cap toe",
+          "single strap across instep",
+          "two-tone design"
+        ]
+      },
+      "bbox": {
+        "x": 0.32,
+        "y": 0.84,
+        "w": 0.22,
+        "h": 0.12
+      },
+      "confidence": 0.86,
+      "searchQueries": [
+        "white black two tone mary jane heels",
+        "pointed toe mary jane pumps white black cap toe",
+        "vintage inspired two tone high heel mary janes"
+      ],
+      "visible": true
+    }
+  },
+  {
+    "caseId": "fit2",
+    "garmentId": "246f127c-9bb0-4766-9aa9-215ea85f3815",
+    "image": {
+      "file": "fit2.jpeg",
+      "sha256": "33aec4066cacb4dbbe185b34e1e95ff1dc6b0c4745f68449e6676241d020a5bf",
+      "crop": null
+    },
+    "garment": {
+      "id": "246f127c-9bb0-4766-9aa9-215ea85f3815",
+      "name": "pink lolita jsk-style dress",
+      "category": "dress",
+      "attributes": {
+        "color": [
+          "blush pink",
+          "white",
+          "gold"
+        ],
+        "material": "satin and organza",
+        "silhouette": "fit-and-flare knee-length cupcake silhouette",
+        "pattern": "",
+        "aesthetic": [
+          "sweet lolita",
+          "rococo",
+          "coquette"
+        ],
+        "details": [
+          "high ruffled neckline",
+          "long puff sleeves",
+          "very full skirt",
+          "layered ruffle hem",
+          "printed pastoral/toile-style panels",
+          "gold trim at hem",
+          "large waist bow with bunny motif apron-like front panel"
+        ]
+      },
+      "bbox": {
+        "x": 0.22,
+        "y": 0.2,
+        "w": 0.53,
+        "h": 0.56
+      },
+      "confidence": 0.92,
+      "searchQueries": [
+        "blush pink sweet lolita dress ruffle hem gold trim",
+        "pastel pink rococo lolita long sleeve dress bunny bow",
+        "knee length cupcake silhouette lolita dress blush pink"
+      ],
+      "visible": true
+    }
+  },
+  {
+    "caseId": "fit1",
+    "garmentId": "e83519f8-7b80-4d55-9bc5-cf6d19b43973",
+    "image": {
+      "file": "fit1.jpg",
+      "sha256": "25881c5ac2f355be6fd743c1feb61f7d43d0d195e57dbb5b1101255670110f1d",
+      "crop": null
+    },
+    "garment": {
+      "id": "e83519f8-7b80-4d55-9bc5-cf6d19b43973",
+      "name": "Embellished lace corset crop top",
+      "category": "top",
+      "attributes": {
+        "color": [
+          "ivory",
+          "white"
+        ],
+        "material": "lace and satin",
+        "silhouette": "structured cropped corset with sweetheart neckline and spaghetti straps",
+        "pattern": "",
+        "aesthetic": [
+          "romantic",
+          "coquette",
+          "bridal-inspired"
+        ],
+        "details": [
+          "floral applique",
+          "pearl or rhinestone embellishment",
+          "sheer lace side panels",
+          "strappy cutout waist detail"
+        ]
+      },
+      "bbox": {
+        "x": 0.31,
+        "y": 0.18,
+        "w": 0.33,
+        "h": 0.27
+      },
+      "confidence": 0.89,
+      "searchQueries": [
+        "ivory lace corset crop top with floral applique",
+        "white embellished sweetheart bustier top",
+        "bridal-inspired lace corset cami top"
+      ],
+      "visible": true
+    }
+  },
+  {
+    "caseId": "fit7",
+    "garmentId": "6049f1f4-e196-4728-b003-a169484eb7a6",
+    "image": {
+      "file": "fir7.webp",
+      "sha256": "25a5783f9a7e8422cfbf84db919c8c4247fa4c4dfacc26c0fb060ec36d0567a2",
+      "crop": null
+    },
+    "garment": {
+      "id": "6049f1f4-e196-4728-b003-a169484eb7a6",
+      "name": "Black sleeveless mini dress",
+      "category": "dress",
+      "attributes": {
+        "color": [
+          "black"
+        ],
+        "material": "satin-like knit",
+        "silhouette": "fitted bodice with flared ruffled mini skirt",
+        "pattern": "",
+        "aesthetic": [
+          "coquette",
+          "balletcore",
+          "evening"
+        ],
+        "details": [
+          "sleeveless",
+          "scoop neckline",
+          "drop-waist effect",
+          "short ruffle hem"
+        ]
+      },
+      "bbox": {
+        "x": 0.39,
+        "y": 0.22,
+        "w": 0.16,
+        "h": 0.42
+      },
+      "confidence": 0.94,
+      "searchQueries": [
+        "black sleeveless fit and flare mini dress ruffle hem",
+        "black balletcore mini dress fitted bodice flared skirt",
+        "black scoop neck satin look mini dress"
+      ],
+      "visible": true
+    }
+  }
+]
