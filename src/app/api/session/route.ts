@@ -1,12 +1,12 @@
 import { NextRequest } from 'next/server';
-import { z } from 'zod';
 import { apiError, body, COOKIE, json, rateLimit, sameOrigin, session } from '@/lib/api';
 import { storage } from '@/lib/storage';
-import { garmentSchema, imageIdSchema } from '@/lib/schema';
 import { providerStatus } from '@/lib/providers/config';
+import { providerReadiness } from '@/lib/providers/readiness';
+import { sessionStateSchema, validateAvatarReferences } from '@/lib/session-state';
 export const runtime = 'nodejs';
 export async function GET(req: NextRequest) {
-  try { const id = await session(req); const d = await storage.read(id); return json({ state: d.state, products: d.products, images: d.images, renders: Object.values(d.renders), providers: providerStatus() }); } catch(e) { return apiError(e); }
+  try { const id = await session(req); const d = await storage.read(id); return json({ state: d.state, products: d.products, images: d.images, renders: Object.values(d.renders), providers: await providerReadiness() }); } catch(e) { return apiError(e); }
 }
 export async function POST(req: NextRequest) {
   try {
@@ -18,9 +18,8 @@ export async function POST(req: NextRequest) {
     return res;
   } catch(e) { return apiError(e); }
 }
-const stateSchema = z.object({ screenshotId: imageIdSchema.nullable(), personId: imageIdSchema, garments: z.array(garmentSchema).max(16), selected: z.record(z.string().max(80), z.string().max(160)), activeId: z.string().max(80).nullable(), renderId: z.string().uuid().nullable() });
 export async function PATCH(req: NextRequest) {
-  try { const id = await session(req); const state = await body(req, stateSchema); await storage.update(id, d => { d.state = state; }); return json({ saved: true }); } catch(e) { return apiError(e); }
+  try { const id = await session(req); const state = await body(req, sessionStateSchema); await storage.update(id, d => { validateAvatarReferences(state, d); d.state = state; }); return json({ saved: true }); } catch(e) { return apiError(e); }
 }
 export async function DELETE(req: NextRequest) {
   try { const id = await session(req); await storage.delete(id); const res = json({ deleted: true }); res.cookies.delete(COOKIE); return res; } catch(e) { return apiError(e); }

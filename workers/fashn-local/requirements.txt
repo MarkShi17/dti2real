@@ -1,4 +1,8 @@
 fastapi>=0.115,<1
 uvicorn[standard]>=0.34,<1
 pillow>=11,<13
+diffusers>=0.36,<1
+transformers>=4.57,<6
+accelerate>=1.12,<2
+huggingface-hub>=0.36,<2
 # Install fashn-vton separately from the upstream source. See README.

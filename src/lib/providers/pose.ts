@@ -6,6 +6,15 @@ import type { PoseInput, PoseProvider } from './types';
 function queueUrl(value: string) {
   const u = new URL(value); if (u.origin !== 'https://queue.fal.run' || u.username || u.password) throw new AppError('Pose provider returned an invalid queue URL.', 502); return u.href;
 }
+export class FluxLocalPose implements PoseProvider {
+  async render(input: PoseInput): Promise<Buffer> {
+    const url = `${(process.env.POSE_LOCAL_URL || '').replace(/\/$/, '')}/pose`;
+    const result = await providerJson(url, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${process.env.POSE_LOCAL_TOKEN || ''}` }, body: JSON.stringify({ wardrobe_image: dataUri(input.wardrobeImage), identity_image: dataUri(input.identityReference), pose_image: dataUri(input.posePresetReference), pose: input.pose, pose_prompt: input.posePrompt, seed: 42 }) }, 240000, 0);
+    const parsed = z.object({ image: z.string() }).safeParse(result);
+    if (!parsed.success) throw new AppError('Local pose editor returned no image. Your last preview is preserved.', 502);
+    return decodeDataUri(parsed.data.image);
+  }
+}
 export class FalPose implements PoseProvider {
   async render(input: PoseInput): Promise<Buffer> {
     const model = process.env.POSE_MODEL || 'fal-ai/flux-2/klein/9b/edit';

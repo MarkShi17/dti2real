@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { z } from 'zod';
 import type { Filters, Garment, ProductListing } from '../schema';
 import { AppError, safeExternalUrl } from '../security';
-import { generateQueries, filterAndRank } from '../ranking';
+import { generateQueries, filterAndRank, broadSearchQuery } from '../ranking';
 import { providerJson } from './http';
 import type { ShoppingProvider } from './types';
 import { selectedShoppingSources, shoppingSourceReady, SerperShopping, ResaleShopping, SerpEbayShopping } from './resale';
@@ -25,12 +25,23 @@ export function parseShoppingResults(raw: unknown, garment: Garment): ProductLis
   });
 }
 export class SerpShopping implements ShoppingProvider {
+  warnings: string[] = [];
   async searchGarment(g: Garment, _filters: Filters) {
-    const results = await Promise.all(generateQueries(g).slice(0, 2).map(async q => {
+    const search = async (q: string) => {
       const query = new URLSearchParams({ engine: 'google_shopping', q, api_key: process.env.SERPAPI_KEY || '', gl: 'us', hl: 'en' });
       return parseShoppingResults(await providerJson(`https://serpapi.com/search.json?${query}`), g);
-    }));
-    return results.flat();
+    };
+    const queries = generateQueries(g).slice(0, 2), results = await Promise.allSettled(queries.map(search));
+    const successful = results.filter(r => r.status === 'fulfilled');
+    if (!successful.length) throw (results[0] as PromiseRejectedResult).reason;
+    if (successful.length < results.length) this.warnings.push('One shopping query failed. Showing matches from the other query.');
+    const products = successful.flatMap(r => r.value);
+    const broad = broadSearchQuery(g);
+    if (!products.length && !queries.includes(broad)) {
+      this.warnings.push(`Precise queries found no listings. Trying the broader search “${broad}”.`);
+      return search(broad);
+    }
+    return products;
   }
 }
 let ebayToken: { token: string; expires: number } | undefined;
@@ -66,6 +77,7 @@ export async function liveSearch(g: Garment, filters: Filters) {
   const results = await Promise.allSettled(providers.map(p => p.searchGarment(g, filters)));
   const listings = results.flatMap(r => r.status === 'fulfilled' ? r.value : []);
   const warnings = results.flatMap(r => r.status === 'rejected' ? [r.reason instanceof AppError ? r.reason.message : 'One shopping provider failed.'] : []);
+  warnings.push(...providers.flatMap(p => p instanceof SerpShopping ? p.warnings : []));
   if (results.every(r => r.status === 'rejected')) throw new AppError(warnings.join(' '), 502);
   return { products: filterAndRank(listings, g, filters).slice(0, 12), warnings };
 }

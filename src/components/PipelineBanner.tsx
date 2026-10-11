@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Check, ScanLine, Search, Shirt, TriangleAlert } from 'lucide-react';
+import { Check, LoaderCircle, TriangleAlert } from 'lucide-react';
 import { pipelineCounts, pipelineUnits, type PipelineProgress } from '@/lib/pipeline-progress';
 import styles from './PipelineBanner.module.css';
 
@@ -37,11 +37,7 @@ export function PipelineBanner({ progress, demoSearch = false, manualAnalysis = 
     failed: `${progress.detail} ${progress.failedStage === 'analyze' ? 'Select Analyze outfit to retry.' : 'Select Try on this fit to retry.'}`
   };
   const title = titles[phase], detail = details[phase];
-  const stages = hasAnalysis ? [
-    { label: manualAnalysis ? 'Check outfit' : 'Identify & separate', icon: ScanLine },
-    { label: 'Find matches', icon: Search },
-    { label: 'Create try-on', icon: Shirt }
-  ] : [{ label: 'Create try-on', icon: Shirt }];
+  const stages = hasAnalysis ? [manualAnalysis ? 'Check outfit' : 'Identify pieces', 'Find matches', 'Try on'] : ['Try on'];
   const currentStage = !hasAnalysis ? 0 : phase === 'analyzing' || progress.failedStage === 'analyze' ? 0 : phase === 'searching' || phase === 'manual' ? 1 : 2;
   const outcomeText = [
     `${counts.matched} matched`,
@@ -53,27 +49,27 @@ export function PipelineBanner({ progress, demoSearch = false, manualAnalysis = 
 
   return <section aria-label="Outfit progress" className={`${styles.banner} ${active ? styles.active : ''}`} data-phase={phase}>
     <div className={styles.heading}>
+      <span className={styles.state} aria-hidden="true">{phase === 'complete' ? <Check size={14}/> : phase === 'failed' ? <TriangleAlert size={14}/> : active ? <LoaderCircle size={14} className="spin"/> : <span className={styles.dot}/>}</span>
       <div className={styles.copy} aria-live="polite" aria-atomic="true">
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.detail}>{detail}</p>
       </div>
       {active && <span className={styles.elapsed} data-testid="pipeline-elapsed" aria-live="off">Elapsed {elapsed}s</span>}
-      {phase === 'complete' && <Check size={22} className={styles.success} aria-hidden="true"/>}
-      {phase === 'failed' && <TriangleAlert size={20} aria-hidden="true"/>}
     </div>
     <div className={styles.track} role="progressbar" aria-label="Outfit processing progress" aria-valuemin={0} aria-valuemax={stages.length} aria-valuenow={units} aria-valuetext={`${title}. ${detail}`}>
-      {stages.map((stage, index) => <span key={stage.label} className={`${styles.segment} ${active && currentStage === index ? styles.processing : ''}`} aria-hidden="true">
+      {stages.map((label, index) => <span key={label} className={`${styles.segment} ${units >= index + 1 ? styles.complete : ''} ${active && currentStage === index ? styles.processing : ''}`} aria-hidden="true">
         <span className={styles.fill} style={{ width: `${Math.max(0, Math.min(1, units - index)) * 100}%` }}/>
       </span>)}
     </div>
     <ol className={styles.stages} aria-label="Processing stages">
-      {stages.map(({ label, icon: Icon }, index) => {
+      {stages.map((label, index) => {
         const done = units >= index + 1, working = active && index === currentStage;
         const stopped = phase === 'failed' && index === currentStage;
         const awaiting = (phase === 'review' && index === 2) || (phase === 'manual' && index === 1);
-        return <li key={label} className={`${styles.stage} ${done ? styles.done : ''} ${working ? styles.working : ''}`} aria-current={working ? 'step' : undefined}>
-          <span className={styles.marker} aria-hidden="true">{done ? <Check size={13}/> : stopped ? <TriangleAlert size={13}/> : <Icon size={13}/>}</span>
-          <span><span className={styles.label}>{label}</span><small>{done ? 'Done' : working ? 'In progress' : stopped ? 'Stopped' : awaiting ? 'When you’re ready' : 'Up next'}</small></span>
+        return <li key={label} className={`${styles.stage} ${done ? styles.done : ''} ${working ? styles.working : ''} ${stopped ? styles.stopped : ''}`} aria-current={working ? 'step' : undefined}>
+          {done ? <Check size={12} className={styles.mark} aria-hidden="true"/> : stopped ? <TriangleAlert size={12} className={styles.mark} aria-hidden="true"/> : null}
+          <span className={styles.label}>{label}</span>
+          <span className="visually-hidden">{done ? 'Done' : working ? 'In progress' : stopped ? 'Stopped' : awaiting ? 'When you’re ready' : 'Up next'}</span>
         </li>;
       })}
     </ol>

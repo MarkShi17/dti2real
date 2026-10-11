@@ -1,0 +1,109 @@
+{
+  "input": "fit10.webp",
+  "at": "2026-10-11T19:51:54.925Z",
+  "seconds": 34.179,
+  "provider": "openai_compatible",
+  "note": "3 of 6 pieces have SAM pixel masks. Other pieces retain approximate boxes; refine or redraw uncertain regions. Review edges before searching. Model scores are estimates, not measured accuracy.",
+  "garments": [
+    {
+      "name": "White fitted camisole top",
+      "category": "top",
+      "colors": [
+        "white"
+      ],
+      "bbox": {
+        "x": 0.434375,
+        "y": 0.3233270794246404,
+        "w": 0.135,
+        "h": 0.19324577861163228
+      },
+      "hasMask": true,
+      "estimatedMaskScore": 0.9362879395484924,
+      "model": "sam2.1-hiera-small"
+    },
+    {
+      "name": "Light wash baggy cropped jeans",
+      "category": "bottom",
+      "colors": [
+        "light blue"
+      ],
+      "bbox": {
+        "x": 0.434375,
+        "y": 0.482801751094434,
+        "w": 0.19375,
+        "h": 0.36460287679799874
+      },
+      "hasMask": true,
+      "estimatedMaskScore": 0.9885845184326172,
+      "model": "sam2.1-hiera-small"
+    },
+    {
+      "name": "White high-top sneakers",
+      "category": "shoes",
+      "colors": [
+        "white",
+        "black",
+        "gray"
+      ],
+      "bbox": {
+        "x": 0.4425,
+        "y": 0.8180112570356473,
+        "w": 0.121875,
+        "h": 0.1357098186366479
+      },
+      "hasMask": true,
+      "estimatedMaskScore": 0.9089350700378418,
+      "model": "sam2.1-hiera-small"
+    },
+    {
+      "name": "Layered delicate necklaces",
+      "category": "jewelry",
+      "colors": [
+        "gold"
+      ],
+      "bbox": {
+        "x": 0.46,
+        "y": 0.27,
+        "w": 0.11,
+        "h": 0.12
+      },
+      "hasMask": false
+    },
+    {
+      "name": "Slim bracelet set",
+      "category": "jewelry",
+      "colors": [
+        "gold",
+        "silver"
+      ],
+      "bbox": {
+        "x": 0.35,
+        "y": 0.17,
+        "w": 0.29,
+        "h": 0.2
+      },
+      "hasMask": false
+    },
+    {
+      "name": "Drop earrings",
+      "category": "jewelry",
+      "colors": [
+        "gold"
+      ],
+      "bbox": {
+        "x": 0.45,
+        "y": 0.22,
+        "w": 0.13,
+        "h": 0.12
+      },
+      "hasMask": false
+    }
+  ],
+  "verification": {
+    "source": "scripts/evaluate-vision.mjs against real configured providers",
+    "sessionDeleted": true,
+    "unauthenticatedMaskAccess": "401 verified",
+    "pixelAccuracyMeasured": false,
+    "imageArtifact": "fit10-masks.png"
+  }
+}

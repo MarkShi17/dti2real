@@ -5,13 +5,13 @@ import { dataUri, normalizeImage } from '../images';
 import { AppError, fetchImage } from '../security';
 import { providerJson } from './http';
 import { visionEndpoint } from './vision';
-export async function visualRerank(products: ProductListing[], garment: Garment, screenshot: Buffer): Promise<ProductListing[]> {
+export async function visualRerank(products: ProductListing[], garment: Garment, screenshot: Buffer, segmentedImage?: Buffer): Promise<ProductListing[]> {
   const candidates = products.slice(0, 6); if (!candidates.length) return products;
-  let crop = screenshot;
+  let crop = segmentedImage || screenshot;
   if (garment.bbox) {
     const { width = 1, height = 1 } = await sharp(screenshot).metadata(), b = garment.bbox;
     const left = Math.min(width - 1, Math.floor(b.x * width)), top = Math.min(height - 1, Math.floor(b.y * height));
-    crop = await sharp(screenshot).extract({ left, top, width: Math.max(1, Math.min(width - left, Math.floor(b.w * width))), height: Math.max(1, Math.min(height - top, Math.floor(b.h * height))) }).webp().toBuffer();
+    crop = await sharp(crop).extract({ left, top, width: Math.max(1, Math.min(width - left, Math.floor(b.w * width))), height: Math.max(1, Math.min(height - top, Math.floor(b.h * height))) }).flatten({ background: '#d8d8d8' }).webp().toBuffer();
   }
   const images = await Promise.all(candidates.map(async p => dataUri((await normalizeImage(await fetchImage(p.imageUrl), 600)).data)));
   const content: unknown[] = [

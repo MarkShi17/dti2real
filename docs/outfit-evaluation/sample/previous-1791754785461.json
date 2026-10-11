@@ -1,0 +1,172 @@
+{
+  "startedAt": "2026-10-11T21:34:48.165Z",
+  "settings": {
+    "model": "gpt-image-2.5-sunburst",
+    "quality": "max",
+    "size": "1024x1536",
+    "n": 1
+  },
+  "source": "docs/outfit-evaluation/sample",
+  "status": "failed",
+  "superiorityClaim": false,
+  "stages": [
+    {
+      "progress": "Generating complete outfit",
+      "time": "2026-10-11T21:35:11.077Z"
+    },
+    {
+      "progress": "Reviewing every product, layering and identity",
+      "time": "2026-10-11T21:36:16.301Z"
+    },
+    {
+      "progress": "Repairing outfit (1 of 2)",
+      "time": "2026-10-11T21:36:27.605Z"
+    },
+    {
+      "progress": "Reviewing repair (1 of 2)",
+      "time": "2026-10-11T21:37:30.812Z"
+    },
+    {
+      "progress": "Repairing outfit (2 of 2)",
+      "time": "2026-10-11T21:37:40.904Z"
+    },
+    {
+      "progress": "Reviewing repair (2 of 2)",
+      "time": "2026-10-11T21:38:46.404Z"
+    }
+  ],
+  "baseline": {
+    "provider": "fashn_local",
+    "status": "not-run"
+  },
+  "references": [
+    {
+      "garmentId": "demo-top",
+      "productId": "eda30667cc98d3edb5b433e3f3b5019e",
+      "hash": "66b89c68cb6f3260d89d17f03050a01f79e2c535fcfe0c763c1baf2636da00e6"
+    },
+    {
+      "garmentId": "demo-bottom",
+      "productId": "a82c8246ed75f6d3f8df5cde8287118b",
+      "hash": "f186f0c25c49f9596208a41964fb50d1001ecc352d2b25180df542e117a05c3c"
+    },
+    {
+      "garmentId": "demo-shoes",
+      "productId": "b64462c1f198a08f573b0bb2f567a863",
+      "hash": "8ba537b38a5de88e6d4965e4476d1fb3af1d1aed8bf8871586d96c5c6de255a2"
+    },
+    {
+      "garmentId": "demo-bag",
+      "productId": "3e9dc0ee40090a83f599ff3524a89336",
+      "hash": "f707da3a700c8ee64bcdc6ed5c293182c2c473ce55ba4bcc15b46a0559b5c10e"
+    },
+    {
+      "garmentId": "demo-jewelry",
+      "productId": "3ba2471e00356440519cb15b9daea779",
+      "hash": "34c1d68f92fd1f488b6dcb0009f90d1c7c592a7f3c15a573a5d855bab095d2fe"
+    }
+  ],
+  "layering": {
+    "plan": {
+      "pieces": [
+        {
+          "garmentId": "demo-top",
+          "productId": "eda30667cc98d3edb5b433e3f3b5019e",
+          "placement": "Black ribbed high-neck fitted sweater worn on the torso with the turtleneck covering the base of the neck and long sleeves extending to the wrists.",
+          "over": [
+            "demo-bottom"
+          ],
+          "under": [
+            "demo-jewelry",
+            "demo-bag"
+          ],
+          "visibleEdges": "Neckline and full upper body of the sweater are visible above the skirt waistband; sleeve cuffs are visible at both wrists; lower body hem is mostly hidden because it is tucked into the skirt.",
+          "tucking": "Sweater is tucked into the high waist of the skirt, creating a smooth fitted waistline.",
+          "closure": "not applicable",
+          "accessoryPosition": "Shoulder bag strap runs over the wearer's right shoulder and lies on top of the sweater; necklace chain rests over the sweater at the neck and upper chest."
+        },
+        {
+          "garmentId": "demo-bottom",
+          "productId": "a82c8246ed75f6d3f8df5cde8287118b",
+          "placement": "Metallic silver pleated high-waist maxi skirt worn from the natural waist down to the ankles, flaring softly toward the hem.",
+          "over": [
+            "demo-shoes"
+          ],
+          "under": [
+            "demo-top"
+          ],
+          "visibleEdges": "Waistband is clearly visible at the midsection beneath the tucked sweater; full pleated length is visible; lower hem falls to ankle level and parts slightly in front to reveal the boots beneath.",
+          "tucking": "Receives the sweater tucked inside the waistband.",
+          "closure": "not applicable",
+          "accessoryPosition": "not applicable"
+        },
+        {
+          "garmentId": "demo-shoes",
+          "productId": "b64462c1f198a08f573b0bb2f567a863",
+          "placement": "Black leather ankle boots worn on both feet under the maxi skirt, with the shafts reaching the ankles and block heels visible below the skirt hem.",
+          "over": [],
+          "under": [
+            "demo-bottom"
+          ],
+          "visibleEdges": "Only the lower front portions, toes, and heels are visible beneath the skirt's hem opening.",
+          "tucking": "not applicable",
+          "closure": "not visible in the outfit image; product is an ankle boot with side closure construction, but closure is covered by the skirt and angle.",
+          "accessoryPosition": "not applicable"
+        },
+        {
+          "garmentId": "demo-bag",
+          "productId": "3e9dc0ee40090a83f599ff3524a89336",
+          "placement": "Small black shoulder bag worn at the wearer's right side, hanging high under the right arm from a short shoulder strap.",
+          "over": [
+            "demo-top"
+          ],
+          "under": [],
+          "visibleEdges": "Bag body is visible at the right rib/waist area; strap is visible from the top of the right shoulder down to the bag; the bag sits partly in front of the right sleeve side seam area.",
+          "tucking": "not applicable",
+          "closure": "Top flap bag; flap closure hardware details are not fully readable in the outfit image, but the bag appears closed.",
+          "accessoryPosition": "Strap rests on the right shoulder over the sweater, with the bag tucked close against the right underarm and side torso."
+        },
+        {
+          "garmentId": "demo-jewelry",
+          "productId": "3ba2471e00356440519cb15b9daea779",
+          "placement": "Fine silver chain necklace worn around the neck with a small pendant centered on the upper chest over the sweater.",
+          "over": [
+            "demo-top"
+          ],
+          "under": [],
+          "visibleEdges": "Chain is visible around the front of the turtleneck area and the small pendant hangs visibly at center front just below the neck.",
+          "tucking": "not applicable",
+          "closure": "not visible",
+          "accessoryPosition": "Necklace lies against the front of the black sweater, pendant centered above the bust line."
+        }
+      ],
+      "unmapped": [],
+      "instructions": "Arrange the outfit with the black ribbed high-neck sweater as the base upper-body garment, fully tucked into the metallic silver pleated maxi skirt at the natural waist. Let the skirt sit over the sweater and fall to ankle length, leaving a slight front opening at the hem so the black ankle boots remain partially visible underneath. Place the fine silver pendant necklace over the sweater, centered at the upper chest. Wear the small black shoulder bag on the right shoulder with the strap over the sweater and the bag resting snugly under the right arm. No outerwear, hosiery, headwear, or additional jewelry are present."
+    },
+    "latencyMs": 22749,
+    "usage": {
+      "prompt_tokens": 3761,
+      "completion_tokens": 901,
+      "total_tokens": 4662,
+      "prompt_tokens_details": {
+        "cached_tokens": 3072,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "cost": 0.010403,
+      "cost_details": {
+        "upstream_inference_cost": 0.010403
+      }
+    }
+  },
+  "failure": {
+    "stage": "image-generation-and-review",
+    "latencyMs": 226881,
+    "error": "Outfit quality review failed after two repairs: Validated accessory placement is not fully followed: the shoulder bag is on the wrong side.; Necklace product match fails due to incorrect pendant shape/detail.; Skirt placement/visibility does not fully follow the plan because the front hem opening revealing the boots is missing.; Because of the bag side error and skirt hem visibility error, the full validated layering/placement plan is not completely satisfied.; Skirt hem does not show the planned slight front opening/parting to reveal the boots beneath; the pleated maxi falls almost continuously across the front.; Bag is worn on the wearer's left shoulder/left underarm in the image, but the validated plan requires it on the wearer's right shoulder and right side torso.; Necklace pendant does not match the referenced product: the product shows a small asymmetrical silver pendant with a distinct textured diagonal band, while the image shows a different elongated oval/leaf-like pendant without that exact detail.; layering check failed; accessories check failed; Product a82c8246ed75f6d3f8df5cde8287118b appearance or placement failed; Product 3e9dc0ee40090a83f599ff3524a89336 appearance or placement failed; Product 3ba2471e00356440519cb15b9daea779 appearance or placement failed. Your last accepted preview is preserved."
+  }
+}

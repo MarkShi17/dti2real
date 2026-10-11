@@ -1,4 +1,4 @@
 import { json } from '@/lib/api';
-import { providerStatus } from '@/lib/providers/config';
+import { providerReadiness } from '@/lib/providers/readiness';
 export const dynamic = 'force-dynamic';
-export function GET() { return json(providerStatus()); }
+export async function GET() { return json(await providerReadiness()); }

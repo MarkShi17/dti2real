@@ -1,10 +1,10 @@
 import { mkdir, readFile, writeFile, rename, rm, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
-import type { ImageRef, Job, ProductListing, RenderResult } from './schema';
+import type { ImageRef, Job, ProductListing, RenderResult, LayeringPlan } from './schema';
 import { normalizeImage } from './images';
 import { AppError } from './security';
-export type SessionData = { createdAt: number; images: Record<string, ImageRef>; products: Record<string, ProductListing>; jobs: Record<string, Job>; renders: Record<string, RenderResult>; cache: Record<string, string>; state?: unknown };
+export type SessionData = { createdAt: number; images: Record<string, ImageRef>; products: Record<string, ProductListing>; jobs: Record<string, Job>; renders: Record<string, RenderResult>; cache: Record<string, string>; layeringPlans?: Record<string, LayeringPlan>; state?: unknown };
 export interface StorageProvider {
   create(): Promise<string>; read(id: string): Promise<SessionData>; update(id: string, fn: (data: SessionData) => void): Promise<void>;
   putImage(id: string, data: Buffer, kind: ImageRef['kind']): Promise<ImageRef>; getImage(id: string, imageId: string): Promise<Buffer>; delete(id: string): Promise<void>;
@@ -68,6 +68,6 @@ export class FileStorage implements StorageProvider {
 }
 export const storage: StorageProvider = new FileStorage();
 export async function sampleAsset(path: string) {
-  if (!/^\/demo\/(base|silver|burgundy)-(runway|hip|peace|shoulder|lean)\.webp$/.test(path) && path !== '/demo/sample.webp' && !/^\/demo\/products\/[a-z-]+\.webp$/.test(path)) throw new AppError('Invalid sample asset.');
+  if (!/^\/avatar\/pose-guides\/(runway|hip|peace|shoulder|lean)\.png$/.test(path) && !/^\/demo\/(base|silver|burgundy)-(runway|hip|peace|shoulder|lean)\.webp$/.test(path) && path !== '/demo/sample.webp' && !/^\/demo\/products\/[a-z-]+\.webp$/.test(path)) throw new AppError('Invalid sample asset.');
   return readFile(join(process.cwd(), 'public', path));
 }

@@ -32,7 +32,15 @@ export async function POST(req: NextRequest) {
       result.products = checked.products;
       result.warnings.push(...checked.warnings);
     } else if (!strictMatching && provider.mode === 'live' && process.env.VISUAL_RERANK === 'true' && input.imageId && providerStatus().vision.mode === 'live') {
-      try { result.products = await visualRerank(result.products, input.garment, await storage.getImage(id, input.imageId)); }
+      try {
+        let segmentedImage: Buffer | undefined;
+        const segment = input.garment.segmentation;
+        if (segment?.sourceImageId === input.imageId) {
+          const data = await storage.read(id), ref = data.images[segment.imageId];
+          if (ref?.kind === 'segment' && ref.sourceImageId === input.imageId) segmentedImage = await storage.getImage(id, segment.imageId);
+        }
+        result.products = await visualRerank(result.products, input.garment, await storage.getImage(id, input.imageId), segmentedImage);
+      }
       catch(e) { result.warnings.push('Visual ranking unavailable: '+(e instanceof AppError ? e.message : 'Provider failed.')+' Showing keyword matches.'); }
     }
     await storage.update(id, d => {

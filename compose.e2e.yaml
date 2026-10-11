@@ -1,0 +1,77 @@
+name: dti2irl-e2e
+services:
+  demo:
+    image: dti2irl:local
+    build: .
+    environment:
+      DEMO_MODE: 'true'
+    tmpfs:
+      - /app/.data:uid=1000,gid=1000,mode=700
+    init: true
+  providers:
+    image: dti2irl:local
+    command: [node, --import, /fixtures/provider-fixtures.mjs, server.js]
+    environment:
+      DTI2IRL_TEST_PROVIDER_FIXTURES: '1'
+      DEMO_MODE: 'false'
+      VISION_API_KEY: test-only-vision
+      VISION_MODEL: test-only-vision-model
+      SERPAPI_KEY: test-only-shopping
+      EBAY_CLIENT_ID: test-only-ebay
+      EBAY_CLIENT_SECRET: test-only-ebay-secret
+      FASHN_API_KEY: test-only-tryon
+      POSE_API_KEY: test-only-pose
+      VISUAL_RERANK: 'true'
+      SEGMENTATION_URL: https://sam-fixture.example.com
+      SEGMENTATION_TOKEN: test-only-segmentation
+      IMAGE_ALLOWED_HOSTS: dti2irl-fixtures.example.com
+    volumes:
+      - ./tests/support:/fixtures:ro
+    tmpfs:
+      - /app/.data:uid=1000,gid=1000,mode=700
+    init: true
+  tests:
+    image: mcr.microsoft.com/playwright:v1.59.1-noble
+    working_dir: /work
+    volumes:
+      - .:/work
+      - test_dependencies:/work/node_modules
+    environment:
+      CI: '1'
+      PLAYWRIGHT_BASE_URL: http://demo:3000
+      PLAYWRIGHT_LIVE_BASE_URL: http://providers:3000
+      PLAYWRIGHT_FIXTURE_CONTROL_URL: http://providers:4010
+      PLAYWRIGHT_GPU_BASE_URL: http://gpu-providers:3000
+      PLAYWRIGHT_GPU_CONTROL_URL: http://gpu-providers:4010
+    depends_on:
+      demo:
+        condition: service_healthy
+      providers:
+        condition: service_healthy
+      gpu-providers:
+        condition: service_healthy
+    command: [/bin/bash, -lc, 'npm ci --no-audit --no-fund && exec node node_modules/@playwright/test/cli.js test']
+    init: true
+  gpu-providers:
+    image: dti2irl:local
+    command: [node, --import, /fixtures/provider-fixtures.mjs, server.js]
+    environment:
+      DTI2IRL_TEST_PROVIDER_FIXTURES: '1'
+      DEMO_MODE: 'false'
+      VISION_API_KEY: test-only-vision
+      VISION_MODEL: test-only-vision-model
+      SERPAPI_KEY: test-only-shopping
+      IMAGE_ALLOWED_HOSTS: dti2irl-fixtures.example.com
+      TRYON_PROVIDER: fashn_local
+      FASHN_LOCAL_URL: http://127.0.0.1:4010
+      FASHN_LOCAL_TOKEN: test-only-private-gpu
+      POSE_PROVIDER: flux_local
+      POSE_LOCAL_URL: http://127.0.0.1:4010
+      POSE_LOCAL_TOKEN: test-only-private-gpu
+    volumes:
+      - ./tests/support:/fixtures:ro
+    tmpfs:
+      - /app/.data:uid=1000,gid=1000,mode=700
+    init: true
+volumes:
+  test_dependencies:

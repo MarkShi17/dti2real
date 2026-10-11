@@ -1,0 +1,226 @@
+{
+  "garments": [
+    {
+      "id": "demo-top",
+      "name": "Midnight knit",
+      "category": "top",
+      "attributes": {
+        "color": [
+          "black"
+        ],
+        "material": "ribbed knit",
+        "silhouette": "fitted high neck",
+        "aesthetic": [
+          "dark academia",
+          "minimal"
+        ],
+        "details": [
+          "long sleeves"
+        ]
+      },
+      "bbox": {
+        "x": 0.28,
+        "y": 0.24,
+        "w": 0.44,
+        "h": 0.26
+      },
+      "confidence": 0.96,
+      "searchQueries": [
+        "black fitted high neck ribbed sweater",
+        "black long sleeve turtleneck knit top"
+      ],
+      "visible": true
+    },
+    {
+      "id": "demo-bottom",
+      "name": "Silver pleats",
+      "category": "bottom",
+      "attributes": {
+        "color": [
+          "silver",
+          "gray"
+        ],
+        "material": "satin",
+        "silhouette": "pleated maxi",
+        "aesthetic": [
+          "editorial"
+        ],
+        "details": [
+          "high waist"
+        ]
+      },
+      "bbox": {
+        "x": 0.32,
+        "y": 0.38,
+        "w": 0.39,
+        "h": 0.47
+      },
+      "confidence": 0.93,
+      "searchQueries": [
+        "silver gray pleated maxi skirt",
+        "metallic gray high waist pleated skirt"
+      ],
+      "visible": true
+    },
+    {
+      "id": "demo-shoes",
+      "name": "City ankle boots",
+      "category": "shoes",
+      "attributes": {
+        "color": [
+          "black"
+        ],
+        "material": "leather",
+        "silhouette": "block heel"
+      },
+      "bbox": {
+        "x": 0.44,
+        "y": 0.82,
+        "w": 0.19,
+        "h": 0.15
+      },
+      "confidence": 0.91,
+      "searchQueries": [
+        "black leather block heel ankle boots"
+      ],
+      "visible": true
+    },
+    {
+      "id": "demo-bag",
+      "name": "Little shoulder bag",
+      "category": "bag",
+      "attributes": {
+        "color": [
+          "black"
+        ],
+        "material": "leather",
+        "silhouette": "mini shoulder"
+      },
+      "bbox": {
+        "x": 0.57,
+        "y": 0.26,
+        "w": 0.1,
+        "h": 0.16
+      },
+      "confidence": 0.82,
+      "searchQueries": [
+        "black mini shoulder bag silver hardware"
+      ],
+      "visible": true
+    },
+    {
+      "id": "demo-jewelry",
+      "name": "Silver pendant",
+      "category": "jewelry",
+      "attributes": {
+        "color": [
+          "silver"
+        ],
+        "material": "silver",
+        "silhouette": "fine chain"
+      },
+      "bbox": {
+        "x": 0.43,
+        "y": 0.235,
+        "w": 0.14,
+        "h": 0.045
+      },
+      "confidence": 0.72,
+      "searchQueries": [
+        "silver fine chain pendant necklace"
+      ],
+      "visible": true
+    }
+  ],
+  "products": [
+    {
+      "id": "eda30667cc98d3edb5b433e3f3b5019e",
+      "garmentId": "demo-top",
+      "title": "Ribbed Sweaters for Women Cute High Neck Knitted Warm Fitted Sweater Black One size, Women's",
+      "source": "Walmart - queenaa",
+      "productUrl": "https://www.google.com/search?ibp=oshop&q=black%20fitted%20high%20neck%20ribbed%20sweater&prds=productid:7033495092071091809,headlineOfferDocid:7033495092071091809,imageDocid:16520462336067434221,pvt:a&hl=en&gl=us&udm=28",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRNZG2WaE0ugbPH6OK0_jiVzeQuO6x-ViNgyiRj7y96R9X2RVD7BsFlo1oHsQWANM_dokji9O4u02RpG4EVFDMkDlPzJYfofX7JeJ-cmiF-",
+      "price": 17.77,
+      "currency": "USD",
+      "condition": "unknown",
+      "thrift": false,
+      "retrievedAt": "2026-10-11T20:49:45.723Z",
+      "isDemo": false,
+      "category": "top",
+      "matchScore": 85,
+      "matchReason": "Visual review: Best match overall: black ribbed knit turtleneck with a fitted body, matching the screenshot\u2019s category, color, and vertical texture. Sleeve shape is slimmer than the screenshot\u2019s wider/dramatic sleeves, so not exact."
+    },
+    {
+      "id": "a82c8246ed75f6d3f8df5cde8287118b",
+      "garmentId": "demo-bottom",
+      "title": "Impressions Skirts | Pleated Metallic Silver Gun Metal Grey Maxi Skirt Sz L | Color: Silver | Size: L | Love_Consign's Closet",
+      "source": "Poshmark",
+      "productUrl": "https://www.google.com/search?ibp=oshop&q=silver%20gray%20pleated%20maxi%20skirt&prds=productid:12884114690014232176,headlineOfferDocid:12884114690014232176,imageDocid:8593864367712147339,pvt:a&hl=en&gl=us&udm=28",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTpgtLcSzWxn4C0_UcF3TZiXLY7kvNc7zroepeYiilHkAvVC3gRpcbHGvT10xXNd1H8orFSZUGXlx5WpLVBmu7CPTQOjGYnhqz1V4qegtA",
+      "price": 38,
+      "currency": "USD",
+      "condition": "used",
+      "thrift": true,
+      "retrievedAt": "2026-10-11T20:49:45.715Z",
+      "isDemo": false,
+      "category": "bottom",
+      "matchScore": 80,
+      "matchReason": "Visual review: Best match: silver metallic pleated maxi skirt with very similar color, sheen, length, and graceful flared drape. Overall styling also aligns well with the reference outfit."
+    },
+    {
+      "id": "b64462c1f198a08f573b0bb2f567a863",
+      "garmentId": "demo-shoes",
+      "title": "Ally Shoes Black Leather Bold Block Heel Ankle Boot",
+      "source": "ALLY Shoes",
+      "productUrl": "https://www.google.com/search?ibp=oshop&q=black%20City%20ankle%20boots%20block%20heel%20leather&prds=catalogid:11043982758070722619,productid:8121734395767156929,headlineOfferDocid:5234778678571333660,imageDocid:8569806264337952091,gpcid:9166264912250415736,mid:576462820666064334,pvt:a&hl=en&gl=us&udm=28",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTauaxaK1vQ_i8KlWw7lWD6IDIYYvsts2CttpCFRQWrJmg1xfHJqbJGFWP_ovR33PDFJOE5wVxcJmGfahtU5Z2v57zaUC_BmhANCFRPN1zDegeZbDOIPGCs",
+      "price": 455,
+      "currency": "USD",
+      "condition": "unknown",
+      "thrift": false,
+      "retrievedAt": "2026-10-11T20:49:54.371Z",
+      "isDemo": false,
+      "category": "shoes",
+      "matchScore": 90,
+      "matchReason": "Style score from category, color, cut and material keywords; not an image similarity percentage."
+    },
+    {
+      "id": "3e9dc0ee40090a83f599ff3524a89336",
+      "garmentId": "demo-bag",
+      "title": "Valentino Garavani Women's Small Black Devain Leather Shoulder Bag",
+      "source": "ModeSens",
+      "productUrl": "https://www.google.com/search?ibp=oshop&q=black%20mini%20shoulder%20bag%20silver%20hardware&prds=catalogid:9139306043996777421,productid:8492862236370962684,headlineOfferDocid:10171064358764401440,imageDocid:7906624500313842808,gpcid:393486598281766860,pvt:a&hl=en&gl=us&udm=28",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ3LRSk6XZQfg0BUlSEF-SjijliIJxJXuRVX_hwLHzFSxpU0perp9TJJlwRVA",
+      "price": 1714,
+      "currency": "USD",
+      "condition": "unknown",
+      "thrift": false,
+      "retrievedAt": "2026-10-11T20:49:54.358Z",
+      "isDemo": false,
+      "category": "bag",
+      "matchScore": 85,
+      "matchReason": "Visual review: Best match: small black shoulder bag with structured silhouette and smooth leather, fitting the sleek minimal black outfit. Main difference is the screenshot bag is more vertical/rectangular and less flap-clutch shaped."
+    },
+    {
+      "id": "3ba2471e00356440519cb15b9daea779",
+      "garmentId": "demo-jewelry",
+      "title": "Small Fine Silver Pendant on Sterling Silver Chain",
+      "source": "Etsy - Seller",
+      "productUrl": "https://www.google.com/search?ibp=oshop&q=silver%20Silver%20pendant%20fine%20chain%20silver&prds=catalogid:10688524019012429864,productid:9272717598221911460,headlineOfferDocid:12962654922511010451,imageDocid:16698322514579752706,pvt:a&hl=en&gl=us&udm=28",
+      "imageUrl": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRgIh8tMpLD3fjH6kc6srHot0kJdGxr2YQyfiNP9v8-qfpnn01HztjhPWIzQ6liZCOwRljRtTr85nLn0zbQ_PD2xWvQAeHIwh1Iva0KhbYPOIvitQX7Ko_E",
+      "price": 32,
+      "currency": "USD",
+      "condition": "unknown",
+      "thrift": false,
+      "retrievedAt": "2026-10-11T20:50:02.377Z",
+      "isDemo": false,
+      "category": "jewelry",
+      "matchScore": 55,
+      "matchReason": "Visual review: Silver pendant necklace matches category and color, but the screenshot shows a tiny geometric square charm on a delicate chain, while this is a larger oval pendant with different silhouette and texture."
+    }
+  ],
+  "screenshot": "public/demo/sample.webp",
+  "person": "public/demo/base-runway.webp",
+  "baselineProvider": "fashn_local",
+  "provenance": "Real Google Shopping selections already present in the local example session; frozen for reproducible comparison. Person is the fictional studio reference."
+}

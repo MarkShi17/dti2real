@@ -1,0 +1,556 @@
+{
+  "startedAt": "2026-10-11T21:43:14.678Z",
+  "settings": {
+    "model": "gpt-image-2.5-sunburst",
+    "quality": "max",
+    "size": "1024x1536",
+    "n": 1
+  },
+  "source": "docs/outfit-evaluation/sample",
+  "status": "failed",
+  "superiorityClaim": false,
+  "stages": [
+    {
+      "progress": "Generating complete outfit",
+      "time": "2026-10-11T21:43:30.735Z"
+    },
+    {
+      "progress": "Reviewing every product, layering and identity",
+      "time": "2026-10-11T21:44:37.620Z"
+    },
+    {
+      "progress": "Repairing outfit (1 of 2)",
+      "time": "2026-10-11T21:44:48.456Z"
+    },
+    {
+      "progress": "Reviewing repair (1 of 2)",
+      "time": "2026-10-11T21:45:53.949Z"
+    },
+    {
+      "progress": "Repairing outfit (2 of 2)",
+      "time": "2026-10-11T21:46:04.821Z"
+    },
+    {
+      "progress": "Reviewing repair (2 of 2)",
+      "time": "2026-10-11T21:47:12.635Z"
+    }
+  ],
+  "baseline": {
+    "provider": "fashn_local",
+    "status": "failed",
+    "latencyMs": 51,
+    "error": "Provider connection failed or timed out. Please retry.",
+    "attemptedSeparately": true,
+    "sourceReport": "previous-1791754994678.json"
+  },
+  "references": [
+    {
+      "garmentId": "demo-top",
+      "productId": "eda30667cc98d3edb5b433e3f3b5019e",
+      "hash": "66b89c68cb6f3260d89d17f03050a01f79e2c535fcfe0c763c1baf2636da00e6"
+    },
+    {
+      "garmentId": "demo-bottom",
+      "productId": "a82c8246ed75f6d3f8df5cde8287118b",
+      "hash": "f186f0c25c49f9596208a41964fb50d1001ecc352d2b25180df542e117a05c3c"
+    },
+    {
+      "garmentId": "demo-shoes",
+      "productId": "b64462c1f198a08f573b0bb2f567a863",
+      "hash": "8ba537b38a5de88e6d4965e4476d1fb3af1d1aed8bf8871586d96c5c6de255a2"
+    },
+    {
+      "garmentId": "demo-bag",
+      "productId": "3e9dc0ee40090a83f599ff3524a89336",
+      "hash": "f707da3a700c8ee64bcdc6ed5c293182c2c473ce55ba4bcc15b46a0559b5c10e"
+    },
+    {
+      "garmentId": "demo-jewelry",
+      "productId": "3ba2471e00356440519cb15b9daea779",
+      "hash": "34c1d68f92fd1f488b6dcb0009f90d1c7c592a7f3c15a573a5d855bab095d2fe"
+    }
+  ],
+  "layering": {
+    "plan": {
+      "pieces": [
+        {
+          "garmentId": "demo-top",
+          "productId": "eda30667cc98d3edb5b433e3f3b5019e",
+          "placement": "Black ribbed fitted high-neck sweater worn on the torso with the turtleneck close around the neck and long sleeves extending to the wrists.",
+          "over": [
+            "demo-jewelry"
+          ],
+          "under": [
+            "demo-bottom",
+            "demo-bag"
+          ],
+          "visibleEdges": "Visible at the full turtleneck, shoulders, chest, waist above the skirt waistband, and sleeves to the cuffs. The lower body hem is not visible because it is covered at the waistband by the skirt.",
+          "tucking": "Sweater is tucked into the skirt waistband.",
+          "closure": "not applicable",
+          "accessoryPosition": "Bag strap runs over the wearer's right shoulder and lies on top of the sweater at that contact area."
+        },
+        {
+          "garmentId": "demo-bottom",
+          "productId": "a82c8246ed75f6d3f8df5cde8287118b",
+          "placement": "Metallic silver pleated high-waist maxi skirt worn at the natural waist and falling full length to the lower legs/ankles.",
+          "over": [
+            "demo-top",
+            "demo-shoes"
+          ],
+          "under": [],
+          "visibleEdges": "Visible waistband encircles the waist over the tucked sweater. The pleated skirt body and flared lower hem are visible across the full length. The hem covers most of the boot shafts, leaving only naturally exposed lower front portions visible.",
+          "tucking": "Receives the sweater tucked inside its waistband.",
+          "closure": "not visible; no closure can be confirmed from the image.",
+          "accessoryPosition": "not applicable"
+        },
+        {
+          "garmentId": "demo-shoes",
+          "productId": "b64462c1f198a08f573b0bb2f567a863",
+          "placement": "Black leather block-heel ankle boots worn on both feet beneath the maxi skirt.",
+          "over": [],
+          "under": [
+            "demo-bottom"
+          ],
+          "visibleEdges": "Only the naturally exposed toe boxes, front vamp areas, and part of the heels/lower shaft area are visible below the skirt hem; the upper shafts are obscured by the closed skirt.",
+          "tucking": "not applicable",
+          "closure": "Side elastic/zip construction belongs to the boot product, but closure details are not visible in the outfit image.",
+          "accessoryPosition": "not applicable"
+        },
+        {
+          "garmentId": "demo-bag",
+          "productId": "3e9dc0ee40090a83f599ff3524a89336",
+          "placement": "Small black shoulder bag worn on the wearer's right shoulder, hanging at the right upper torso/rib area.",
+          "over": [
+            "demo-top"
+          ],
+          "under": [],
+          "visibleEdges": "Visible as the bag body at the wearer's right side with the shoulder strap descending from the right shoulder. Most of the bag body is visible against the sweater.",
+          "tucking": "not applicable",
+          "closure": "Front flap bag per product photo; flap closure hardware detail is not clearly visible in the outfit image.",
+          "accessoryPosition": "Strap sits on the wearer's right shoulder and the bag rests against the outer right side of the sweater, above the skirt waistband."
+        },
+        {
+          "garmentId": "demo-jewelry",
+          "productId": "3ba2471e00356440519cb15b9daea779",
+          "placement": "Fine silver chain necklace worn around the neck with a small pendant centered at the upper chest just below the turtleneck edge.",
+          "over": [],
+          "under": [
+            "demo-top"
+          ],
+          "visibleEdges": "The chain is visible around the front of the neck and the small pendant is visible centered on the chest.",
+          "tucking": "not applicable",
+          "closure": "not visible",
+          "accessoryPosition": "Necklace lies against the front of the sweater, with the pendant centered on the wearer's chest."
+        }
+      ],
+      "unmapped": [],
+      "instructions": "Map each visible source garment exactly once to its selected product. Arrange the black ribbed high-neck sweater as the base upper-body layer, tucked into the metallic pleated high-waist maxi skirt so the skirt is over the sweater at the waistband overlap. The fine silver pendant necklace lies against the outside of the sweater at the neck and chest. The small black shoulder bag is worn on the wearer's right shoulder with its strap over the sweater and the bag body resting at the right upper torso, staying above the skirt waistband. The black ankle boots remain under the full closed maxi skirt; do not open or redesign the skirt hem, and show only the naturally visible boot portions below the hem."
+    },
+    "latencyMs": 15895,
+    "usage": {
+      "prompt_tokens": 3888,
+      "completion_tokens": 902,
+      "total_tokens": 4790,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "cost": 0.015112,
+      "cost_details": {
+        "upstream_inference_cost": 0.015112
+      }
+    }
+  },
+  "candidates": [
+    {
+      "path": "candidate-20261011214314678-1.webp",
+      "latencyMs": 66766,
+      "usage": {
+        "input_tokens": 5133,
+        "input_tokens_details": {
+          "image_tokens": 3095,
+          "text_tokens": 2038
+        },
+        "output_tokens": 5488,
+        "output_tokens_details": {
+          "image_tokens": 5488,
+          "text_tokens": 0
+        },
+        "total_tokens": 10621
+      },
+      "accepted": false
+    },
+    {
+      "path": "candidate-20261011214314678-2.webp",
+      "latencyMs": 65231,
+      "usage": {
+        "input_tokens": 7041,
+        "input_tokens_details": {
+          "image_tokens": 4631,
+          "text_tokens": 2410
+        },
+        "output_tokens": 5488,
+        "output_tokens_details": {
+          "image_tokens": 5488,
+          "text_tokens": 0
+        },
+        "total_tokens": 12529
+      },
+      "accepted": false
+    },
+    {
+      "path": "candidate-20261011214314678-3.webp",
+      "latencyMs": 67697,
+      "usage": {
+        "input_tokens": 7108,
+        "input_tokens_details": {
+          "image_tokens": 4631,
+          "text_tokens": 2477
+        },
+        "output_tokens": 5488,
+        "output_tokens_details": {
+          "image_tokens": 5488,
+          "text_tokens": 0
+        },
+        "total_tokens": 12596
+      },
+      "accepted": false
+    }
+  ],
+  "sunburst": {
+    "reviews": [
+      {
+        "passed": false,
+        "products": [
+          {
+            "garmentId": "demo-top",
+            "productId": "eda30667cc98d3edb5b433e3f3b5019e",
+            "appearance": true,
+            "placement": true,
+            "issues": []
+          },
+          {
+            "garmentId": "demo-bottom",
+            "productId": "a82c8246ed75f6d3f8df5cde8287118b",
+            "appearance": true,
+            "placement": true,
+            "issues": []
+          },
+          {
+            "garmentId": "demo-shoes",
+            "productId": "b64462c1f198a08f573b0bb2f567a863",
+            "appearance": true,
+            "placement": true,
+            "issues": []
+          },
+          {
+            "garmentId": "demo-bag",
+            "productId": "3e9dc0ee40090a83f599ff3524a89336",
+            "appearance": false,
+            "placement": false,
+            "issues": [
+              "Bag does not match the selected product silhouette: the product is a small flap shoulder bag/clutch with a horizontal rectangular body, while the generated bag is a rounded hobo-style shoulder bag.",
+              "Front flap and centered V-logo hardware placement/details do not match the selected product.",
+              "Bag body sits too high and too far under the arm compared with the required right upper torso/rib area placement above the skirt waistband."
+            ]
+          },
+          {
+            "garmentId": "demo-jewelry",
+            "productId": "3ba2471e00356440519cb15b9daea779",
+            "appearance": false,
+            "placement": true,
+            "issues": [
+              "Pendant shape/details do not match the selected product. The product shows a small irregular silver pendant with a distinct textured diagonal band, while the generated pendant appears as a simple oval drop without the same detail."
+            ]
+          }
+        ],
+        "checks": {
+          "layering": true,
+          "identity": true,
+          "anatomy": true,
+          "accessories": false,
+          "fabrics": true,
+          "clipping": true,
+          "pose": true
+        },
+        "issues": [
+          "The bag product mapping fails due to incorrect silhouette, hardware/flap details, and placement.",
+          "The necklace product mapping fails due to incorrect pendant design/detail.",
+          "Because not all product mappings pass exactly, the outfit fails review."
+        ],
+        "repairInstructions": "Replace the current bag with the exact selected small black leather shoulder bag: a horizontal rectangular flap body with the centered Valentino-style V hardware on the front, carried on the wearer's right shoulder with the strap over the sweater and the bag resting at the right upper torso above the skirt waistband. Replace the necklace pendant with the exact small fine silver pendant on a thin silver chain, including the irregular pendant shape and visible textured diagonal band, centered just below the turtleneck. Keep the existing sweater, tucked pleated skirt, visible boot portions, person identity, and preserved reference pose unchanged."
+      },
+      {
+        "passed": false,
+        "products": [
+          {
+            "garmentId": "demo-top",
+            "productId": "eda30667cc98d3edb5b433e3f3b5019e",
+            "appearance": true,
+            "placement": true,
+            "issues": []
+          },
+          {
+            "garmentId": "demo-bottom",
+            "productId": "a82c8246ed75f6d3f8df5cde8287118b",
+            "appearance": true,
+            "placement": true,
+            "issues": []
+          },
+          {
+            "garmentId": "demo-shoes",
+            "productId": "b64462c1f198a08f573b0bb2f567a863",
+            "appearance": true,
+            "placement": true,
+            "issues": []
+          },
+          {
+            "garmentId": "demo-bag",
+            "productId": "3e9dc0ee40090a83f599ff3524a89336",
+            "appearance": false,
+            "placement": false,
+            "issues": [
+              "Bag body does not match the selected product silhouette/details: the generated bag appears as a structured small shoulder bag with a visible side gusset and a different overall shape, while the selected product is a slimmer flap-style black leather shoulder bag.",
+              "Front hardware/logo on the bag is different from the selected product. The generated image shows a large prominent gold 'V' style emblem that does not match the product's specific front flap hardware presentation.",
+              "Bag is placed on the wearer's left shoulder/left torso in the image, but the validated plan requires it on the wearer's right shoulder resting at the right upper torso above the skirt waistband."
+            ]
+          },
+          {
+            "garmentId": "demo-jewelry",
+            "productId": "3ba2471e00356440519cb15b9daea779",
+            "appearance": false,
+            "placement": true,
+            "issues": [
+              "Pendant does not match the selected product. The generated necklace shows a longer oval medallion-style pendant, while the product image shows a smaller irregular/organic silver pendant with a distinct textured band detail across it."
+            ]
+          }
+        ],
+        "checks": {
+          "layering": false,
+          "identity": true,
+          "anatomy": true,
+          "accessories": false,
+          "fabrics": true,
+          "clipping": true,
+          "pose": true
+        },
+        "issues": [
+          "Bag product match fails due to incorrect hardware/silhouette and wrong shoulder placement.",
+          "Necklace product match fails because the pendant shape and detail do not match the selected product exactly.",
+          "Layering/accessory placement check fails because the bag is not on the required right shoulder/right upper torso position."
+        ],
+        "repairInstructions": "Replace the bag with the exact selected black leather mini shoulder bag appearance: a slim flap-front body in black leather with the correct product-style front hardware, and move it to the wearer's right shoulder so the strap runs over the right shoulder and the bag rests against the right upper torso above the skirt waistband. Replace the necklace pendant with the exact small fine silver pendant from the selected product, including its smaller irregular shape and textured band detail, centered just below the turtleneck on the chest. Keep the current sweater, tucked skirt, boots visibility, person identity, and reference pose unchanged."
+      },
+      {
+        "passed": false,
+        "products": [
+          {
+            "garmentId": "demo-top",
+            "productId": "eda30667cc98d3edb5b433e3f3b5019e",
+            "appearance": true,
+            "placement": true,
+            "issues": []
+          },
+          {
+            "garmentId": "demo-bottom",
+            "productId": "a82c8246ed75f6d3f8df5cde8287118b",
+            "appearance": true,
+            "placement": true,
+            "issues": []
+          },
+          {
+            "garmentId": "demo-shoes",
+            "productId": "b64462c1f198a08f573b0bb2f567a863",
+            "appearance": true,
+            "placement": true,
+            "issues": []
+          },
+          {
+            "garmentId": "demo-bag",
+            "productId": "3e9dc0ee40090a83f599ff3524a89336",
+            "appearance": false,
+            "placement": true,
+            "issues": [
+              "Bag body does not match the selected product details: the generated bag is a compact shoulder bag with a visible strap and a prominent Valentino-style V logo plaque, while the selected product image shows a smoother flap-front black leather bag/clutch form without this shown shoulder-worn presentation."
+            ]
+          },
+          {
+            "garmentId": "demo-jewelry",
+            "productId": "3ba2471e00356440519cb15b9daea779",
+            "appearance": false,
+            "placement": true,
+            "issues": [
+              "Necklace pendant does not match the selected product. The selected pendant is an asymmetrical silver oval/drop shape with a distinct textured diagonal band across it, but the generated pendant is a plain elongated teardrop/oval without that defining band detail."
+            ]
+          }
+        ],
+        "checks": {
+          "layering": true,
+          "identity": true,
+          "anatomy": true,
+          "accessories": true,
+          "fabrics": true,
+          "clipping": true,
+          "pose": true
+        },
+        "issues": [
+          "Bag product mismatch in design/details.",
+          "Necklace product mismatch in pendant shape/detailing."
+        ],
+        "repairInstructions": "Replace the bag with one that matches the selected black leather product more closely in body shape and front-flap design/details while keeping it worn on the wearer's right shoulder with the strap contacting the sweater and the bag resting above the skirt waistband. Replace the necklace with the exact fine silver chain and small asymmetrical silver pendant featuring the distinct textured diagonal band, centered just below the turtleneck. Keep the current sweater, tucked skirt, boot visibility, identity, and pose unchanged."
+      }
+    ],
+    "usage": [
+      {
+        "stage": "generation",
+        "latencyMs": 66766,
+        "usage": {
+          "input_tokens": 5133,
+          "input_tokens_details": {
+            "image_tokens": 3095,
+            "text_tokens": 2038
+          },
+          "output_tokens": 5488,
+          "output_tokens_details": {
+            "image_tokens": 5488,
+            "text_tokens": 0
+          },
+          "total_tokens": 10621
+        }
+      },
+      {
+        "stage": "review-0",
+        "latencyMs": 10835,
+        "usage": {
+          "prompt_tokens": 5552,
+          "completion_tokens": 551,
+          "total_tokens": 6103,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "cost": 0.014394,
+          "cost_details": {
+            "upstream_inference_cost": 0.014394
+          }
+        }
+      },
+      {
+        "stage": "repair-1",
+        "latencyMs": 65231,
+        "usage": {
+          "input_tokens": 7041,
+          "input_tokens_details": {
+            "image_tokens": 4631,
+            "text_tokens": 2410
+          },
+          "output_tokens": 5488,
+          "output_tokens_details": {
+            "image_tokens": 5488,
+            "text_tokens": 0
+          },
+          "total_tokens": 12529
+        }
+      },
+      {
+        "stage": "review-1",
+        "latencyMs": 10870,
+        "usage": {
+          "prompt_tokens": 5552,
+          "completion_tokens": 613,
+          "total_tokens": 6165,
+          "prompt_tokens_details": {
+            "cached_tokens": 1792,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "cost": 0.012377,
+          "cost_details": {
+            "upstream_inference_cost": 0.012377
+          }
+        }
+      },
+      {
+        "stage": "repair-2",
+        "latencyMs": 67697,
+        "usage": {
+          "input_tokens": 7108,
+          "input_tokens_details": {
+            "image_tokens": 4631,
+            "text_tokens": 2477
+          },
+          "output_tokens": 5488,
+          "output_tokens_details": {
+            "image_tokens": 5488,
+            "text_tokens": 0
+          },
+          "total_tokens": 12596
+        }
+      },
+      {
+        "stage": "review-2",
+        "latencyMs": 9630,
+        "usage": {
+          "prompt_tokens": 5552,
+          "completion_tokens": 489,
+          "total_tokens": 6041,
+          "prompt_tokens_details": {
+            "cached_tokens": 1792,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "cost": 0.011168,
+          "cost_details": {
+            "upstream_inference_cost": 0.011168
+          }
+        }
+      }
+    ]
+  },
+  "failure": {
+    "stage": "image-generation-and-review",
+    "latencyMs": 231531,
+    "error": "Outfit quality review failed after two repairs: Bag product mismatch in design/details.; Necklace product mismatch in pendant shape/detailing.; Bag body does not match the selected product details: the generated bag is a compact shoulder bag with a visible strap and a prominent Valentino-style V logo plaque, while the selected product image shows a smoother flap-front black leather bag/clutch form without this shown shoulder-worn presentation.; Necklace pendant does not match the selected product. The selected pendant is an asymmetrical silver oval/drop shape with a distinct textured diagonal band across it, but the generated pendant is a plain elongated teardrop/oval without that defining band detail.; Product 3e9dc0ee40090a83f599ff3524a89336 appearance or placement failed; Product 3ba2471e00356440519cb15b9daea779 appearance or placement failed. Your last accepted preview is preserved."
+  },
+  "manualInspection": {
+    "status": "completed; rejected",
+    "inspected": [
+      "candidate-20261011214314678-1.webp",
+      "candidate-20261011214314678-2.webp",
+      "candidate-20261011214314678-3.webp"
+    ],
+    "observations": [
+      "All five product categories appear; the sweater is tucked and the closed pleated skirt remains intact without an invented slit.",
+      "Bag placement is on wearer right with natural body contact, but its body remains squarer and smaller than the wide curved-flap product reference.",
+      "The final pendant has some surface detail but lacks the selected asymmetrical silhouette and prominent diagonal textured band.",
+      "No obvious floating accessories, clipping or merged fabrics; hands and feet look plausible at portrait resolution. Identity remains recognizable relative to the fictional reference.",
+      "The planner graph places the necklace under the top while its prose places it outside. Graph validation cannot resolve that semantic contradiction; review and manual inspection remain necessary."
+    ],
+    "publication": "No candidate passed review or became an application preview.",
+    "comparison": "Legacy GPU connection failed; no paired image comparison or superiority conclusion is available."
+  },
+  "totalLatencyMs": 247426,
+  "totalTokens": 58845
+}
