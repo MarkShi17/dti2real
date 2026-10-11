@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 const config: NextConfig = {
+  output: 'standalone',
+  allowedDevOrigins: ['127.0.0.1', 'localhost', 'host.docker.internal'],
   poweredByHeader: false,
   async headers() {
     return [{ source: "/:path*", headers: [

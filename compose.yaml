@@ -1,0 +1,22 @@
+name: dti2irl
+services:
+  web:
+    build: .
+    image: dti2irl:local
+    ports:
+      - "127.0.0.1:${DTI2IRL_PORT:-3212}:3000"
+    env_file:
+      - path: .env.local
+        required: false
+    environment:
+      DATA_DIR: /app/.data
+    volumes:
+      - sessions:/app/.data
+    restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+volumes:
+  sessions:
