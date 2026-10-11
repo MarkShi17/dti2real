@@ -19,6 +19,8 @@ services:
       SERPAPI_KEY: test-only-shopping
       EBAY_CLIENT_ID: test-only-ebay
       EBAY_CLIENT_SECRET: test-only-ebay-secret
+      TRYON_PROVIDER: fashn_api
+      POSE_PROVIDER: fal
       FASHN_API_KEY: test-only-tryon
       POSE_API_KEY: test-only-pose
       VISUAL_RERANK: 'true'
@@ -43,12 +45,16 @@ services:
       PLAYWRIGHT_FIXTURE_CONTROL_URL: http://providers:4010
       PLAYWRIGHT_GPU_BASE_URL: http://gpu-providers:3000
       PLAYWRIGHT_GPU_CONTROL_URL: http://gpu-providers:4010
+      PLAYWRIGHT_SUNBURST_BASE_URL: http://sunburst-providers:3000
+      PLAYWRIGHT_SUNBURST_CONTROL_URL: http://sunburst-providers:4010
     depends_on:
       demo:
         condition: service_healthy
       providers:
         condition: service_healthy
       gpu-providers:
+        condition: service_healthy
+      sunburst-providers:
         condition: service_healthy
     command: [/bin/bash, -lc, 'npm ci --no-audit --no-fund && exec node node_modules/@playwright/test/cli.js test']
     init: true
@@ -68,6 +74,23 @@ services:
       POSE_PROVIDER: flux_local
       POSE_LOCAL_URL: http://127.0.0.1:4010
       POSE_LOCAL_TOKEN: test-only-private-gpu
+    volumes:
+      - ./tests/support:/fixtures:ro
+    tmpfs:
+      - /app/.data:uid=1000,gid=1000,mode=700
+    init: true
+  sunburst-providers:
+    image: dti2irl:local
+    command: [node, --import, /fixtures/provider-fixtures.mjs, server.js]
+    environment:
+      DTI2IRL_TEST_PROVIDER_FIXTURES: '1'
+      DEMO_MODE: 'false'
+      OPENAI_API_KEY: test-only-sunburst
+      VISION_API_KEY: test-only-vision
+      VISION_MODEL: test-only-vision-model
+      SERPAPI_KEY: test-only-shopping
+      IMAGE_ALLOWED_HOSTS: dti2irl-fixtures.example.com
+      OUTFIT_PROMPT_MODE: simple
     volumes:
       - ./tests/support:/fixtures:ro
     tmpfs:

@@ -5,7 +5,6 @@ import { WardrobeProvider, useWardrobe } from '@/state/wardrobe';
 import { OutfitCanvas } from './OutfitCanvas';
 import { ProductGrid } from './ProductGrid';
 import { WardrobeStage } from './WardrobeStage';
-import { ExampleWardrobeStage } from './ExampleWardrobeStage';
 import { ConfirmDialog } from './ConfirmDialog';
 import { PipelineBanner } from './PipelineBanner';
 function Content() {
@@ -24,10 +23,10 @@ function Content() {
       <div className="mobile-steps" aria-label="Workflow steps">{['Inspiration', 'Find pieces', 'Fitting room'].map((s,i) => <button key={s} className={w.step === i ? 'selected' : ''} onClick={() => w.setStep(i)}><span>{i+1}</span>{s}</button>)}</div>
       {w.error && <div className="error-banner" role="alert"><div><strong>Something needs your attention</strong><p>{w.error}</p></div><button className="icon-button" aria-label="Dismiss error" onClick={() => w.setError('')}><X size={18}/></button></div>}
       {w.notice && <p className="notice" role="status">{w.notice}</p>}
-      <div className={`workbench mobile-step-${w.step}`}><OutfitCanvas/><ProductGrid/>{w.exampleMode ? <ExampleWardrobeStage/> : <WardrobeStage/>}</div>
+      <div className={`workbench mobile-step-${w.step}`}><OutfitCanvas/><ProductGrid/><WardrobeStage/></div>
     </main>
     <footer className="site-footer"><div><span className="footer-wordmark">DTI2IRL</span><span>Your photos stay private. No sign-in needed.</span></div><div><span>Independent project. Not affiliated with Roblox or Dress to Impress.</span><button className="text-button" disabled={!w.ready} onClick={() => setDeleteOpen(true)}><Trash2 size={12}/>Delete my session</button></div></footer>
-    {!(w.step === 2 && w.view === '3d') && <div className="mobile-next"><button className="button primary full" disabled={!w.ready || !!w.busy || (w.step === 2 && !canRender)} onClick={() => { if (w.step === 0 && w.screenshot && !w.garments.length) void w.analyze(); else if (w.step < 2) w.setStep(w.step + 1); else void w.generate(); }}>{w.busy ? <><LoaderCircle className="spin" size={16}/>{w.busy}</> : <>{w.step === 0 ? w.screenshot && !w.garments.length ? 'Analyze outfit' : 'Find the pieces' : w.step === 1 ? 'Enter the fitting room' : w.searching.length ? 'Finding the pieces…' : 'Try on this fit'}<ArrowRight size={16}/></>}</button></div>}
+    <div className="mobile-next"><button className="button primary full" disabled={!w.ready || !!w.busy || (w.step === 2 && !canRender)} onClick={() => { if (w.step === 0 && w.screenshot && !w.garments.length) void w.analyze(); else if (w.step < 2) w.setStep(w.step + 1); else void w.generate(); }}>{w.busy ? <><LoaderCircle className="spin" size={16}/>{w.busy}</> : <>{w.step === 0 ? w.screenshot && !w.garments.length ? 'Analyze outfit' : 'Find the pieces' : w.step === 1 ? 'Enter the fitting room' : w.searching.length ? 'Finding the pieces…' : 'Try on this fit'}<ArrowRight size={16}/></>}</button></div>
     {deleteOpen && <ConfirmDialog onClose={() => setDeleteOpen(false)}><h2 id="delete-title">Leave a clean slate?</h2><p>This removes your local photos, selections, and cached previews. External AI services follow their own retention policies.</p><div className="two-fields"><button className="button subtle" autoFocus onClick={() => setDeleteOpen(false)}>Keep my session</button><button className="button primary" onClick={() => { setDeleteOpen(false); void w.deleteSession(); }}>Delete session</button></div></ConfirmDialog>}
   </div>;
 }

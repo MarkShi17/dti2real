@@ -49,7 +49,7 @@ function useWardrobeState() {
         if (data.state) {
           const s = data.state; setScreenshot(isExampleSource(s.screenshotId || undefined) ? exampleScreenshot : s.screenshotId === 'sample' ? { id: 'sample', url: sampleImage, width: 900, height: 1200, kind: 'screenshot', hash: 'sample', isSample: true } : data.images[s.screenshotId || ''] || null);
           setPerson(data.images[s.personId] || null); setGarments(s.garments); setSelected(s.selected); setActiveId(s.activeId); setRender(data.renders.find(r => r.id === s.renderId) || null);
-          setFace(data.images[s.faceId || ''] || null); setAvatar(s.avatar || null); setView(s.view || 'photo'); setAvatarPose(s.avatarPose || 'runway');
+          setFace(data.images[s.faceId || ''] || null); setAvatar(s.avatar || null); setView('photo'); setAvatarPose(s.avatarPose || 'runway');
         }
         const grouped: Record<string, ProductListing[]> = {}; Object.values(data.products).forEach(p => { (grouped[p.garmentId] ||= []).push(p); }); setProducts(grouped); setInventory(data.products); setHistory(data.renders); setReady(true);
       } catch(e) { if (alive.current) setError((e as Error).message); }
@@ -167,7 +167,7 @@ function useWardrobeState() {
     try {
       const data = new FormData(); data.set('file', file); data.set('kind', kind); data.set('consent', String(consent));
       const image = await api<ImageRef>('upload', data); if (generation !== epoch.current || photoGeneration !== photoVersion.current) return;
-      if (kind === 'person') { setPerson(image); setFace(null); setAvatar(null); setRender(null); setNotice('Your photo is private to this session. The 3D view fits an approximate avatar; Try on this fit creates your photoreal preview.'); }
+      if (kind === 'person') { setPerson(image); setFace(null); setAvatar(null); setRender(null); setNotice('Your photo is private to this session. Choose Try on this fit to preview all selected items.'); }
       else if (kind === 'face') { setFace(image); setAvatar(null); setNotice('Face reference saved privately. Render the outfit to include it in the next photo preview.'); }
       else { setScreenshot(image); setGarments([]); setProducts({}); setSelected({}); setRender(null); setActiveId(null); setStep(0); setNotice('Screenshot uploaded. Crop or rotate if needed, then analyze the outfit.'); }
     } catch(e) { if (generation === epoch.current && photoGeneration === photoVersion.current) setError((e as Error).message); }
@@ -216,7 +216,7 @@ function useWardrobeState() {
       if (result && generation === epoch.current && photoGeneration === photoVersion.current) {
         setHistory(s => [...s.filter(r => r.id !== result.id), result]);
         if (result.outfitKey !== currentSignature.current) { setNotice('Your outfit changed during rendering. The accepted result is in history; render the current selections to update your preview.'); report({ type: 'fail', runId, stage: 'tryon', detail: 'Outfit changed during rendering' }); return; }
-        setRender(result); setStep(2); if (view === '3d' && !desiredPose.current) desiredPose.current = avatarPose; report({ type: 'complete', runId });
+        setRender(result); setStep(2); report({ type: 'complete', runId });
       }
     } catch(e) { if ((e as Error).name !== 'AbortError' && generation === epoch.current && photoGeneration === photoVersion.current) { setError((e as Error).message); report({ type: 'fail', runId, stage: 'tryon', detail: (e as Error).message }); } }
     finally { if (presentation.current === controller) presentation.current = null; if (generation === epoch.current && photoGeneration === photoVersion.current) setBusy(''); }
@@ -224,7 +224,7 @@ function useWardrobeState() {
   const renderPose = async (pose: PoseId) => {
     if (!render || stale) return;
     if (pose === render.pose) return;
-    if (!render.exampleId && providers?.pose.mode !== 'demo' && (providers?.pose.mode !== 'live' || providers.pose.ready === false)) { setNotice('3D pose updated. Photo poses will resume when the GPU is ready; your last preview is preserved.'); return; }
+    if (!render.exampleId && providers?.pose.mode !== 'demo' && (providers?.pose.mode !== 'live' || providers.pose.ready === false)) { setNotice('Photo poses will resume when the provider is ready; your last preview is preserved.'); return; }
     const generation = epoch.current, photoGeneration = photoVersion.current, version = poseVersion.current; setPendingPose(pose); setBusy('Preparing pose preview'); setError('');
     const controller = new AbortController(); if (render.exampleId) presentation.current = controller;
     try {
@@ -237,8 +237,8 @@ function useWardrobeState() {
   };
   const choosePose = (pose: PoseId) => {
     setAvatarPose(pose); poseVersion.current++; setPoseIntent(v => v + 1); desiredPose.current = pose; setError('');
-    if (!render || stale) setNotice('3D pose updated. Try on the current outfit to create the matching photo preview.');
-    else if (busy) setNotice(exampleMode ? 'Preparing the selected example pose.' : '3D pose updated. The matching photo will render after the current GPU job finishes.');
+    if (!render || stale) setNotice('Try on the current outfit before changing its photo pose.');
+    else if (busy) setNotice(exampleMode ? 'Preparing the selected example pose.' : 'The selected photo pose will render after the current job finishes.');
   };
   useEffect(() => {
     if (busy || !render || stale || !desiredPose.current) return;

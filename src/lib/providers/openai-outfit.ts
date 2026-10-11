@@ -8,6 +8,7 @@ import { visionEndpoint } from './vision';
 
 export const OUTFIT_SETTINGS = { model: 'gpt-image-2.5-sunburst', quality: 'max', size: '1024x1536', n: 1 } as const;
 export const OUTFIT_JOB_BUDGET_MS = 20 * 60 * 1000;
+export const outfitPromptMode = () => process.env.OUTFIT_PROMPT_MODE === 'reviewed' ? 'reviewed' : 'simple';
 export type ProductReference = { garment: Garment; product: ProductListing; image: Buffer; hash: string };
 type PackedReference = { image: Buffer; label: string; garmentIds: string[]; productIds: string[] };
 export type OutfitEditInput = { person: Buffer; face?: Buffer; references: ProductReference[]; plan: LayeringPlan; previous?: Buffer; poseReference?: Buffer; posePrompt?: string; repair?: string; retryGarmentId?: string; deadline?: number };
@@ -83,6 +84,28 @@ function productsText(refs: ProductReference[]) {
 }
 const imagePart = (image: Buffer) => ({ type: 'image_url', image_url: { url: dataUri(image), detail: 'high' } });
 const textPart = (text: string) => ({ type: 'text', text });
+function roughPlacement(g: Garment, hasDress: boolean) {
+  const name = g.name.toLowerCase();
+  if (g.category === 'headwear') return 'on the head';
+  if (g.category === 'top') return hasDress ? 'on the upper body, under the dress' : 'on the upper body';
+  if (g.category === 'dress') return 'as the dress, over the top if one is selected';
+  if (g.category === 'bottom') return 'on the lower body';
+  if (g.category === 'outerwear') return 'over the other clothing';
+  if (g.category === 'shoes') return 'on the feet';
+  if (g.category === 'bag') return 'carried as shown in its product photo';
+  if (name.includes('belt')) return 'around the waist';
+  if (name.includes('warmer')) return 'on the lower legs, over tights if selected';
+  if (g.category === 'hosiery') return 'on the legs';
+  if (/necklace|pendant|choker/.test(name)) return 'around the neck';
+  if (/earring/.test(name)) return 'on the ears';
+  if (/bracelet|watch/.test(name)) return 'on the wrist';
+  if (g.category === 'jewelry') return 'where that jewelry is worn';
+  return `where ${g.name} is worn`;
+}
+export function simpleLayeringPlan(refs: ProductReference[]): LayeringPlan {
+  const hasDress = refs.some(r => r.garment.category === 'dress');
+  return { pieces: refs.map(r => ({ garmentId: r.garment.id, productId: r.product.id, placement: roughPlacement(r.garment, hasDress), over: [], under: [], visibleEdges: 'As shown in the product photo', tucking: 'As shown in the product photo', closure: 'As shown in the product photo', accessoryPosition: roughPlacement(r.garment, hasDress) })), unmapped: [], instructions: 'Wear every selected item together; add no extra items.' };
+}
 async function visionJson(name: string, schema: unknown, instructions: string, content: unknown[], deadline?: number) {
   if (!process.env.VISION_API_KEY || !process.env.VISION_MODEL) throw new AppError('Layering and quality review need the configured GPT-5.4 vision credentials.', 503);
   const started = Date.now();
@@ -94,6 +117,37 @@ async function visionJson(name: string, schema: unknown, instructions: string, c
 }
 
 export class OpenAIOutfit {
+  async editSimple(input: OutfitEditInput): Promise<{ image: Buffer; latencyMs: number; usage?: unknown }> {
+    if (!process.env.OPENAI_API_KEY) throw new AppError('Direct OpenAI image credentials are missing.', 503);
+    const packed = await packProductReferences(input.references);
+    const images = [{ image_url: dataUri(input.person) }];
+    const prompt = ['Dress the person in image 1 in EVERY selected item shown in the following product images. Replace the person’s existing clothes and shoes. Match the supplied items; do not add extra clothing or accessories.'];
+    if (input.face) { images.push({ image_url: dataUri(input.face) }); prompt.push(`Image ${images.length}: face reference for the same person.`); }
+    if (input.poseReference) { images.push({ image_url: dataUri(input.poseReference) }); prompt.push(`Image ${images.length}: pose guide only. ${input.posePrompt || 'Use this pose.'}`); }
+    const hasDress = input.references.some(r => r.garment.category === 'dress');
+    for (const p of packed) {
+      images.push({ image_url: dataUri(p.image) });
+      const pieces = input.references.filter(r => p.garmentIds.includes(r.garment.id));
+      prompt.push(`Image ${images.length}: ${pieces.map(r => `${packed.length < input.references.length ? `P${input.references.indexOf(r) + 1}: ` : ''}${r.garment.name}; put it ${roughPlacement(r.garment, hasDress)}`).join('; ')}.`);
+    }
+    prompt.push('Show the full person, head to feet.');
+    if (images.length > 16) throw new AppError('Outfit references exceed the sixteen-image limit.');
+    const started = Date.now();
+    let raw: unknown;
+    try {
+      raw = await providerJson('https://api.openai.com/v1/images/edits', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${process.env.OPENAI_API_KEY}` }, body: JSON.stringify({ ...OUTFIT_SETTINGS, images, prompt: prompt.join('\n'), output_format: 'png' }) }, callTimeout(input.deadline, 180000), 0);
+    } catch (e) {
+      if (e instanceof AppError && e.status === 504) throw new AppError('Sunburst image submission timed out or lost its connection. It may still finish and incur a charge. No automatic retry was sent; your previous preview is preserved.', 504);
+      throw e;
+    }
+    const parsed = z.object({ data: z.array(z.object({ b64_json: z.string().min(1).max(12000000) })).length(1), usage: z.unknown().optional() }).safeParse(raw);
+    if (!parsed.success || !/^[A-Za-z0-9+/]+={0,2}$/.test(parsed.data.data[0].b64_json)) throw new AppError('Sunburst returned no usable outfit image. Your previous preview is preserved.', 502);
+    let normalized;
+    try { normalized = await normalizeImage(Buffer.from(parsed.data.data[0].b64_json, 'base64'), 1600, { lossless: true }); }
+    catch { throw new AppError('Sunburst returned a corrupt outfit image. Your previous preview is preserved.', 502); }
+    if (normalized.width !== 1024 || normalized.height !== 1536) throw new AppError('Sunburst returned an unexpected portrait size. Your previous preview is preserved.', 502);
+    return { image: normalized.data, latencyMs: Date.now() - started, usage: parsed.data.usage };
+  }
   async analyze(screenshot: Buffer, references: ProductReference[], deadline?: number, allGarments?: Garment[]) {
     const packed = await packProductReferences(references);
     const result = await visionJson('outfit_layering', planJsonSchema,

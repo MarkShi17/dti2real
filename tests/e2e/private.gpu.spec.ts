@@ -10,6 +10,7 @@ async function fitted(page: Page) {
   await ready(page); await page.getByLabel('Outfit screenshot file').setInputFiles('public/demo/sample.webp');
   await page.getByRole('button', { name: 'Analyze outfit', exact: true }).first().click();
   await expect(page.locator('.render-button')).toBeEnabled();
+  await page.getByRole('button', { name: 'Hide Test boots', exact: true }).click();
   await page.getByRole('button', { name: 'Your photo', exact: true }).click(); await page.getByRole('checkbox').last().check();
   await page.getByLabel('Person photo file').setInputFiles('public/demo/base-hip.webp');
   await expect(page.getByText('Your photo is selected')).toBeVisible();
@@ -51,19 +52,19 @@ test('private face uploads require consent and change pose identity references a
 
 test('worker inference failure keeps the previous private preview and permits same-pose retry',async({page,request})=>{
   await fitted(page);const prior=await page.getByTestId('wardrobe-image').getAttribute('src');
-  await configure(request,{pose:'failed'});await page.getByRole('button',{name:'Peace sign',exact:true}).click();await expect(page.getByRole('alert')).toBeVisible();await expect(page.getByTestId('wardrobe-image')).toHaveAttribute('src',prior!);
+  await configure(request,{pose:'failed'});await page.getByRole('button',{name:'Peace sign',exact:true}).click();await expect(page.locator('.error-banner')).toContainText('Provider returned HTTP 500');await expect(page.getByTestId('wardrobe-image')).toHaveAttribute('src',prior!);
   await configure(request,{pose:'ready'});await page.getByRole('button',{name:'Peace sign',exact:true}).click();await expect(page.getByRole('button',{name:'Peace sign',exact:true})).toHaveAttribute('aria-pressed','true');
   expect((await calls(request)).filter(c=>c.provider==='gpu-pose')).toHaveLength(2);
 });
 
-test('rapid 3D pose selection updates immediately and the latest photo request wins',async({page,request})=>{
+test('photo pose controls wait for the active edit and show the accepted result',async({page,request})=>{
   await fitted(page);await configure(request,{pose:'delayed'});
-  await page.getByRole('button',{name:'3D avatar',exact:true}).click();
   await page.getByRole('button',{name:'Peace sign',exact:true}).click();
   await expect.poll(async()=> (await calls(request)).some(c=>c.provider==='gpu-pose'&&c.pose==='peace')).toBe(true);
-  await page.getByRole('button',{name:'Hand on hip',exact:true}).click();await expect(page.getByTestId('avatar-stage')).toHaveAttribute('data-pose','hip');
-  await saved(page,state=>!!state.renderId && state.avatarPose==='hip');
-  await expect.poll(async()=>{const session=await(await page.request.get('/api/session')).json();return session.renders.find((r:{id:string})=>r.id===session.state.renderId)?.pose;},{timeout:20000}).toBe('hip');
-  await page.getByRole('button',{name:'Photo preview',exact:true}).click();await expect(page.getByRole('button',{name:'Hand on hip',exact:true})).toHaveAttribute('aria-pressed','true');
+  await expect(page.getByRole('button',{name:'Hand on hip',exact:true})).toBeDisabled();
+  await expect(page.getByRole('button',{name:'Peace sign',exact:true})).toHaveAttribute('aria-pressed','true',{timeout:20000});
+  await page.getByRole('button',{name:'Hand on hip',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Hand on hip',exact:true})).toHaveAttribute('aria-pressed','true',{timeout:20000});
+  await expect(page.getByTestId('avatar-stage')).toHaveCount(0);
   expect((await calls(request)).filter(c=>c.provider==='gpu-pose').map(c=>c.pose)).toEqual(['peace','hip']);
 });

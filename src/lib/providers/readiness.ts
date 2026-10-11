@@ -14,7 +14,7 @@ export async function providerReadiness() {
     if (expiry) {
       const time = Date.parse(expiry);
       if (Number.isFinite(time)) provider.expiresAt = expiry;
-      if (!Number.isFinite(time) || Date.now() >= time) { provider.ready = false; provider.detail = 'The GPU lease has expired. Your saved previews and 3D avatar remain available; new photo renders need an active GPU.'; return; }
+      if (!Number.isFinite(time) || Date.now() >= time) { provider.ready = false; provider.detail = 'The GPU lease has expired. Your saved previews remain available; new photo renders need an active GPU.'; return; }
     }
     const url = (kind === 'tryon' ? process.env.FASHN_LOCAL_URL : process.env.POSE_LOCAL_URL)!.replace(/\/$/, '');
     const token = kind === 'tryon' ? process.env.FASHN_LOCAL_TOKEN : process.env.POSE_LOCAL_TOKEN;
@@ -25,7 +25,7 @@ export async function providerReadiness() {
       provider.ready = health.cuda_available && health[kind].ready;
       if (!provider.ready) provider.detail = !health.cuda_available ? 'The GPU worker has no working CUDA device. Your last preview is preserved.' : health[kind].reason === 'weights_missing' ? 'The GPU worker is still downloading model weights. Try again when it is ready.' : 'The GPU model is not ready. Your last preview is preserved; check worker status and retry.';
     } catch {
-      provider.ready = false; provider.detail = 'The GPU worker is offline or unreachable. Your last preview and 3D avatar are preserved. Reconnect the GPU and retry.';
+      provider.ready = false; provider.detail = 'The GPU worker is offline or unreachable. Your last preview is preserved. Reconnect the GPU and retry.';
     }
   }));
   return status;

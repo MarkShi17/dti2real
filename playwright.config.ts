@@ -8,9 +8,10 @@ export default defineConfig({
     { name: 'api', testMatch: /\.api\.spec\.ts/ },
     ...(process.env.PLAYWRIGHT_LIVE_BASE_URL ? [{ name: 'provider-contracts', testMatch: /\.live\.spec\.ts/, use: { baseURL: process.env.PLAYWRIGHT_LIVE_BASE_URL, ...devices['Desktop Chrome'] } }] : []),
     ...(process.env.PLAYWRIGHT_GPU_BASE_URL ? [{ name: 'private-gpu-contracts', testMatch: /\.gpu\.spec\.ts/, use: { baseURL: process.env.PLAYWRIGHT_GPU_BASE_URL, ...devices['Desktop Chrome'] } }] : []),
-    { name: 'desktop', testIgnore: /\.(api|live|gpu)\.spec\.ts/, use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 1100 } } },
-    { name: 'mobile', testIgnore: /\.(api|live|gpu)\.spec\.ts/, use: { ...devices['iPhone SE'], defaultBrowserType: 'chromium' } },
-    { name: 'firefox', testIgnore: /\.(api|live|gpu)\.spec\.ts/, use: { ...devices['Desktop Firefox'] } },
-    { name: 'webkit-mobile', testIgnore: /\.(api|live|gpu)\.spec\.ts/, use: { ...devices['iPhone 13'] } },
+    ...(process.env.PLAYWRIGHT_SUNBURST_BASE_URL ? [{ name: 'sunburst-contracts', testMatch: /\.sunburst\.spec\.ts/, use: { baseURL: process.env.PLAYWRIGHT_SUNBURST_BASE_URL } }] : []),
+    { name: 'desktop', testIgnore: /\.(api|live|gpu|sunburst)\.spec\.ts/, use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 1100 } } },
+    { name: 'mobile', testIgnore: /\.(api|live|gpu|sunburst)\.spec\.ts/, use: { ...devices['iPhone SE'], defaultBrowserType: 'chromium' } },
+    { name: 'firefox', testIgnore: /\.(api|live|gpu|sunburst)\.spec\.ts/, use: { ...devices['Desktop Firefox'] } },
+    { name: 'webkit-mobile', testIgnore: /\.(api|live|gpu|sunburst)\.spec\.ts/, use: { ...devices['iPhone 13'] } },
   ]
 });

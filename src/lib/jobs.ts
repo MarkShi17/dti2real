@@ -13,7 +13,7 @@ import { normalizeImage } from './images';
 import { poseIdentity } from './pose-identity';
 import { avatarProfileSchema } from './avatar/profile';
 import { z } from 'zod';
-import { OpenAIOutfit, OUTFIT_SETTINGS, OUTFIT_JOB_BUDGET_MS, renderReviewedOutfit, validateLayeringPlan, type ProductReference } from './providers/openai-outfit';
+import { OpenAIOutfit, OUTFIT_SETTINGS, OUTFIT_JOB_BUDGET_MS, renderReviewedOutfit, validateLayeringPlan, simpleLayeringPlan, outfitPromptMode, type ProductReference } from './providers/openai-outfit';
 const digest = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const running = new Map<string, Promise<void>>();
 const queueLocks = new Map<string, Promise<unknown>>();
@@ -62,9 +62,9 @@ async function frozenProductReferences(sessionId: string, pieces: { garment: Gar
   const references: ProductReference[] = [], saved: OutfitProductReference[] = [];
   for (const { garment, product } of pieces) {
     await progress(`Preparing product reference: ${garment.name}`);
-    const key = `product-reference:${digest([product.id, product.imageUrl])}`;
+    const key = `product-reference-lossless-v2:${digest([product.id, product.imageUrl])}`;
     const data = await storage.read(sessionId), cached = data.images[data.cache[key]];
-    const ref = cached?.kind === 'product' ? cached : await storage.putImage(sessionId, (await normalizeImage(await fetchImage(product.imageUrl))).data, 'product');
+    const ref = cached?.kind === 'product' ? cached : await storage.putImage(sessionId, await fetchImage(product.imageUrl), 'product');
     if (ref !== cached) await storage.update(sessionId, d => { d.cache[key] = ref.id; });
     references.push({ garment, product, image: await storage.getImage(sessionId, ref.id), hash: ref.hash });
     saved.push({ garment, product, imageId: ref.id, hash: ref.hash });
@@ -74,6 +74,7 @@ async function frozenProductReferences(sessionId: string, pieces: { garment: Gar
 
 async function queueCompleteOutfit(sessionId: string, input: OutfitInput) {
   const data = await storage.read(sessionId);
+  const promptMode = outfitPromptMode();
   if (!input.screenshotId || (input.screenshotId !== 'sample' && data.images[input.screenshotId]?.kind !== 'screenshot')) throw new AppError('Screenshot reference not found in this session. Upload or select a screenshot first.', 404);
   if (input.faceId && data.images[input.faceId]?.kind !== 'face') throw new AppError('Face reference not found in this session.', 404);
   if (input.personId !== 'studio' && data.images[input.personId]?.kind !== 'person') throw new AppError('Person reference not found in this session.', 404);
@@ -91,10 +92,22 @@ async function queueCompleteOutfit(sessionId: string, input: OutfitInput) {
   const pieces = visible.map(garment => ({ garment, product: map.get(garment.id)! }));
   const screenshotId = input.screenshotId;
   const outfitKey = outfitSignature(input.personId, Object.fromEntries(products.map(p => [p.garmentId, p.id])), input.garments, { screenshotId, faceId: input.faceId });
-  const key = digest(['outfit-v2', outfitKey, input.garments, input.personId === 'studio' ? 'studio-v1' : data.images[input.personId].hash, screenshotId === 'sample' ? 'sample-v1' : data.images[screenshotId].hash, input.faceId && data.images[input.faceId].hash, pieces.map(p => p.product), OUTFIT_SETTINGS, process.env.VISION_MODEL, process.env.VISION_BASE_URL, process.env.VISION_PROVIDER]);
+  const key = digest(['outfit-v2', promptMode, outfitKey, input.garments, input.personId === 'studio' ? 'studio-v1' : data.images[input.personId].hash, screenshotId === 'sample' ? 'sample-v1' : data.images[screenshotId].hash, input.faceId && data.images[input.faceId].hash, pieces.map(p => p.product), OUTFIT_SETTINGS, process.env.VISION_MODEL, process.env.VISION_BASE_URL, process.env.VISION_PROVIDER]);
   return schedule(sessionId, key, input.force || !!input.retryGarmentId, async (progress, deadline) => {
     const provider = new OpenAIOutfit();
     const { references, saved } = await frozenProductReferences(sessionId, pieces, progress);
+    if (promptMode === 'simple') {
+      const [person, face] = await Promise.all([storage.getImage(sessionId, input.personId), input.faceId ? storage.getImage(sessionId, input.faceId) : Promise.resolve(undefined)]);
+      const plan = simpleLayeringPlan(references);
+      await progress(`Generating all ${references.length} selected items with Sunburst`);
+      const edited = await provider.editSimple({ person, face, references, plan, deadline });
+      await progress('Saving your outfit preview');
+      const ref = await storage.putImage(sessionId, edited.image, 'render'), id = randomUUID();
+      return { id, baseRenderId: id, createdAt: new Date().toISOString(), pose: input.personId === 'studio' ? 'runway' as const : 'original' as const, provider: 'openai_outfit', outfitKey, personId: input.personId, productIds: pieces.map(p => p.product.id), image: ref.url, isDemo: false,
+        note: `Sunburst preview using all ${references.length} selected product images and simple placement instructions.`,
+        outfit: { version: 'outfit-v2' as const, promptMode, screenshotId, faceId: input.faceId, references: saved, layeringPlan: plan, reviews: [], settings: OUTFIT_SETTINGS, referenceKey: digest(['simple-v1', key, references.map(r => r.hash)]), usage: [{ stage: 'generation', latencyMs: edited.latencyMs, usage: edited.usage }] }
+      };
+    }
     const [person, screenshot, face] = await Promise.all([storage.getImage(sessionId, input.personId), storage.getImage(sessionId, screenshotId), input.faceId ? storage.getImage(sessionId, input.faceId) : Promise.resolve(undefined)]);
     const planKey = digest(['layering-v2', (await normalizeImage(screenshot)).hash, references.map(r => [r.garment, r.product, r.hash]), input.garments, process.env.VISION_MODEL, process.env.VISION_BASE_URL, process.env.VISION_PROVIDER]);
     const fresh = await storage.read(sessionId), cachedPlan = fresh.layeringPlans?.[planKey];
@@ -108,17 +121,18 @@ async function queueCompleteOutfit(sessionId: string, input: OutfitInput) {
     const ref = await storage.putImage(sessionId, accepted.image, 'render'), id = randomUUID();
     return { id, baseRenderId: id, createdAt: new Date().toISOString(), pose: input.personId === 'studio' ? 'runway' : 'original', provider: 'openai_outfit', outfitKey, personId: input.personId, productIds: pieces.map(p => p.product.id), image: ref.url, isDemo: false,
       note: 'Complete outfit passed AI checks for every selected product, layering and identity. Details can still vary; this is a style visualization, not measured physical fit.',
-      outfit: { version: 'outfit-v2', screenshotId, faceId: input.faceId, references: saved, layeringPlan: analyzed.plan, reviews: accepted.reviews, settings: OUTFIT_SETTINGS, referenceKey, usage: [{ stage: cachedPlan ? 'layering-cache' : 'layering', latencyMs: analyzed.latencyMs, usage: analyzed.usage }, ...accepted.usage] }
+      outfit: { version: 'outfit-v2', promptMode, screenshotId, faceId: input.faceId, references: saved, layeringPlan: analyzed.plan, reviews: accepted.reviews, settings: OUTFIT_SETTINGS, referenceKey, usage: [{ stage: cachedPlan ? 'layering-cache' : 'layering', latencyMs: analyzed.latencyMs, usage: analyzed.usage }, ...accepted.usage] }
     };
   });
 }
 
 async function queueCompletePose(sessionId: string, source: RenderResult, pose: PoseId, faceId?: string) {
   const data = await storage.read(sessionId), details = source.outfit;
+  const promptMode = outfitPromptMode();
   if (!details) throw new AppError('This historical render has no complete product references. Render the outfit once with OpenAI before changing its photo pose. Your preview is preserved.', 422);
   const effectiveFaceId = faceId || details.faceId;
   if (effectiveFaceId && data.images[effectiveFaceId]?.kind !== 'face') throw new AppError('Face reference not found in this session.', 404);
-  const key = digest(['pose-outfit-v2', source.id, details.referenceKey, details.layeringPlan, pose, effectiveFaceId && data.images[effectiveFaceId].hash, OUTFIT_SETTINGS, process.env.VISION_MODEL, process.env.VISION_BASE_URL, process.env.VISION_PROVIDER]);
+  const key = digest(['pose-outfit-v2', promptMode, source.id, details.referenceKey, details.layeringPlan, pose, effectiveFaceId && data.images[effectiveFaceId].hash, OUTFIT_SETTINGS, process.env.VISION_MODEL, process.env.VISION_BASE_URL, process.env.VISION_PROVIDER]);
   return schedule(sessionId, key, false, async (progress, deadline) => {
     const references = await Promise.all(details.references.map(async r => {
       const ref = data.images[r.imageId];
@@ -127,12 +141,14 @@ async function queueCompletePose(sessionId: string, source: RenderResult, pose: 
     }));
     const plan = validateLayeringPlan(details.layeringPlan, references);
     const [person, face, previous, poseReference] = await Promise.all([storage.getImage(sessionId, source.personId), effectiveFaceId ? storage.getImage(sessionId, effectiveFaceId) : Promise.resolve(undefined), readRenderImage(sessionId, source), sampleAsset(`/avatar/pose-guides/${pose}.png`)]);
-    const accepted = await renderReviewedOutfit(new OpenAIOutfit(), { person, face, previous, references, plan, poseReference, posePrompt: POSES.find(p => p.id === pose)!.prompt, deadline }, progress);
+    const editInput = { person, face, previous, references, plan, poseReference, posePrompt: POSES.find(p => p.id === pose)!.prompt, deadline };
+    await progress(`Generating the ${pose} pose with every selected item`);
+    const accepted = promptMode === 'simple' ? await new OpenAIOutfit().editSimple(editInput).then(edited => ({ image: edited.image, reviews: [], usage: [{ stage: 'generation', latencyMs: edited.latencyMs, usage: edited.usage }] })) : await renderReviewedOutfit(new OpenAIOutfit(), editInput, progress);
     await progress('Saving accepted photo pose');
     const ref = await storage.putImage(sessionId, accepted.image, 'render');
     const selected = Object.fromEntries(details.references.map(r => [r.garment.id, r.product.id]));
     const outfitKey = outfitSignature(source.personId, selected, details.references.map(r => r.garment), { screenshotId: details.screenshotId, faceId: effectiveFaceId });
-    return { ...source, id: randomUUID(), pose, image: ref.url, outfitKey, provider: 'openai_outfit', createdAt: new Date().toISOString(), outfit: { ...details, faceId: effectiveFaceId, reviews: accepted.reviews, referenceKey: digest([details.referenceKey, key]), usage: accepted.usage } };
+    return { ...source, note: promptMode === 'simple' ? `Sunburst preview using all ${references.length} selected product images and simple placement instructions.` : source.note, id: randomUUID(), pose, image: ref.url, outfitKey, provider: 'openai_outfit', createdAt: new Date().toISOString(), outfit: { ...details, promptMode, faceId: effectiveFaceId, reviews: accepted.reviews, referenceKey: digest([details.referenceKey, key]), usage: accepted.usage } };
   });
 }
 function selectedGarments(garments: Garment[], products: ProductListing[]) {
@@ -168,6 +184,10 @@ export async function queueTryon(sessionId: string, input: OutfitInput) {
   const products = input.productIds.map(id => data.products[id]);
   if (products.some(p => !p)) throw new AppError('One selected product expired. Search for that piece again.');
   const pieces = selectedGarments(input.garments, products);
+  if (status.mode === 'live') {
+    const omitted = products.filter(p => !pieces.some(piece => piece.product.id === p.id));
+    if (omitted.length) throw new AppError(`This FASHN model cannot render the complete outfit. It would omit: ${omitted.map(p => input.garments.find(g => g.id === p.garmentId)!.name).join(', ')}. Use Sunburst to include every selected item. Your previous preview is preserved.`, 422);
+  }
   if (input.retryGarmentId && !pieces.some(p => p.garment.id === input.retryGarmentId)) throw new AppError('Only a selected top, bottom or dress can be retried.');
   const person = input.personId === 'studio' ? { hash: 'studio-v1' } : data.images[input.personId];
   if (!person || ('kind' in person && person.kind !== 'person')) throw new AppError('Choose a studio model or upload a consenting person photo.');
@@ -219,7 +239,7 @@ export async function queuePose(sessionId: string, renderId: string, pose: PoseI
     });
   }
   const status = providerStatus().pose;
-  if (source.outfit && status.name !== 'openai_outfit') throw new AppError('Complete outfit photo poses require POSE_PROVIDER=openai_outfit so every edit receives product and quality checks. Your accepted preview is preserved.', 503);
+  if (source.outfit && status.name !== 'openai_outfit') throw new AppError('Complete outfit photo poses require POSE_PROVIDER=openai_outfit so every edit receives every selected product image. Your accepted preview is preserved.', 503);
   if (!source.isDemo && status.mode !== 'live') throw new AppError('Pose editing is not configured. Your try-on remains available in the photo’s original pose.', 503);
   if (!source.isDemo && status.name === 'flux_local') { const readiness = (await providerReadiness()).pose; if (!readiness.ready) throw new AppError(readiness.detail, 503); }
   if (faceId && data.images[faceId]?.kind !== 'face') throw new AppError('Face reference not found in this session.', 404);
