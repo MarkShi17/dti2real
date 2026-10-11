@@ -28,6 +28,9 @@ async function panel(page: Page, info: TestInfo, step: number) {
 test('requires shoes, bag and jewelry, then excludes a hidden piece', async ({ page }, info) => {
   await setup(page, { selected: Object.fromEntries(products.slice(0, 2).map(p => [p.garmentId, p.id])) });
   await panel(page, info, 2);
+  await expect(page.getByTestId('wardrobe-placeholder')).toBeVisible();
+  await expect(page.getByTestId('wardrobe-image')).toHaveCount(0);
+  await expect(page.locator('.pose-rail img')).toHaveCount(0);
   await expect(page.locator('.render-button')).toBeDisabled();
   for (const g of DEMO_GARMENTS.slice(2)) await expect(page.locator('.missing-selections')).toContainText(g.name);
   await panel(page, info, 1);
@@ -36,6 +39,7 @@ test('requires shoes, bag and jewelry, then excludes a hidden piece', async ({ p
     await page.getByRole('button', { name: `Select ${products.find(p => p.garmentId === g.id)!.title}`, exact: true }).click();
   }
   await panel(page, info, 2); await expect(page.locator('.render-button')).toBeEnabled();
+  await expect(page.getByTestId('wardrobe-image')).toHaveCount(0);
   await panel(page, info, 0); await page.getByRole('button', { name: 'Hide City ankle boots', exact: true }).click();
   await panel(page, info, 2); await expect(page.locator('.render-button')).toBeEnabled();
   let payload: { garments: Garment[]; productIds: string[] } | undefined;

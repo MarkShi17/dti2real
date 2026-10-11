@@ -12,6 +12,8 @@ test('sample outfit, individual skirt swap, five distinct poses, save and persis
   const mobile = info.project.name.includes('mobile');
   await enterExample(page, mobile);
   await fittingRoom(page, mobile);
+  await expect(page.getByTestId('wardrobe-image')).toHaveCount(0);
+  await expect(page.getByTestId('wardrobe-placeholder')).toBeVisible();
   await page.locator('.render-button').click();
   const image = page.getByTestId('wardrobe-image');
   await expect(page.getByRole('button', { name: 'Hand on hip', exact: true })).toBeEnabled();
@@ -44,7 +46,9 @@ test('manual corrections, price filters, own-photo consent, honest demo limits a
   await page.getByRole('checkbox').last().check();
   await page.getByLabel('Person photo file').setInputFiles(path.resolve('public/demo/base-runway.webp'));
   await expect(page.getByText('Your photo is selected')).toBeVisible(); await expect(page.locator('.render-button')).toBeDisabled();
-  await expect(page.getByTestId('wardrobe-image')).toHaveAttribute('src', /^\/api\/assets\//);
+  await expect(page.getByTestId('wardrobe-image')).toHaveCount(0);
+  await expect(page.getByTestId('wardrobe-placeholder')).toBeVisible();
+  await expect(page.getByAltText('Your selected person reference')).toHaveAttribute('src', /^\/api\/assets\//);
   await expect(page.getByText('Your 3D avatar remains available.', { exact: false })).toBeVisible();
   await page.getByRole('button', { name: 'Delete my session', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Keep my session' })).toBeFocused();
@@ -59,6 +63,7 @@ test('uploaded screenshot, manual garment and keyboard region correction', async
   await expect(page.getByRole('button', { name: 'Explore an example', exact: true })).toBeEnabled();
   await page.getByLabel('Outfit screenshot file').setInputFiles(path.resolve('public/demo/sample.webp'));
   await expect(page.getByAltText('Original outfit inspiration')).toBeVisible();
+  await expect(page.getByTestId('wardrobe-image')).toHaveCount(0);
   await page.getByRole('button', { name: 'Analyze outfit', exact: true }).first().click();
   await expect(page.getByRole('status')).toContainText('manual');
   if (info.project.name.includes('mobile')) await page.getByRole('button', { name: '1 Inspiration', exact: true }).click();

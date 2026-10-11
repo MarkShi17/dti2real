@@ -713,6 +713,9 @@ label > input, label > select { margin-top: 6px; }
 
 /* --- 3 · Fitting room ----------------------------------------------------- */
 .wardrobe-stage { position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: var(--radius-media); background: var(--media); }
+.wardrobe-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 100%; padding: 24px; color: var(--muted); text-align: center; }
+.wardrobe-placeholder strong { color: var(--ink); font-size: 15px; }
+.wardrobe-placeholder span { max-width: 240px; font-size: 13px; }
 .wardrobe-photo, .comparison-image { width: 100%; height: 100%; object-fit: contain; }
 .wardrobe-photo { animation: reveal 0.7s cubic-bezier(0.25, 0.7, 0.2, 1) both; }
 .comparison-image { position: absolute; inset: 0; background: var(--media); }

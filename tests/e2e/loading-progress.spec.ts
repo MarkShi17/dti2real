@@ -34,6 +34,8 @@ test('progress spans analysis, queued search batches, user review, and the later
   await page.clock.install();
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await mockSession(page); await mockAnalysis(page, DEMO_GARMENTS, analyzed.promise);
+  await expect(page.getByTestId('wardrobe-image')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Before / after', exact: true })).toHaveCount(0);
   await mockSearch(page, g => DEMO_GARMENTS.slice(0, 2).some(item => item.id === g.id) ? Promise.resolve() : rest.promise);
   const selected = Object.fromEntries(DEMO_GARMENTS.map(g => [g.id, demoProducts(g)[0].id]));
   const result = { id: 'preview-progress', baseRenderId: 'preview-progress', image: '/demo/silver-runway.webp', pose: 'runway', provider: 'Created studio sample', isDemo: true, note: 'Sample preview', createdAt: new Date().toISOString(), personId: 'studio', productIds: Object.values(selected), outfitKey: outfitSignature('studio', selected, DEMO_GARMENTS) };
@@ -43,6 +45,7 @@ test('progress spans analysis, queued search batches, user review, and the later
     await page.getByRole('button', { name: 'Explore an example', exact: true }).click();
     const banner = page.getByRole('region', { name: 'Outfit progress' });
     await expect(banner).toBeVisible();
+    await expect(page.getByTestId('wardrobe-image')).toHaveCount(0);
     await expect(banner.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '0');
     const animation = await banner.getByRole('progressbar').locator(':scope > span').first().evaluate(element => getComputedStyle(element, '::after').animationName);
     expect(animation).toBe('none');
@@ -50,17 +53,20 @@ test('progress spans analysis, queued search batches, user review, and the later
     await expect(banner.getByTestId('pipeline-elapsed')).toContainText('31s');
     analyzed.release();
     await expect(banner).toContainText('2 of 5 items checked');
+    await expect(page.getByTestId('wardrobe-image')).toHaveCount(0);
     await expect(banner).not.toContainText('Choose your pieces');
     await banner.scrollIntoViewIfNeeded();
     await page.screenshot({ path: info.outputPath('pipeline-search.png') });
     rest.release();
     await expect(banner).toContainText('5 matched');
     await expect(banner).toContainText('Choose your pieces');
+    await expect(page.getByTestId('wardrobe-image')).toHaveCount(0);
     await expect(banner.getByTestId('pipeline-elapsed')).toHaveCount(0);
     await expect(page.getByRole('status')).toHaveCount(1);
     await showPanel(page, info, 2); await page.locator('.render-button').click();
     await expect(banner).toContainText('Preparing your wardrobe');
     await polled.promise;
+    await expect(page.getByTestId('wardrobe-image')).toHaveCount(0);
     const bounds = await banner.boundingBox(); expect(bounds!.y).toBeGreaterThanOrEqual(0);
     render.release(); await expect(banner).toContainText('Your preview is ready');
     await expect(banner.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '3');

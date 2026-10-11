@@ -33,7 +33,7 @@ Demo renders support the first black knit plus either the silver or burgundy ski
 
 ## Your photo and 3D fitting room
 
-Choose **Your photo**, confirm permission, and upload a clear full-body image. **Photo preview** keeps your actual upload visible until a matching try-on finishes. Personal photos are never replaced by sample model renders. **3D avatar** provides continuous rotation, front/back/reset, zoom, five rigged poses (including a finger pose), body-proportion sliders, and PNG snapshots. It uses a bundled MakeHuman body, skeleton, and fitted clothing meshes.
+Choose **Your photo**, confirm permission, and upload a clear full-body image. **Photo preview** stays empty until a matching try-on finishes; your upload appears separately as the selected person reference. Personal photos are never replaced by sample model renders. **3D avatar** provides continuous rotation, front/back/reset, zoom, five rigged poses (including a finger pose), body-proportion sliders, and PNG snapshots. It uses a bundled MakeHuman body, skeleton, and fitted clothing meshes.
 
 Photo analysis runs locally in a browser worker using bundled MediaPipe models. It estimates proportions and adds face geometry adjustments and a texture from your reference. Add an optional face close-up through Your photo for better facial detail. Proportions, unseen surfaces, garment shapes, and facial likeness are approximations, not measured sizing. The avatar profile, pose, view, and face reference persist in your private session. Photo pose edits use the configured OpenAI, fal or private GPU provider; the 3D view remains usable when photo inference is unavailable. [Avatar asset provenance](public/avatar/README.md).
 
