@@ -1,6 +1,6 @@
 import { beforeEach, afterEach, expect, it, vi } from 'vitest';
 import { fashnPrediction, FashnLocal } from '@/lib/providers/tryon';
-import { FalPose } from '@/lib/providers/pose';
+import { FalPose, FluxLocalPose } from '@/lib/providers/pose';
 import { providerJson } from '@/lib/providers/http';
 vi.mock('@/lib/providers/http', () => ({ providerJson: vi.fn() }));
 const request = vi.mocked(providerJson);
@@ -36,4 +36,16 @@ it('rejects a pose provider queue pointing to another host before requesting it'
   request.mockResolvedValue({ request_id: 'x', status_url: 'https://127.0.0.1/status', response_url: 'https://queue.fal.run/response' });
   await expect(new FalPose().render({ wardrobeImage: Buffer.from('w'), identityReference: Buffer.from('i'), posePresetReference: Buffer.from('p'), posePrompt: 'peace sign', pose: 'peace' })).rejects.toThrow('invalid queue URL');
   expect(request).toHaveBeenCalledTimes(1);
+});
+
+it('sends outfit, original identity and pose references to the authenticated local editor once', async () => {
+  vi.stubEnv('POSE_LOCAL_URL', 'http://worker:8080/'); vi.stubEnv('POSE_LOCAL_TOKEN', 'pose-token');
+  request.mockResolvedValue({ image: 'data:image/png;base64,aW1hZ2U=' });
+  const result = await new FluxLocalPose().render({ wardrobeImage: Buffer.from('wardrobe'), identityReference: Buffer.from('person'), posePresetReference: Buffer.from('pose'), posePrompt: 'hand on hip', pose: 'hip' });
+  expect(result).toEqual(Buffer.from('image'));
+  expect(request).toHaveBeenCalledTimes(1);
+  const [url, init, , retries] = request.mock.calls[0];
+  expect(url).toBe('http://worker:8080/pose'); expect(retries).toBe(0);
+  expect(init?.headers).toHaveProperty('Authorization', 'Bearer pose-token');
+  expect(JSON.parse(init?.body as string)).toMatchObject({ pose: 'hip', wardrobe_image: expect.stringContaining('base64'), identity_image: expect.stringContaining('base64'), pose_image: expect.stringContaining('base64') });
 });

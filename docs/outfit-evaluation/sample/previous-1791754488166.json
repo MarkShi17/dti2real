@@ -1,0 +1,49 @@
+{
+  "startedAt": "2026-10-11T21:33:06.965Z",
+  "settings": {
+    "model": "gpt-image-2.5-sunburst",
+    "quality": "max",
+    "size": "1024x1536",
+    "n": 1
+  },
+  "source": "docs/outfit-evaluation/sample",
+  "status": "failed",
+  "superiorityClaim": false,
+  "stages": [],
+  "baseline": {
+    "provider": "fashn_local",
+    "status": "not-run"
+  },
+  "references": [
+    {
+      "garmentId": "demo-top",
+      "productId": "eda30667cc98d3edb5b433e3f3b5019e",
+      "hash": "66b89c68cb6f3260d89d17f03050a01f79e2c535fcfe0c763c1baf2636da00e6"
+    },
+    {
+      "garmentId": "demo-bottom",
+      "productId": "a82c8246ed75f6d3f8df5cde8287118b",
+      "hash": "f186f0c25c49f9596208a41964fb50d1001ecc352d2b25180df542e117a05c3c"
+    },
+    {
+      "garmentId": "demo-shoes",
+      "productId": "b64462c1f198a08f573b0bb2f567a863",
+      "hash": "8ba537b38a5de88e6d4965e4476d1fb3af1d1aed8bf8871586d96c5c6de255a2"
+    },
+    {
+      "garmentId": "demo-bag",
+      "productId": "3e9dc0ee40090a83f599ff3524a89336",
+      "hash": "f707da3a700c8ee64bcdc6ed5c293182c2c473ce55ba4bcc15b46a0559b5c10e"
+    },
+    {
+      "garmentId": "demo-jewelry",
+      "productId": "3ba2471e00356440519cb15b9daea779",
+      "hash": "34c1d68f92fd1f488b6dcb0009f90d1c7c592a7f3c15a573a5d855bab095d2fe"
+    }
+  ],
+  "failure": {
+    "stage": "layering",
+    "latencyMs": 21828,
+    "error": "Layering plan contains conflicting or cyclic layers."
+  }
+}

@@ -1,4 +1,5 @@
-import { test, expect, type Page } from '@playwright/test';
+import { type Page } from '@playwright/test';
+import { test, expect, saved } from './helpers';
 import path from 'node:path';
 async function enterExample(page: Page, mobile: boolean) {
   await page.goto('/'); await page.getByRole('button', { name: 'Explore an example', exact: true }).click();
@@ -8,7 +9,7 @@ async function enterExample(page: Page, mobile: boolean) {
 }
 async function fittingRoom(page: Page, mobile: boolean) { if (mobile) await page.getByRole('button', { name: '3 Fitting room', exact: true }).click(); }
 test('sample outfit, individual skirt swap, five distinct poses, save and persistence', async ({ page }, info) => {
-  const mobile = info.project.name === 'mobile';
+  const mobile = info.project.name.includes('mobile');
   await enterExample(page, mobile);
   await fittingRoom(page, mobile);
   await page.locator('.render-button').click();
@@ -26,12 +27,12 @@ test('sample outfit, individual skirt swap, five distinct poses, save and persis
   await page.locator('.render-button').click(); await expect(image).toHaveAttribute('src', '/demo/burgundy-runway.webp');
   await page.getByRole('button', { name: 'Save look', exact: true }).click();
   const download = page.waitForEvent('download'); await page.getByRole('button', { name: 'Card with links (SVG)', exact: true }).click(); expect((await download).suggestedFilename()).toContain('.svg');
-  await page.waitForTimeout(800); await page.reload(); await fittingRoom(page, mobile); await expect(page.getByTestId('wardrobe-image')).toHaveAttribute('src', '/demo/burgundy-runway.webp');
+  await saved(page, state => !!state.renderId && (state.selected as Record<string, string>)['demo-bottom'] === 'fixture-demo-bottom-1'); await page.reload(); await fittingRoom(page, mobile); await expect(page.getByTestId('wardrobe-image')).toHaveAttribute('src', '/demo/burgundy-runway.webp');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.screenshot({ path: `docs/${info.project.name}-studio.png`, fullPage: true });
+  await info.attach('studio', { body: await page.screenshot({ fullPage: true }), contentType: 'image/png' });
 });
 test('manual corrections, price filters, own-photo consent, honest demo limits and deletion', async ({ page }, info) => {
-  const mobile = info.project.name === 'mobile'; await enterExample(page, mobile);
+  const mobile = info.project.name.includes('mobile'); await enterExample(page, mobile);
   await page.getByRole('button', { name: 'Edit City ankle boots', exact: true }).click(); await page.getByLabel('Piece name').fill('Platform ankle boots');
   await page.getByRole('button', { name: 'Save & search', exact: true }).click(); await expect(page.getByRole('button', { name: 'Edit Platform ankle boots' })).toBeVisible();
   if (mobile) await page.getByRole('button', { name: '2 Find pieces', exact: true }).click();
@@ -42,8 +43,9 @@ test('manual corrections, price filters, own-photo consent, honest demo limits a
   await expect(page.getByRole('button', { name: 'Choose person photo', exact: true })).toBeDisabled();
   await page.getByRole('checkbox').last().check();
   await page.getByLabel('Person photo file').setInputFiles(path.resolve('public/demo/base-runway.webp'));
-  await expect(page.getByText('Your photo is selected')).toBeVisible(); await page.locator('.render-button').click();
-  await expect(page.getByRole('alert').filter({ hasText: 'Personal-photo try-on needs' })).toBeVisible();
+  await expect(page.getByText('Your photo is selected')).toBeVisible(); await expect(page.locator('.render-button')).toBeDisabled();
+  await expect(page.getByTestId('wardrobe-image')).toHaveAttribute('src', /^\/api\/assets\//);
+  await expect(page.getByText('Your 3D avatar remains available.', { exact: false })).toBeVisible();
   await page.getByRole('button', { name: 'Delete my session', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Keep my session' })).toBeFocused();
   await page.keyboard.press('Tab'); await expect(page.getByRole('button', { name: 'Delete session', exact: true })).toBeFocused();
@@ -59,7 +61,7 @@ test('uploaded screenshot, manual garment and keyboard region correction', async
   await expect(page.getByAltText('Original outfit inspiration')).toBeVisible();
   await page.getByRole('button', { name: 'Analyze outfit', exact: true }).first().click();
   await expect(page.getByRole('status')).toContainText('manual');
-  if (info.project.name === 'mobile') await page.getByRole('button', { name: '1 Inspiration', exact: true }).click();
+  if (info.project.name.includes('mobile')) await page.getByRole('button', { name: '1 Inspiration', exact: true }).click();
   await page.getByRole('button', { name: 'Add piece', exact: true }).click();
   await page.getByLabel('Piece name').fill('Ruby dress');
   await page.getByRole('combobox', { name: 'Garment category', exact: true }).selectOption('dress');

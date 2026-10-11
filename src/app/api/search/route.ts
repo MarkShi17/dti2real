@@ -18,7 +18,15 @@ export async function POST(req: NextRequest) {
     if (provider.mode === 'unavailable') throw new AppError('Shopping credentials are incomplete.', 503);
     const result = provider.mode === 'demo' ? { products: filterAndRank(demoProducts(input.garment), input.garment, input.filters), warnings: [] } : await liveSearch(input.garment, input.filters);
     if (provider.mode === 'live' && process.env.VISUAL_RERANK === 'true' && input.imageId && providerStatus().vision.mode === 'live') {
-      try { result.products = await visualRerank(result.products, input.garment, await storage.getImage(id, input.imageId)); }
+      try {
+        let segmentedImage: Buffer | undefined;
+        const segment = input.garment.segmentation;
+        if (segment?.sourceImageId === input.imageId) {
+          const data = await storage.read(id), ref = data.images[segment.imageId];
+          if (ref?.kind === 'segment' && ref.sourceImageId === input.imageId) segmentedImage = await storage.getImage(id, segment.imageId);
+        }
+        result.products = await visualRerank(result.products, input.garment, await storage.getImage(id, input.imageId), segmentedImage);
+      }
       catch(e) { result.warnings.push(`Visual ranking unavailable: ${e instanceof AppError ? e.message : 'Provider failed.'} Showing keyword matches.`); }
     }
     await storage.update(id, d => { for (const p of result.products) d.products[p.id] = p; });

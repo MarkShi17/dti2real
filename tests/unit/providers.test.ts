@@ -1,9 +1,11 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { parseShoppingResults } from '@/lib/providers/shopping';
+import { parseShoppingResults, liveSearch } from '@/lib/providers/shopping';
 import { parseVisionResult } from '@/lib/providers/vision';
 import { providerStatus } from '@/lib/providers/config';
 import { DEMO_GARMENTS } from '@/lib/fixtures';
-afterEach(() => vi.unstubAllEnvs());
+import { generateQueries } from '@/lib/ranking';
+import { defaultFilters } from '@/lib/schema';
+afterEach(() => { vi.unstubAllEnvs(); vi.unstubAllGlobals(); });
 describe('provider boundaries', () => {
   it('uses actual links and never invents unknown prices', () => {
     const p = parseShoppingResults({ shopping_results: [
@@ -29,4 +31,23 @@ describe('provider boundaries', () => {
     vi.stubEnv('DEMO_MODE', 'false'); vi.stubEnv('TRYON_PROVIDER', 'fashn_api'); vi.stubEnv('FASHN_API_KEY', '');
     expect(providerStatus().tryon.mode).toBe('unavailable');
   });
+});
+
+it('keeps real matches when one of the two shopping queries fails', async () => {
+  vi.stubEnv('SERPAPI_KEY','test-only');vi.stubEnv('EBAY_CLIENT_ID','');vi.stubEnv('EBAY_CLIENT_SECRET','');
+  const garment=DEMO_GARMENTS[0], first=generateQueries(garment)[0];
+  vi.stubGlobal('fetch',vi.fn(async(input:string)=>new URL(input).searchParams.get('q')===first
+    ? Response.json({shopping_results:[{title:'Black ribbed knit top',source:'Actual retailer',product_link:'https://shop.example.com/knit',thumbnail:'https://images.example.com/knit.webp'}]})
+    : new Response('',{status:503})));
+  const result=await liveSearch(garment,defaultFilters);
+  expect(result.products).toHaveLength(1);expect(result.products[0].isDemo).toBe(false);
+  expect(result.warnings.join(' ')).toMatch(/query/i);
+});
+
+it('broadens empty precise searches instead of leaving an obvious garment unmatched', async () => {
+  vi.stubEnv('SERPAPI_KEY','test-only');vi.stubEnv('EBAY_CLIENT_ID','');vi.stubEnv('EBAY_CLIENT_SECRET','');
+  const garment={...DEMO_GARMENTS[0],name:'White fitted camisole tank',attributes:{color:['white']},searchQueries:['white fitted v-neck spaghetti strap cropped camisole tank','white strappy fitted stretch knit cami top']};
+  vi.stubGlobal('fetch',vi.fn(async(input:string)=>Response.json({shopping_results:new URL(input).searchParams.get('q')==='white camisole'?[{title:'White camisole',source:'Actual retailer',product_link:'https://shop.example.com/cami',thumbnail:'https://images.example.com/cami.webp'}]:[]})));
+  const result=await liveSearch(garment,defaultFilters);
+  expect(result.products).toHaveLength(1);expect(result.warnings.join(' ')).toMatch(/broader/i);
 });

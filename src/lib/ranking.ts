@@ -7,6 +7,12 @@ export function generateQueries(g: Garment): string[] {
   const core = [a.color.join(' '), g.name, a.silhouette, a.material, a.pattern].filter(Boolean).join(' ').replace(/\b(roblox|dress to impress|dti)\b/gi, '').trim();
   return [...new Set([...g.searchQueries, core, [a.color.join(' '), a.silhouette, g.category, ...(a.details || [])].filter(Boolean).join(' ')])].filter(Boolean).slice(0, 3);
 }
+export function broadSearchQuery(g: Garment): string {
+  const types = ['camisole', 'tank', 'turtleneck', 'corset', 'blouse', 'sweater', 'shirt', 'jeans', 'trousers', 'pants', 'skirt', 'shorts', 'jumpsuit', 'romper', 'dress', 'cardigan', 'blazer', 'jacket', 'coat', 'sneakers', 'boots', 'heels', 'sandals', 'tights', 'stockings', 'socks', 'necklace', 'earrings', 'bracelet', 'bangle', 'bag', 'purse', 'hat'];
+  const name = words(g.name);
+  const type = types.find(t => name.includes(t)) || g.category;
+  return [g.attributes.color[0], type].filter(Boolean).join(' ');
+}
 export function scoreListing(p: ProductListing, g: Garment): number {
   const title = p.title.toLowerCase(), a = g.attributes;
   const category = (synonyms[g.category] || [g.category]).some(w => title.includes(w)) ? 1 : 0;

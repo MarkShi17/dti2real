@@ -6,12 +6,29 @@ services:
     ports:
       - "127.0.0.1:${DTI2IRL_PORT:-3212}:3000"
     env_file:
+      - path: .env
+        required: false
       - path: .env.local
         required: false
     environment:
       DATA_DIR: /app/.data
     volumes:
       - sessions:/app/.data
+    restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+  segmentation:
+    profiles: [segmentation]
+    build: ./workers/segmentation
+    image: dti2irl:segmentation
+    env_file:
+      - path: .env.segmentation
+        required: true
+    expose:
+      - '8000'
     restart: unless-stopped
     init: true
     security_opt:

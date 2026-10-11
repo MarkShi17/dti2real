@@ -1,0 +1,78 @@
+{
+  "source": "test-results/results.json",
+  "stats": {
+    "startTime": "2026-10-11T18:45:26.340Z",
+    "duration": 654957.767,
+    "expected": 148,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "passedByProject": {
+    "api": 12,
+    "provider-contracts": 12,
+    "desktop": 31,
+    "mobile": 31,
+    "firefox": 31,
+    "webkit-mobile": 31
+  },
+  "automaticRetries": 0,
+  "runner": "mcr.microsoft.com/playwright:v1.59.1-noble",
+  "applicationImage": "dti2irl:e2e / sha256:b2a97379e72dc7e7051f5393f757ce2c4f2f4f768e3ca9ed9b9f3c7102d90c86",
+  "externalProviders": "Deterministic test-only transport fixtures; no real provider or GPU validation.",
+  "afterFontCorrection": {
+    "source": "test-results/post-font-results.json",
+    "stats": {
+      "startTime": "2026-10-11T18:58:31.606Z",
+      "duration": 73450.707,
+      "expected": 9,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "scope": "PNG/SVG encoding and glyph bounds, export retry and complete pose/download/reload journeys in all four browser projects.",
+    "applicationImage": "dti2irl:local / sha256:5b4855764eb2f245ec7de20e1f1ca62d56bef8d2bcd12c0c75ba2bfc75873792"
+  },
+  "vision_segmentation_run": {
+    "stats": {
+      "startTime": "2026-10-11T19:28:45.979Z",
+      "duration": 667667.3409999999,
+      "expected": 151,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "appImage": "sha256:58f4402fd9e9d28a2e6ceb0d1f70606fd1f8367a90b6dd5ee2971c5108eb77da",
+    "note": "151 full suite cases passed before the shopping fallback and jewelry-filter patches. Separate provider and mask checks cover those changes."
+  },
+  "vision_final_provider_checks": {
+    "stats": {
+      "startTime": "2026-10-11T19:40:32.370Z",
+      "duration": 100415.023,
+      "expected": 15,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "appImage": "sha256:e4ca86ebbdd69d8aa904e2ab363c0a86adccbe67623647f6509fb071cc9b7913",
+    "workerImage": "sha256:6bf159de6863a35cad9a69a2260606e8973962b02f7d43fe55e01cf4dcbf6d0e",
+    "unitTests": 64,
+    "workerUnitTests": 5
+  },
+  "vision_final_jewelry_checks": {
+    "source": "test-results/post-jewelry-results.json",
+    "stats": {
+      "startTime": "2026-10-11T19:51:13.437Z",
+      "duration": 13085.053,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "appImage": "sha256:7ce8c3caa76cdb5ca458ac7edc2253bf7218d193dc7853d2fa4a0e5abac101f7",
+    "unitTests": 65,
+    "workerUnitTests": 5,
+    "liveEvaluation": "vision-evaluation.json",
+    "note": "Three browser mask cases passed against final image; six real recognized pieces and three private masks verified separately."
+  }
+}
