@@ -1,0 +1,13 @@
+node_modules/
+.next/
+.env*
+!.env.example
+.data/
+.cache/
+coverage/
+test-results/
+playwright-report/
+*.tsbuildinfo
+__pycache__/
+.venv/
+weights/
