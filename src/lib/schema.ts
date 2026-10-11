@@ -23,6 +23,7 @@ export type ProductListing = {
   price?: number; currency?: string; condition: 'new' | 'used' | 'unknown'; thrift: boolean;
   retrievedAt?: string; matchScore?: number; matchReason?: string; isDemo: boolean;
   variant?: 'silver' | 'burgundy'; category?: GarmentCategory;
+  visualVerified?: boolean; retrievalProvider?: string; availability?: 'available' | 'sold' | 'unknown';
 };
 export type ProviderMode = 'live' | 'demo' | 'unavailable';
 export type ProviderInfo = { name: string; mode: ProviderMode; detail: string };

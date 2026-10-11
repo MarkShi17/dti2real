@@ -5,6 +5,7 @@ import { AppError, safeExternalUrl } from '../security';
 import { generateQueries, filterAndRank } from '../ranking';
 import { providerJson } from './http';
 import type { ShoppingProvider } from './types';
+import { selectedShoppingSources, shoppingSourceReady, SerperShopping, ResaleShopping, SerpEbayShopping } from './resale';
 const stableId = (g: string, url: string) => createHash('sha256').update(`${g}|${url}`).digest('hex').slice(0, 32);
 const entry = z.object({ title: z.string(), source: z.string().optional(), link: z.string().optional(), product_link: z.string().optional(), thumbnail: z.string().optional(), price: z.string().optional(), extracted_price: z.number().nonnegative().optional(), second_hand_condition: z.string().optional() }).passthrough();
 export function parseShoppingResults(raw: unknown, garment: Garment): ProductListing[] {
@@ -57,8 +58,10 @@ export class EbayShopping implements ShoppingProvider {
 }
 export async function liveSearch(g: Garment, filters: Filters) {
   const providers: ShoppingProvider[] = [];
-  if (process.env.SERPAPI_KEY) providers.push(new SerpShopping());
-  if (process.env.EBAY_CLIENT_ID && process.env.EBAY_CLIENT_SECRET) providers.push(new EbayShopping());
+  for (const source of selectedShoppingSources()) {
+    if (!shoppingSourceReady(source)) throw new AppError('Missing credentials for ' + source + '.', 503);
+    providers.push(source === 'serpapi' ? new SerpShopping() : source === 'serpapi_ebay' ? new SerpEbayShopping() : source === 'ebay' ? new EbayShopping() : source === 'serper' ? new SerperShopping() : new ResaleShopping(source));
+  }
   if (!providers.length) throw new AppError('Shopping credentials are incomplete.', 503);
   const results = await Promise.allSettled(providers.map(p => p.searchGarment(g, filters)));
   const listings = results.flatMap(r => r.status === 'fulfilled' ? r.value : []);

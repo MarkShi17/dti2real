@@ -1,0 +1,3018 @@
+{
+  "fit1": {
+    "variant": "default",
+    "reviewer": "Codex visual review (AI; provisional)",
+    "complete": true,
+    "notes": "Missed white cap. Bag construction (woven top handle vs embellished shoulder bag) is uncertain and marked incorrect conservatively.",
+    "matches": [
+      {
+        "expectedId": "corset",
+        "predictionId": "e83519f8-7b80-4d55-9bc5-cf6d19b43973",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "bottom",
+        "predictionId": "c1ee5a5b-6d31-45aa-a39f-96af28dbba41",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": false
+        }
+      },
+      {
+        "expectedId": "gloves",
+        "predictionId": "f4f3407f-74f9-4f2b-aaf0-17ccbab2bac1",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "garters",
+        "predictionId": "f2577546-60e5-44d3-93f6-0204e644708a",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "wraps",
+        "predictionId": "d92ae1d7-3cdf-4b2f-a3c2-c59edb935c3d",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "shoes",
+        "predictionId": "938009e2-d8e6-43bc-97cb-d501a3a93c6a",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "bag",
+        "predictionId": "64f8c7b6-6da2-4150-828f-c7b81b8878f8",
+        "attributes": {
+          "color": true,
+          "silhouette": false,
+          "details": false
+        }
+      },
+      {
+        "expectedId": "necklace",
+        "predictionId": "3544b3a0-727c-4fc5-a220-2222910f7ade",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "earrings",
+        "predictionId": "81dd00fa-4921-4cc8-909a-e26f790c7347",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      }
+    ],
+    "products": [
+      {
+        "productId": "3a6f9a444d2213f8423d148b455078c0",
+        "grade": 2,
+        "reason": "White fitted corset/bustier with floral detailing, but has straps and structured boning instead of the target's lace-heavy off-shoulder trim.",
+        "uncertain": false,
+        "expectedId": "corset"
+      },
+      {
+        "productId": "9c1654d30a08932b5005d37ce780f058",
+        "grade": 0,
+        "reason": "Sheer embroidered short-sleeve crop top, not a fitted corset silhouette.",
+        "uncertain": false,
+        "expectedId": "corset"
+      },
+      {
+        "productId": "b65283d90e3406735da41d9456a7608e",
+        "grade": 2,
+        "reason": "Ivory floral corset matches category and color closely, but it lacks the target's off-shoulder trim and has a different straight bandeau neckline.",
+        "uncertain": false,
+        "expectedId": "corset"
+      },
+      {
+        "productId": "d84de4b0c2a323094bc3f8aea0c9524a",
+        "grade": 2,
+        "reason": "White corset with floral applique and similar fitted shape, but metallic embellished flowers and thin straps differ from the target's floral lace and off-shoulder detail.",
+        "uncertain": false,
+        "expectedId": "corset"
+      },
+      {
+        "productId": "821a521a157d7a5ec6f51e50f289aec5",
+        "grade": 1,
+        "reason": "White micro shorts, but graphic print and no lace trim or skirted ruffle detail.",
+        "uncertain": false,
+        "expectedId": "bottom"
+      },
+      {
+        "productId": "86fa2498ce7b601077f115d86160e29b",
+        "grade": 2,
+        "reason": "White mini shorts with side tie; close color and length, but plain fabric and no lace trim/ruffled hem.",
+        "uncertain": false,
+        "expectedId": "bottom"
+      },
+      {
+        "productId": "b84b1cccf181d9178cb33efbae96c4e7",
+        "grade": 3,
+        "reason": "White micro mini with lace/ruffled texture and very similar skimpy silhouette; closest match to the target bottom.",
+        "uncertain": true,
+        "expectedId": "bottom"
+      },
+      {
+        "productId": "eb2b477e432a93f88a570fdfb91db5e0",
+        "grade": 2,
+        "reason": "White shorts in a similar short silhouette, but textured knit fabric and no lace trim or skirt-like ruffle.",
+        "uncertain": false,
+        "expectedId": "bottom"
+      },
+      {
+        "productId": "fae314df5fff3ed34b1fce9e868ee9bc",
+        "grade": 1,
+        "reason": "White micro shorts, but graphic print and no lace trim or skirted ruffle detail.",
+        "uncertain": false,
+        "expectedId": "bottom"
+      },
+      {
+        "productId": "01b4ed7545daf322395504071ce379d7",
+        "grade": 2,
+        "reason": "White long fitted lace gloves, but lace is plain mesh/floral-light and lacks the target's distinct floral lace detail.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "57672d1f6181099562f62b31d2115a4b",
+        "grade": 2,
+        "reason": "White long gloves with floral embroidery, but satin lower half and heavy appliqué differ from the allover floral lace look.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "f4dbb8237168bc5ba556b429c8e44cb9",
+        "grade": 1,
+        "reason": "Sheer white long gloves, but decorated with pearls/tulle rather than floral lace.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "ff7bde4ec69a8e70e26080586e383df2",
+        "grade": 2,
+        "reason": "White long floral lace gloves and close overall, but they are off-shoulder opera gloves, not the fitted hand/arm silhouette shown.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "5c39e03a49f1affc15d26ff260912f00",
+        "grade": 2,
+        "reason": "White long fitted gloves with lace/floral texture, but product photo is generic and exact floral detail/sheerness is not clearly visible.",
+        "uncertain": true,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "0e82864e5a75f80b86a132fbe650d277",
+        "grade": 2,
+        "reason": "White floral lace thigh bands; floral applique is close but much narrower/vertical than the target bands.",
+        "uncertain": false,
+        "expectedId": "garters"
+      },
+      {
+        "productId": "702d0a84eb46076c833a06591bfc22b3",
+        "grade": 3,
+        "reason": "White floral lace thigh band/garter pieces with scalloped lace, matching the target category, color, and visible detail closely.",
+        "uncertain": false,
+        "expectedId": "garters"
+      },
+      {
+        "productId": "78e17faf2cac082892fa3933c5265d79",
+        "grade": 1,
+        "reason": "White hosiery with lace tops, but these are full thigh-high stockings rather than separate thigh bands.",
+        "uncertain": false,
+        "expectedId": "garters"
+      },
+      {
+        "productId": "be843f48cbe0af3f16d33402bdc9ba3e",
+        "grade": 0,
+        "reason": "Lingerie set with garter belt and black thigh-highs, not white lace thigh bands.",
+        "uncertain": false,
+        "expectedId": "garters"
+      },
+      {
+        "productId": "09afaf06e130f66275675ce75ac79c11",
+        "grade": 3,
+        "reason": "White floral lace thigh band/garter with similar width and applique flower details.",
+        "uncertain": false,
+        "expectedId": "garters"
+      },
+      {
+        "productId": "26c87302a2c1ab4486d5f6918e76e812",
+        "grade": 0,
+        "reason": "Black-and-white camisole top, not leg wraps or hosiery.",
+        "uncertain": false,
+        "expectedId": "wraps"
+      },
+      {
+        "productId": "4c6377e2a35d542f1fff4d07d7b9530b",
+        "grade": 2,
+        "reason": "White crisscross leg wraps/stockings match category and silhouette, but lacks the floral lace accents seen on the target.",
+        "uncertain": false,
+        "expectedId": "wraps"
+      },
+      {
+        "productId": "b294debdac646ed457f00d1479b5f9e1",
+        "grade": 1,
+        "reason": "Lace-up heeled sandals with calf ties echo the wrap look, but this is footwear, not hosiery leg wraps.",
+        "uncertain": false,
+        "expectedId": "wraps"
+      },
+      {
+        "productId": "18f2f420a0095739e81138218c471dd1",
+        "grade": 1,
+        "reason": "White heels, but closed-toe mary jane style with block heel and no lace-up detail.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "2a8443b02f14170e962ac546d4241783",
+        "grade": 1,
+        "reason": "White platform heels, but strap style is mary jane/ankle strap rather than lace-up and silhouette is plainer.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "58c38214e63d2c2e45b6c8aeaec14be8",
+        "grade": 0,
+        "reason": "White flats, not platform high heels.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "f65ad761e717458637cadd583dacc488",
+        "grade": 2,
+        "reason": "White platform block heels are close, but they use a single strap instead of the defining lace-up design.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "50ea62f4732952b6ab299b0bb0b3c73a",
+        "grade": 2,
+        "reason": "Pink textured bag, but it is a small backpack/crossbody shape rather than a rectangular shoulder bag.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "687dac5aed43e2bdaf40293c3fe4f0b5",
+        "grade": 2,
+        "reason": "Light pink woven bag with similar texture, but it is a tote/handbag silhouette, not a small rectangular shoulder bag.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "ae3d87a09784cfcce24fed2c66640b71",
+        "grade": 1,
+        "reason": "Pink bag category matches, but this is a large slouchy hobo set, very different from the small rectangular embellished shoulder bag.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "fb1286df6b8f2ac76223c4a3c8b66848",
+        "grade": 2,
+        "reason": "Light pink woven bag with short strap and similar luxe texture, but it is a larger satchel silhouette instead of a small rectangular shoulder bag.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "dbcb8e9a95cf557eb29bc9a19779b7d7",
+        "grade": 2,
+        "reason": "Light pink bag with textured woven detail, but it is a structured mini duffel/handbag with top handles, not a small rectangular shoulder bag.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "45c5e246aab215376b0dc3b52fdd035a",
+        "grade": 2,
+        "reason": "Silver jeweled necklace and layered look match, but candidate is a simple curved collar rather than the target's more dangling statement necklace.",
+        "uncertain": true,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "c1ab450d29970e1dae7fdde126b993d5",
+        "grade": 1,
+        "reason": "Silver rhinestone neck jewelry, but it is a tight choker band, not a statement necklace with layered/drop details.",
+        "uncertain": false,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "fa23b6a593fdf3ffbc853313c8f5de85",
+        "grade": 1,
+        "reason": "Silver jeweled choker category is related, but silhouette is a wide neck band and lacks the target's layered statement-necklace look.",
+        "uncertain": false,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "019882b22d236651de05d5408f718538",
+        "grade": 2,
+        "reason": "White pearl drop earrings in silver, but candidate has a long 3-pearl stacked drop unlike the simpler target.",
+        "uncertain": true,
+        "expectedId": "earrings"
+      },
+      {
+        "productId": "13217efe1bf818db7f144e041e2b773f",
+        "grade": 1,
+        "reason": "Drop earrings with a pearl, but dominant design is butterfly/celestial metal charms, not simple pearl drops.",
+        "uncertain": false,
+        "expectedId": "earrings"
+      },
+      {
+        "productId": "225b81c4f1c60d3d0d49b5813f547cf1",
+        "grade": 1,
+        "reason": "Pearl drop earrings, but irregular drippy metal design and elongated pearls differ strongly from target.",
+        "uncertain": false,
+        "expectedId": "earrings"
+      },
+      {
+        "productId": "7d18951b13d9397962e0c38ab852065b",
+        "grade": 1,
+        "reason": "Has drop silhouette, but pearl stud with multicolor glass teardrop is not white pearl drop earrings.",
+        "uncertain": false,
+        "expectedId": "earrings"
+      },
+      {
+        "productId": "b0263b166ad2ace563851ddeaa797765",
+        "grade": 2,
+        "reason": "White/silver pearl drop earrings and close overall, but large rhinestone bow top is a defining extra detail absent from target.",
+        "uncertain": true,
+        "expectedId": "earrings"
+      }
+    ]
+  },
+  "fit2": {
+    "variant": "default",
+    "reviewer": "Codex visual review (AI; provisional)",
+    "complete": true,
+    "notes": "Hosiery length above visible region is occluded; tights and stockings accepted. Dress bodice/layer construction accepted.",
+    "matches": [
+      {
+        "expectedId": "dress",
+        "predictionId": "246f127c-9bb0-4766-9aa9-215ea85f3815",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "hosiery",
+        "predictionId": "62c55f52-d4aa-4877-a255-47b3774913fc",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "shoes",
+        "predictionId": "1539426a-20b8-48e5-94bd-5cf52dce1cfc",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "head",
+        "predictionId": "44090b91-f572-4eb7-9a88-6506ed8ba5b5",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      }
+    ],
+    "products": [
+      {
+        "productId": "94a6bb595851597e3cf02ba499db2209",
+        "grade": 1,
+        "reason": "Pink dress, but simple fit-and-flare with no lace or tiered frilly lolita skirt.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "aa22045583223659be8b6b55b455881e",
+        "grade": 0,
+        "reason": "Pink satin slip/nightgown, not a lolita dress; wrong silhouette and details.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "d6f0b2a4d9470a2f21776d6f94411e94",
+        "grade": 2,
+        "reason": "Light pink frilly dress with wide bell shape and layered ruffles, but lacks the printed lolita bodice/skirt details and white contrast.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "ebe3519ff16e9cf28d304e4c12c7a88e",
+        "grade": 1,
+        "reason": "Pink-and-white dress with bows, but narrow straight silhouette and tailored style, not full ruffled bell-shaped lolita.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "b4d8193cbe0298faa41865a5cf28d686",
+        "grade": 2,
+        "reason": "White patterned over-knee/knee-high hosiery, but star print differs from the target's ribbed/lace texture.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "bc348614bc1d4f896335e766a7992aba",
+        "grade": 1,
+        "reason": "Similar legwear silhouette, but pink color and lace-up detail are very different from plain white ribbed/lace stockings.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "d44b50246b8c760bd6dd1eddbf9cc623",
+        "grade": 2,
+        "reason": "White hosiery with decorative motif, but appears as tights/pantyhose rather than knee-high stockings and lacks ribbed texture.",
+        "uncertain": true,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "e45524616fa6a1a9ca200e0e6c07c64f",
+        "grade": 1,
+        "reason": "White hosiery, but these are full tights with large colorful cartoon prints, not simple knee-high stockings.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "1903a3826cbd3b44c80303281e33f2d4",
+        "grade": 2,
+        "reason": "Pink Mary Jane-style heels with strap and bow, but chunky heel instead of platform and lacks the visible lace-up/strappy look.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "339f4abf0383fbb59f2e75a0645e26db",
+        "grade": 3,
+        "reason": "Pink platform Mary Janes with straps and prominent bows; silhouette and decorative sweet/lolita details closely match the target.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "ad80719371b0499efae8c38062f5e428",
+        "grade": 2,
+        "reason": "Pink platform shoes with multiple bows, but more sneaker-like with thick white toe caps rather than Mary Jane pumps.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "28b995d8fb536559f4548fdc24ed8341",
+        "grade": 2,
+        "reason": "Very close: pink platform Mary Jane with ankle straps and bows, but toe bow/ruffle styling differs from the simpler target shoes.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "5aac44914d5ac5d99974a0f977cc8c85",
+        "grade": 2,
+        "reason": "Pink platform Mary Jane style with prominent bows, but it has a wedge sole and white toe/lace details unlike the target.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "4d44d6f60bce59dcd7b0177c90eb91f5",
+        "grade": 1,
+        "reason": "Pink lace bonnet-like headwear, but on a plush and the shape/details differ from the large ornate human bonnet.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "b19548a45a0641b0b9961d4ab5a54823",
+        "grade": 2,
+        "reason": "Very close category and color: a pink lace-trim bonnet with tie and large silhouette, but it is plainer and lacks the ornate bows/embellished front details.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "f5046ed9fc02668e742a4c9c450fea9b",
+        "grade": 1,
+        "reason": "Pink lace bonnet appears on a plush doll and shares cute style, but the visible bonnet is smaller and less ornate than the target.",
+        "uncertain": false,
+        "expectedId": "head"
+      }
+    ]
+  },
+  "fit3": {
+    "variant": "default",
+    "reviewer": "Codex visual review (AI; provisional)",
+    "complete": true,
+    "notes": "Missed held red teddy bear. Separate red underskirt accepted as equivalent layering.",
+    "matches": [
+      {
+        "expectedId": "head",
+        "predictionId": "4377ba74-7df9-46ed-a70e-a7b982c78adb",
+        "attributes": {
+          "color": true,
+          "silhouette": false,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "top",
+        "predictionId": "fa3229ce-2d3e-44d9-8b8e-14b5dd0df0d5",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "tie",
+        "predictionId": "8ed27b57-8a38-4a06-80e5-cac6220fd404",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      },
+      {
+        "expectedId": "skirt",
+        "predictionId": "18504c71-5d15-49cd-b1ab-f478783d0ffc",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "underskirt",
+        "predictionId": "ccfbb6b3-13e6-4dd5-aa97-1a34dfea272d",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "fishnet",
+        "predictionId": "4294d2d9-460e-414f-bfbd-c91a3646b940",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "warmers",
+        "predictionId": "2e32e16b-5ec5-490f-a21e-18f572e8be72",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "shoes",
+        "predictionId": "328c50c0-29a0-4be9-996f-8ec13d0c1911",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      }
+    ],
+    "products": [
+      {
+        "productId": "0cdd3f1629b0ad5a6bc9dff5106b687f",
+        "grade": 0,
+        "reason": "Stuffed bear toy, not headwear or a cap.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "391fd08b99e8fa9dbd8b1d018f2af0bd",
+        "grade": 2,
+        "reason": "Black-and-red bear-ear hood/headwear with similar vibe, but it is a hooded garment, not the same cap silhouette or trim details.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "8d1fac0f84cbc8aa9f2772a9793ee840",
+        "grade": 0,
+        "reason": "Stuffed bear toy, not headwear or a cap.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "98fed1a19029c2ad5d0c69f2f7f592a6",
+        "grade": 1,
+        "reason": "Headwear with ear-like points, but wrong color and a knit balaclava silhouette instead of a black-red bear-ear cap.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "bb450db0fa32b36a937cd5f5a6e1be4c",
+        "grade": 0,
+        "reason": "Plush toy, not wearable headwear.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "0bf147f2a420411eb053968375185fd8",
+        "grade": 2,
+        "reason": "Black fitted top with short puffed sleeves, but neckline is ruffled V-neck and sleeves are sheer rather than the target’s more structured gothic puff-sleeve look.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "80019a07158403f0adbd48fbde2fb28d",
+        "grade": 3,
+        "reason": "Black fitted top with prominent puff sleeves and a simple square neckline; overall silhouette and key sleeve detail match closely.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "afb20fcf88ea23bc373475ef7d3672a7",
+        "grade": 2,
+        "reason": "Black fitted blouse with puff sleeves, but it has a button-front/corset-like structured style and peplum hem unlike the simpler fitted target top.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "ed684ef8cfe656f13c86182613904af9",
+        "grade": 2,
+        "reason": "Black fitted top with dramatic puff sleeves, but it is a deep V corset-style blouse with tails, differing from the target’s visible neckline and shape.",
+        "uncertain": true,
+        "expectedId": "top"
+      },
+      {
+        "productId": "4eee082eb1cd79a3e7e9c9a5c42b3c00",
+        "grade": 2,
+        "reason": "Black fitted top with puff sleeves, but candidate is a high-neck ruffled blouse/corset style rather than the simpler fitted puff-sleeve top shown.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "363a4567db76331b1739e12cec731652",
+        "grade": 3,
+        "reason": "Plain red long necktie; matches color and standard pointed silhouette.",
+        "uncertain": false,
+        "expectedId": "tie"
+      },
+      {
+        "productId": "54a84f085abf73762f474a73babdd4bd",
+        "grade": 1,
+        "reason": "Tie-like accessory but scarf/twilly style with multicolor print, not a red necktie.",
+        "uncertain": false,
+        "expectedId": "tie"
+      },
+      {
+        "productId": "762fb2d85fd5a739ca888b1e7fc9e9c9",
+        "grade": 3,
+        "reason": "Solid red long necktie with narrow pointed shape; faithful match.",
+        "uncertain": false,
+        "expectedId": "tie"
+      },
+      {
+        "productId": "b5f4fe2500d2112a6c02732a1b12f79b",
+        "grade": 2,
+        "reason": "Red necktie category matches, but knit texture and stripe pattern differ from the plain tie shown.",
+        "uncertain": false,
+        "expectedId": "tie"
+      },
+      {
+        "productId": "e4b37b8113fc36e413d99922670014f1",
+        "grade": 3,
+        "reason": "Solid red long necktie; clip/pre-tied construction not visible when worn, overall visual match.",
+        "uncertain": false,
+        "expectedId": "tie"
+      },
+      {
+        "productId": "058390f0cbe4d95a10d04551e89ad424",
+        "grade": 3,
+        "reason": "Red long necktie with matching pointed blade; very close to target accessory.",
+        "uncertain": false,
+        "expectedId": "tie"
+      },
+      {
+        "productId": "6f058ba259c596b32c515b43c5cee046",
+        "grade": 3,
+        "reason": "Faithful red long necktie; satin finish and standard silhouette match well.",
+        "uncertain": false,
+        "expectedId": "tie"
+      },
+      {
+        "productId": "3f12ccde5e0fff0c0e28a1b547725a80",
+        "grade": 1,
+        "reason": "Black ruffled skirt, but it is a long high-low lace maxi, not a flared mini.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "47155671682c8e750532c58439355ef0",
+        "grade": 1,
+        "reason": "Same black ruffled long lace high-low skirt; category/style overlap only, not mini silhouette.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "5de8784d72ed3bbfc6c5bf49940acbc7",
+        "grade": 3,
+        "reason": "Black tiered ruffle mini skirt with flared shape; closely matches the target's layered mini silhouette.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "746ec59744f0dd4bcfa01e696998cad2",
+        "grade": 2,
+        "reason": "Black flared mini with layered tiers, but the cargo/grommet details and structured panels differ from the simpler ruffled target.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "79084a08db981a9c6f0688b28d859b0c",
+        "grade": 3,
+        "reason": "Black tiered mini skirt with flared silhouette and layered ruffle look, very close to target.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "3d0ed42b19073e6bbf8e861d0a5e6007",
+        "grade": 0,
+        "reason": "Red floral halter dress, not an underskirt or ruffled hem layer.",
+        "uncertain": false,
+        "expectedId": "underskirt"
+      },
+      {
+        "productId": "56af9dce04d2a167fc2d1ab1c3c039be",
+        "grade": 0,
+        "reason": "Red dress with white lace trim; wrong garment category.",
+        "uncertain": false,
+        "expectedId": "underskirt"
+      },
+      {
+        "productId": "b95acb0a2f6b587d2796441ec3898e87",
+        "grade": 2,
+        "reason": "Red underskirt/petticoat with lace and ruffled hem, but much longer and fuller than the short visible layer.",
+        "uncertain": false,
+        "expectedId": "underskirt"
+      },
+      {
+        "productId": "c6dcb40b1f1d1faba66277d70c460078",
+        "grade": 0,
+        "reason": "Black dress with red furry stole; not a red underskirt.",
+        "uncertain": false,
+        "expectedId": "underskirt"
+      },
+      {
+        "productId": "cd7f60f249c920b3685a158b4223b221",
+        "grade": 1,
+        "reason": "Short red-and-black ruffled mini skirt, but it is a plaid overskirt/skirt, not a plain red lace underskirt.",
+        "uncertain": false,
+        "expectedId": "underskirt"
+      },
+      {
+        "productId": "0657a497729e6506c7ae1af1bf5ba27f",
+        "grade": 3,
+        "reason": "Black fishnet pantyhose/tights with visible diamond mesh; matches category, color, and fishnet look.",
+        "uncertain": false,
+        "expectedId": "fishnet"
+      },
+      {
+        "productId": "77e8d2a0571f8e2fb285fe440878e410",
+        "grade": 2,
+        "reason": "Black fishnet hosiery, but appears to be thigh-high/stockings rather than full tights and mesh is chunkier.",
+        "uncertain": false,
+        "expectedId": "fishnet"
+      },
+      {
+        "productId": "de6ec772ea1754dd370f2d68c1585b60",
+        "grade": 3,
+        "reason": "Black fishnet tights with similar all-over diamond mesh; faithful match to the target accessory.",
+        "uncertain": false,
+        "expectedId": "fishnet"
+      },
+      {
+        "productId": "f9126dd9c8096b87d61b98b3bb658768",
+        "grade": null,
+        "reason": "Image is just an 'ON HOLD' placeholder; product cannot be judged.",
+        "uncertain": false,
+        "expectedId": "fishnet"
+      },
+      {
+        "productId": "1a5c98505880b3379424ea6894f0137b",
+        "grade": 3,
+        "reason": "Black fishnet tights/stockings with the same fishnet pattern and silhouette as the target.",
+        "uncertain": false,
+        "expectedId": "fishnet"
+      },
+      {
+        "productId": "1f555bfbc9b9605d9a7e8b7be0f7bc7d",
+        "grade": 3,
+        "reason": "Black furry leg warmers with wide lower-leg shape, very close to target.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "716203bfdbf159564f3506d9d563bd96",
+        "grade": 2,
+        "reason": "Black furry lower-leg covering, but much longer and attached to heeled boots/belted top.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "9e9fcec0022cca3455512242d26d08c5",
+        "grade": 0,
+        "reason": "Knit boot cuffs/socks with pom-poms, not furry leg warmers.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "a8430a5e0a8b54978fdabdb1012052a0",
+        "grade": 2,
+        "reason": "Black furry leg warmers, but bulkier and boot-like with a less tapered silhouette.",
+        "uncertain": true,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "e06135ba1f621409fa1015ceb62e3c2a",
+        "grade": 3,
+        "reason": "Black furry leg warmers with matching wide lower-leg silhouette and texture.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "da9796a031f21e88263bc857166a14e0",
+        "grade": 2,
+        "reason": "Black furry lower-leg warmers match color and furry detail, but candidate is slimmer and angled/footed rather than the target’s wider straight leg-warmer silhouette.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "155e2bd637aa729ecb1b6d914f430de4",
+        "grade": 2,
+        "reason": "Red platform heel matches well, but T-strap/chunky block heel differs from simpler target view.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "5535843f3d805afa0fb86741f86e20ae",
+        "grade": 0,
+        "reason": "Black Mary Jane heels; wrong dominant color.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "6c563aa81a5ee7d8d1f4da214f113f28",
+        "grade": 3,
+        "reason": "Red platform Mary Jane heel with chunky block heel; strong match to visible target shoes.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "db33877b432fbb2feb6442c0bfbcd5c6",
+        "grade": 1,
+        "reason": "Red Mary Jane-style shoes, but appears flat/low heel rather than platform heel.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "ed73a387723623bce37b109908d5b53f",
+        "grade": 2,
+        "reason": "Red patent heels match color, but thin stiletto heel and no platform differ strongly.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "3382cbe3c3669989592b8ed115dc48db",
+        "grade": 2,
+        "reason": "Red platform Mary Jane shoe matches color and chunky platform style, but target appears more like a higher heel/boot-like platform silhouette.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "e97ca9c25a8198c655e15b20759576a5",
+        "grade": 2,
+        "reason": "Red glossy platform shoes fit the color and chunky platform look, but these are double-strap flats and not a clear heel like the target.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      }
+    ]
+  },
+  "fit4": {
+    "variant": "default",
+    "reviewer": "Codex visual review (AI; provisional)",
+    "complete": true,
+    "notes": "Main garments and visible accessories captured; material estimates not scored because screenshot cannot establish fibers.",
+    "matches": [
+      {
+        "expectedId": "head",
+        "predictionId": "e44cd4d8-18f0-4c22-aada-59df58a1a1f4",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      },
+      {
+        "expectedId": "jacket",
+        "predictionId": "5e032aab-592b-4574-b7a1-025d4b9a26b4",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "top",
+        "predictionId": "e547faa9-410f-4870-af41-eea28f700e73",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      },
+      {
+        "expectedId": "skirt",
+        "predictionId": "c64c3841-bc34-4c51-add3-5f595c1c120c",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "belt",
+        "predictionId": "e559700e-ab0f-4c4f-9600-2b2b01fcc4f3",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "garters",
+        "predictionId": "0e4c78a9-958e-4696-adc7-6abe0d5d2a59",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      },
+      {
+        "expectedId": "warmers",
+        "predictionId": "a997413d-38f3-470e-8455-28d2b2962bd3",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "shoes",
+        "predictionId": "9745bb9e-9d7c-43bb-a9ee-06c86acddfbd",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      },
+      {
+        "expectedId": "bag",
+        "predictionId": "d95f2291-fd44-4f94-a54b-2e1ee2d98088",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "earrings",
+        "predictionId": "ad4bd692-28d0-4ec3-b82c-5fb1af7089ec",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      }
+    ],
+    "products": [
+      {
+        "productId": "0e4ea6b6490c3fc9fa5983c1e0cad290",
+        "grade": 2,
+        "reason": "Pink furry trapper-style hat; color and fluff match, but has ear flaps unlike the large round hat shown.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "228f322e542bfea11c6ae6a759588bd2",
+        "grade": 0,
+        "reason": "White camo trapper hat, not pink/white fluffy round hat.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "6cc4116f5ba4d0ef375961d20da9e37f",
+        "grade": 2,
+        "reason": "Pink furry hat with ear flaps and pom ties; close color/material, but silhouette differs from the large rounded furry hat.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "6ef83ea42b6ce89c1b010a11b8e6f62e",
+        "grade": 0,
+        "reason": "Multicolor knit hat with faux fur trim; wrong material, pattern, and overall look.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "dd625b5581f3f2e9d133c27f2a26e40e",
+        "grade": 1,
+        "reason": "Furry hat in a light neutral color, but lacks the pink/white look and bulky rounded silhouette.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "03c6736331cfaeaee01f5508f4b3b0b4",
+        "grade": 1,
+        "reason": "Pink cropped jacket, but not fluffy/furry and lacks white marbled look.",
+        "uncertain": false,
+        "expectedId": "jacket"
+      },
+      {
+        "productId": "a8967d7ee71be311c4f93366d2586a5c",
+        "grade": 2,
+        "reason": "Very close: pink fluffy cropped jacket with long sleeves; color is more solid blush than pink-white patterned.",
+        "uncertain": false,
+        "expectedId": "jacket"
+      },
+      {
+        "productId": "ea0514a28f5a089e04268f0294f676a9",
+        "grade": 1,
+        "reason": "Pink cropped jacket, but puffer material with only fur hood trim, not a fluffy furry jacket overall.",
+        "uncertain": false,
+        "expectedId": "jacket"
+      },
+      {
+        "productId": "ee656d7f0f5477afb750001decca7ae8",
+        "grade": 2,
+        "reason": "Fluffy pale pink cropped jacket with long sleeves, but much fuller fur and biker/leather details differ from the simpler target.",
+        "uncertain": false,
+        "expectedId": "jacket"
+      },
+      {
+        "productId": "03e5f48bdc6780a7d257a16cbb8f9182",
+        "grade": 2,
+        "reason": "Pink fluffy cropped jacket with long sleeves, but solid pink and fuller open-front silhouette; lacks the white/pink patterned look.",
+        "uncertain": false,
+        "expectedId": "jacket"
+      },
+      {
+        "productId": "d33113a50bd3dfbd1ff613d9df9e383b",
+        "grade": 2,
+        "reason": "Very similar fuzzy cropped jacket with long sleeves, but color is muted blush/taupe rather than pink-white and pattern/detailing is missing.",
+        "uncertain": false,
+        "expectedId": "jacket"
+      },
+      {
+        "productId": "00de37f53dfcd4da0e158a335257ed8f",
+        "grade": 1,
+        "reason": "Includes some white cropped tops, but none clearly match the plain white target; collage makes exact item unclear.",
+        "uncertain": true,
+        "expectedId": "top"
+      },
+      {
+        "productId": "0e857eb60e31e64dc639b21bfb577e28",
+        "grade": 2,
+        "reason": "White cropped top with black bow detail, but this is structured/bustier-like with wide straps, unlike the simpler target crop top.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "316251be9b55f68c040db2c925f0d9f7",
+        "grade": 0,
+        "reason": "Black gingham short-sleeve blouse, not a white cropped top.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "39115533d5bafc18994d8c21f6dc55a1",
+        "grade": 2,
+        "reason": "White sleeveless top with black-trim detail, but it is longer and more structured than the target cropped top.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "4e25ed26859a7100e22b54d1e2715c77",
+        "grade": 2,
+        "reason": "White mini skirt, but front-panel/skort style rather than clearly pleated tennis-style skirt; no visible belt.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "795ecc25c199759693ef36f3a1fd5c3d",
+        "grade": 1,
+        "reason": "Mini skirt with pleated hem, but pink not white and silhouette/details differ a lot.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "b6902c302cfa258843081cd7750a1356",
+        "grade": 2,
+        "reason": "Pleated mini skirt silhouette is close, but it is black pinstripe instead of white and no visible belt.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "e9d1d111cd7769bf9cedcc3607a6915c",
+        "grade": 2,
+        "reason": "White mini skirt, but front-panel/skort style rather than clearly pleated tennis-style skirt; no visible belt.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "88f0d46c678d6d447680465641f7104a",
+        "grade": 3,
+        "reason": "White pleated mini skirt with wide waistband and side belt detail, matching the target closely.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "c889b136f693186add12f752c56ef020",
+        "grade": 2,
+        "reason": "White pleated mini skirt in the right style, but no visible belt/detail and silhouette is more generic.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "d70330188fc8113daff0732a06f3b823",
+        "grade": 2,
+        "reason": "White pleated mini skirt, but pleats are fewer/wider and waistband-detail differs from the target belt look.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "00b73aac2b731f758dc4fc90fb564e38",
+        "grade": 2,
+        "reason": "Black hip/waist belt with large rings, but it is a double belt with multiple chains rather than one draped ring-focused belt.",
+        "uncertain": false,
+        "expectedId": "belt"
+      },
+      {
+        "productId": "2014b0af1b30c9d975fb3eb80e49df30",
+        "grade": 3,
+        "reason": "Black hip belt with prominent large ring details and draped chains; overall silhouette and visible details match closely.",
+        "uncertain": false,
+        "expectedId": "belt"
+      },
+      {
+        "productId": "e6be5c1e9eb8718277506193d949013e",
+        "grade": 1,
+        "reason": "Black belt with chain and ring hardware, but it is a wide wrap/corset-style belt, not a draped hip belt.",
+        "uncertain": false,
+        "expectedId": "belt"
+      },
+      {
+        "productId": "c33c62e543362d440d5822c1d4329301",
+        "grade": 2,
+        "reason": "Black hip/waist chain belt with prominent ring details, but it is a slim chain style rather than a draped solid belt.",
+        "uncertain": false,
+        "expectedId": "belt"
+      },
+      {
+        "productId": "475299fcf8bbeb0e248ea0456617ca23",
+        "grade": 1,
+        "reason": "Black leg accessory, but this is a garter belt with hanging straps, not simple thigh bands.",
+        "uncertain": false,
+        "expectedId": "garters"
+      },
+      {
+        "productId": "7f49f7e52031a885418ac535b939f6e1",
+        "grade": 2,
+        "reason": "Black thigh bands and closer silhouette, but ruffled fabric and large heart hardware differ from the simple scalloped bands shown.",
+        "uncertain": false,
+        "expectedId": "garters"
+      },
+      {
+        "productId": "ab34734fb67b19db7e0545ff34e3a793",
+        "grade": 2,
+        "reason": "Correct category and black thigh-band placement, but these are wide plain bands, missing the narrow scalloped detail.",
+        "uncertain": false,
+        "expectedId": "garters"
+      },
+      {
+        "productId": "d2c5d9191ac2f3993d9d9c643232aca6",
+        "grade": 2,
+        "reason": "Black thigh bands with decorative hardware, but spiked faux-leather/heart design differs from the simple delicate bands in the target.",
+        "uncertain": false,
+        "expectedId": "garters"
+      },
+      {
+        "productId": "cdb328d0eb9733e06e267f1a2e17fd4d",
+        "grade": 2,
+        "reason": "Black thigh garter bands with lace and bows; matches category, color, and placement, but candidate is more ornate/wider lace-bow design than the simpler target bands.",
+        "uncertain": false,
+        "expectedId": "garters"
+      },
+      {
+        "productId": "14e2114c0d6d324d634928a3b247dd76",
+        "grade": 2,
+        "reason": "Furry leg warmers in light pink, but shorter and tiered with black bands instead of tall wide fluffy white-pink marbled warmers.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "91816915b2e616eeab704dbca6faa111",
+        "grade": 2,
+        "reason": "Same garment type and tall fluffy silhouette, but color is bright hot pink rather than pale pink and white.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "b2f620186eb5dcd52544db00da988ffb",
+        "grade": 1,
+        "reason": "Pink leg warmers/hosiery, but knit sock-like and fitted, not wide fluffy furry leg warmers.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "c6db4bd4b593cd31746d884efeba3e39",
+        "grade": 2,
+        "reason": "Tall fluffy pink leg warmers with a similar wide shape, but solid pastel pink and lacks the white marbled pattern.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "eb380f488d7d713abe8929cda55c364e",
+        "grade": 2,
+        "reason": "Furry wide leg warmers with pink and darker streaking, but much darker and less white than the target's pale pink-white look.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "6f522a2610ca63227a19b24735a451e7",
+        "grade": 2,
+        "reason": "Black platform Mary Janes; shape is close, but candidate has a chunky lug sole and visible strap unlike the simpler smooth shoe in the crop.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "8d760e93bd65461f600b680961c294d1",
+        "grade": 2,
+        "reason": "Black platform shoe in a similar rounded silhouette, but this has a tall block heel and ankle/instep strap detail not visible on the target.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "95e6293f2a99652e46bf042eb77e916d",
+        "grade": 2,
+        "reason": "Black platform shoe with rounded toe, but it has double straps/cutout details and a lug sole, while the target looks plainer and more closed.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "a83ea64f1ac7f4562129bf287e4b788a",
+        "grade": 2,
+        "reason": "Black platform Mary Jane style and rounded toe are close, but the white contrast stitching and T-strap opening differ from the plain target shoe.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "0c0ead74360c43e61e90e581f3e07cc6",
+        "grade": 1,
+        "reason": "Black bag, but appears larger slouchy hobo style; target is small shoulder bag.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "6ea95abed00b94891d6c194f8d36a093",
+        "grade": 2,
+        "reason": "Small black bag and similar size, but flap quilted chain-strap style differs from target’s simpler textured shoulder bag.",
+        "uncertain": true,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "d925a035e7ea98fb305a50346f7a56c5",
+        "grade": 1,
+        "reason": "Small shoulder bag silhouette, but pink-and-black colorway differs from target’s all-black bag.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "e558074e5f95fcaad6ea85ee6026f221",
+        "grade": 2,
+        "reason": "Small black shoulder bag with short strap, but puffy quilted texture and hardware/logo detail differ from target.",
+        "uncertain": true,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "f058c0071fd69986d56437ee874c4201",
+        "grade": 2,
+        "reason": "Small black bag and similar size, but quilted flap with chain strap and large logo differ from target’s simpler textured shoulder bag.",
+        "uncertain": true,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "2b1410af3ef7767faf69820035075837",
+        "grade": 1,
+        "reason": "Gold earrings but not hoop silhouette; clustered dangling tubes.",
+        "uncertain": false,
+        "expectedId": "earrings"
+      },
+      {
+        "productId": "bddb31da7db0f957f6a81cce028c661e",
+        "grade": 3,
+        "reason": "Gold medium hoop earrings; matches simple hoop silhouette closely.",
+        "uncertain": false,
+        "expectedId": "earrings"
+      },
+      {
+        "productId": "ce7f3efe00f7dd06441b9d4540fd1526",
+        "grade": 3,
+        "reason": "Gold hoop earrings with plain round hoop shape; very close match.",
+        "uncertain": false,
+        "expectedId": "earrings"
+      },
+      {
+        "productId": "cf96c0f2ddeeedb96e9646312d45b269",
+        "grade": 3,
+        "reason": "Gold hoop earrings; simple rounded hoop silhouette matches target well.",
+        "uncertain": false,
+        "expectedId": "earrings"
+      },
+      {
+        "productId": "e655f52e8a9e30bbb66ea36f07d51db1",
+        "grade": 3,
+        "reason": "Gold hoop earrings matching the target color and simple hoop silhouette.",
+        "uncertain": false,
+        "expectedId": "earrings"
+      }
+    ]
+  },
+  "fit5": {
+    "variant": "default",
+    "reviewer": "Codex visual review (AI; provisional)",
+    "complete": true,
+    "notes": "Missed visible cream/gold choker; high-neck reference versus predicted crew neckline. Bag buckle vs studs/hardware differs.",
+    "matches": [
+      {
+        "expectedId": "head",
+        "predictionId": "ba837e7e-7a85-446b-a7f6-e1df00db48bc",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      },
+      {
+        "expectedId": "top",
+        "predictionId": "d3995c1a-47fc-4ffe-8eed-027f4a0647ce",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": false
+        }
+      },
+      {
+        "expectedId": "dress",
+        "predictionId": "8dbdd613-e510-48d9-94ea-9edda16247f4",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "belt",
+        "predictionId": "e2a91586-bc57-40b5-9833-06c8fb162208",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "tights",
+        "predictionId": "7fa210ef-0094-473b-888e-844d423d496e",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      },
+      {
+        "expectedId": "bag",
+        "predictionId": "a8cec122-b744-45e6-8e2f-2f30152bd09c",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": false
+        }
+      },
+      {
+        "expectedId": "warmers",
+        "predictionId": "c3679e68-0aba-4e13-af4f-8894646a8951",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "shoes",
+        "predictionId": "84c53b47-1d4b-4219-af74-d75da8ff0e97",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      }
+    ],
+    "products": [
+      {
+        "productId": "2cb5fbdc5d0e7efc4628d4d3f8d5a47e",
+        "grade": 3,
+        "reason": "Black beret matching the target category, color, and classic round beret silhouette.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "67b3e87b41eae0f9d1602d648837e4cb",
+        "grade": 3,
+        "reason": "Black beret with the same soft slouched beret shape and visible stem detail.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "d5882be404600fd319b2431b3025062d",
+        "grade": 2,
+        "reason": "Black beret-like hat, but the silhouette is more elongated and structured than the target beret.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "3868b5dfb128d6c7b1cfded78ba54c2e",
+        "grade": 3,
+        "reason": "Black beret with the same soft round silhouette and top stem detail.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "74246d6f1f499b14b064252f935332db",
+        "grade": 3,
+        "reason": "Black beret matching the target color, round shape, and center stem detail.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "131d963062a50d9648c42d433aa62393",
+        "grade": 1,
+        "reason": "Black long-sleeve top, but neckline is wide scoop/V rather than high neck; silhouette match only broadly.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "7bea0683ac91b0af7f40346242e780a6",
+        "grade": 2,
+        "reason": "Black fitted long-sleeve top and closer simple shape, but neckline is crew/round, not the target's higher neck.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "afd885ac645e968db4cf86dc5203266e",
+        "grade": 1,
+        "reason": "Black fitted long-sleeve crop top, but deep V neckline and cropped length differ strongly from the high-neck fitted top.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "ff7ec352e9a0962e6048a997f7fd9cf8",
+        "grade": 2,
+        "reason": "Black fitted long-sleeve top with a relatively high round neckline; close overall, though not clearly a true high neck/turtleneck.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "4c8b41a25df7bcb7ca34e5d5fa2c74dc",
+        "grade": 2,
+        "reason": "Brown checked pinafore-style mini dress, but has wide straps and a straighter, looser silhouette than the fitted target.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "634c870bfa4a404689abf9c0f0946a28",
+        "grade": 1,
+        "reason": "Plaid pinafore-like dress, but dominant color is green/tan and pattern is larger plaid rather than brown-black small checks.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "8b994474897f58102bfda3745e79f548",
+        "grade": 2,
+        "reason": "Brown-black small checked pinafore dress, but apron front with buttons and pockets differs from the target's fitted thin-strap look.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "f5e0bb8da044bc3926323a79028d82da",
+        "grade": 3,
+        "reason": "Very close match: fitted brown checked mini dress with thin straps and simple pinafore-like silhouette.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "00d44ccfaa3ead820b7e554e5713af49",
+        "grade": 2,
+        "reason": "Black belt with silver buckle, but buckle is ornate/star-studded and much wider than the simple target buckle.",
+        "uncertain": false,
+        "expectedId": "belt"
+      },
+      {
+        "productId": "8450d7f9556d1c6efc414622ee5c3a9a",
+        "grade": 2,
+        "reason": "Black belt with silver buckle and similar width, but buckle is decorative rectangular style and belt has embossed pattern.",
+        "uncertain": false,
+        "expectedId": "belt"
+      },
+      {
+        "productId": "ae25c684de80fddbdae104be55943adc",
+        "grade": 2,
+        "reason": "Black belt with silver buckle, but buckle is large oval instead of the target's simple squarer buckle.",
+        "uncertain": false,
+        "expectedId": "belt"
+      },
+      {
+        "productId": "d2137a33e3299b8840f9b0f1608b274e",
+        "grade": 1,
+        "reason": "Belt category matches, but white polka-dot pattern strongly differs from the plain black target.",
+        "uncertain": false,
+        "expectedId": "belt"
+      },
+      {
+        "productId": "3d95694d681b924cd48921fec0584c27",
+        "grade": 3,
+        "reason": "Sheer dark tights; matches hosiery category, color and silhouette closely.",
+        "uncertain": false,
+        "expectedId": "tights"
+      },
+      {
+        "productId": "90f049c7060097b6f8b649de48bdc39c",
+        "grade": 3,
+        "reason": "Dark sheer pantyhose/tights with similar translucent look and color.",
+        "uncertain": false,
+        "expectedId": "tights"
+      },
+      {
+        "productId": "ac00403b5fe1909470e3ea7c6b43320d",
+        "grade": 3,
+        "reason": "Same as target: dark sheer tights with matching overall look.",
+        "uncertain": false,
+        "expectedId": "tights"
+      },
+      {
+        "productId": "eb42d33e57c6889176fedbd660c95c3a",
+        "grade": 3,
+        "reason": "Plain dark sheer tights; faithful match in category, color and silhouette.",
+        "uncertain": false,
+        "expectedId": "tights"
+      },
+      {
+        "productId": "69f19f21b9dee6af31c120457124664b",
+        "grade": 1,
+        "reason": "Black-white bag but large tote with checker pattern; not a small rectangular flap shoulder bag.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "948167766c33768b49e5415383b0e858",
+        "grade": 2,
+        "reason": "Close black-white color blocking and buckle detail, but it is a larger satchel/tote, not a small rectangular shoulder bag.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "b03227ebda801f1bd7e1f7f235f22202",
+        "grade": 2,
+        "reason": "Black-white shoulder bag with prominent buckle, but silhouette is rounded hobo shape and no flap; target is small rectangular.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "b06f77ac29d6a8c6c3fbeb345edbd300",
+        "grade": 1,
+        "reason": "Black-white bag, but oversized duffel/tote and lacks the small rectangular flap shoulder-bag shape.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "4290828e22c5a47ab9edb02b5500ec9f",
+        "grade": 1,
+        "reason": "Leg warmers with scrunched shape, but black with bold star pattern instead of plain white padded folds.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "53960ca9d2833609808a8539d45f1cd3",
+        "grade": 2,
+        "reason": "Scrunched leg warmers and similar plain look, but color is black and the silhouette is slimmer/less puffy than the target.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "c43caafd50f2a382a9764d5f9049c86d",
+        "grade": 2,
+        "reason": "White-and-black striped leg warmers with scrunched silhouette, but strong stripe pattern and slimmer knit shape differ from plain white folded target.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "d389e96134e64ef4356e96954a73c263",
+        "grade": 2,
+        "reason": "White leg warmers and similar lower-leg coverage, but these are cable-knit and smoother/tapered rather than the target’s chunky scrunched layered folds.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "f57b65fdd2558ae26813c0b050a99200",
+        "grade": 1,
+        "reason": "White ribbed knit item in the same general accessory family, but shown as folded sock-like cuffs, not scrunched leg warmers with layered folds.",
+        "uncertain": false,
+        "expectedId": "warmers"
+      },
+      {
+        "productId": "24738881b8ae3cefaeec33b4a01c846a",
+        "grade": 2,
+        "reason": "Black platform heels, but very tall stiletto slingback shape differs from chunkier closed shoe in target.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "98ab4acecc401619ac0fe84c1785b610",
+        "grade": 2,
+        "reason": "Black glossy platform heels with rounded toe, but exaggerated front platform and strap/patent finish differ.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "c3722f894eefa2f1266d613056849588",
+        "grade": 3,
+        "reason": "Black chunky platform heels with rounded closed toe and mary-jane style strap, closely matching target silhouette.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "d6408b071dd3f715ec7c116065f8c1c3",
+        "grade": 2,
+        "reason": "Black chunky platform mary-jane style shoe, but side buckle strap and blockier sole differ from target.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "559d80cfb336ad83df176f6e9cb4ac67",
+        "grade": 2,
+        "reason": "Black platform heel with rounded closed toe, but block heel is lower/chunkier and has a Mary Jane strap unlike target.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "8de6539d559eb8342704c1121b0a8d0a",
+        "grade": 2,
+        "reason": "Black platform heel with chunky block heel and rounded toe, but visible strap/detail differs from target and silhouette is not exact.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      }
+    ]
+  },
+  "fit6-left": {
+    "variant": "default",
+    "reviewer": "Codex visual review (AI; provisional)",
+    "complete": true,
+    "notes": "Bag described as small; visible long tote shape underrepresented. Cream/white/pale pink color equivalence accepted.",
+    "matches": [
+      {
+        "expectedId": "head",
+        "predictionId": "dc8436e4-fd26-4f05-8871-2ada59530ed3",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "top",
+        "predictionId": "6c220e39-2a3c-40a3-a78b-993ddaae91e5",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "skirt",
+        "predictionId": "b6f13eab-e54b-475c-88f0-e6ede56f3a3f",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "bag",
+        "predictionId": "b34ae794-d4a3-4518-914a-622ddabbcab9",
+        "attributes": {
+          "color": true,
+          "silhouette": false
+        }
+      }
+    ],
+    "products": [
+      {
+        "productId": "078a9edc455d1dc5ee42966930ec0c75",
+        "grade": 2,
+        "reason": "Wide-brim cream sunhat, but has large floral scarf bow instead of simple ribbon band.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "5a0cccd072e7183f70561d2ba8fe0209",
+        "grade": 1,
+        "reason": "Wide-brim hat with band, but pinker color and bucket-like silhouette with chin strap differ.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "822df7cf7e0580a1121414f13b2916d7",
+        "grade": 1,
+        "reason": "Broadly a wide-brim cream hat, but textured straw and bright floral embroidery differ from plain ribbon sunhat.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "b8291b7d02091c69587a4b0c265a4205",
+        "grade": 2,
+        "reason": "Similar wide-brim sunhat with ribbon-like band, but pink color and chin ties differ from cream ribbon hat.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "930b512793a51e54cc7d2bbd467bedb0",
+        "grade": 2,
+        "reason": "Wide-brim sunhat in a similar light cream/beige tone, but it has flower trim instead of a simple ribbon band and the brim shape/material differ.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "077edd3b95e93b0bb918e335edf441ed",
+        "grade": 2,
+        "reason": "White long-sleeve cropped tie-front top, but scoop neckline/open cardigan shape differs from deep V knotted front.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "302c0f6710629078762b7ab232f95bef",
+        "grade": 1,
+        "reason": "Similar cropped tie-front long-sleeve silhouette, but black color and sheer cardigan-like styling differ strongly.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "85b72a7e2519411b1382b6ecd682fdc2",
+        "grade": 2,
+        "reason": "White long-sleeve cropped deep-V top, but floral pattern and ruched drawstring front differ from open tie-front knot.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "ef4e9f1e91e59383bebb569f268b5f5e",
+        "grade": 3,
+        "reason": "White long-sleeve cropped deep-V blouse with center front knot/tie and similar exposed-underbust silhouette.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "62f830430d065ef8838fdc8e46eca344",
+        "grade": 3,
+        "reason": "White long-sleeve cropped tie-front top with deep V opening and front knot/tails; matches the target silhouette and key details closely.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "0ef2ab53139467377702f11b15a2c8eb",
+        "grade": 2,
+        "reason": "Green floral long skirt, but pattern is much sparser and silhouette/length appears more midi than the target's fuller long skirt.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "3837e18046a4701d16e9f4fac6e1fb05",
+        "grade": 2,
+        "reason": "Long floral skirt with similar soft print, but base color is white/cream rather than green.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "383fbfeb20ff619231d4bd9db21e06f2",
+        "grade": 0,
+        "reason": "Wrong garment; this is a dress, not a skirt.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "dc2c41dd4a4e7baa6c5c12b0aa26f00e",
+        "grade": 2,
+        "reason": "Floral long skirt, but color is much darker teal and floral print is larger/bolder than the target's light green ditsy floral.",
+        "uncertain": false,
+        "expectedId": "skirt"
+      },
+      {
+        "productId": "8abc63f8a4e72049d4dfe6614c73a2ed",
+        "grade": 1,
+        "reason": "Bag category only; dark patterned duffel/crossbody set, not a tan long shoulder tote.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "b7c640ca1e68d644f3aa5deb9cba5d29",
+        "grade": 1,
+        "reason": "Shoulder bag, but beaded patterned rectangular purse differs from plain tan long tote silhouette.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "c0496f251b8f44ceb99695c4c2cb3697",
+        "grade": 2,
+        "reason": "Close tan bag color, but it is a small structured crossbody, not a long vertical shoulder tote.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "c164caa940d30bbc6f6dc9a6974ea396",
+        "grade": 2,
+        "reason": "Shoulder bag with elongated shape, but color is cream not tan and shape is slouchy hobo rather than long tote.",
+        "uncertain": false,
+        "expectedId": "bag"
+      }
+    ]
+  },
+  "fit6-right": {
+    "variant": "default",
+    "reviewer": "Codex visual review (AI; provisional)",
+    "complete": true,
+    "notes": "Pale lilac/white bag equivalence accepted; dress hem length is outside image.",
+    "matches": [
+      {
+        "expectedId": "dress",
+        "predictionId": "a3e10dfe-108a-4373-ba54-d6e83e42552a",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "glasses",
+        "predictionId": "843d5b82-f5a2-4a6b-9cd4-e5ef43b312a7",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "necklace",
+        "predictionId": "77fdadcb-cc24-40f4-a901-ac5ef5a6298d",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "bracelet",
+        "predictionId": "6a3cf494-d244-495f-8905-1f9dd7659760",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      },
+      {
+        "expectedId": "bag",
+        "predictionId": "28e719fc-a46c-427b-b84d-cc518d645462",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      }
+    ],
+    "products": [
+      {
+        "productId": "006aef741055088eea8ceebcc3bc6c0a",
+        "grade": 1,
+        "reason": "Floral dress, but multicolor print and cap sleeves; lacks pale blue fitted look and puff-sleeve/strap combo.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "2a5f6f7383140f6f137f9aa1bb2d7567",
+        "grade": 1,
+        "reason": "Floral strappy dress, but dark navy, no puff sleeves, and looser short silhouette.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "4af84f19324bab1c689fe59d9736362d",
+        "grade": 2,
+        "reason": "Very similar pale blue floral off-shoulder puff-sleeve dress, but silhouette is tiered and loose rather than fitted long dress with visible thin straps.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "cf765383cbdc3e8c1775eb3f303ffc4e",
+        "grade": 1,
+        "reason": "Light blue floral dress, but slip-style with ruffles, no puff sleeves, and different silhouette/details.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "e48eb6bc4a6828bd04d871fdd65bc054",
+        "grade": 2,
+        "reason": "Matches pale blue floral color and puff-sleeve dress style, but fuller A-line midi silhouette and no visible thin straps; not fitted like target.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "0b3bf50286f4231cefd4084aa310b432",
+        "grade": 3,
+        "reason": "White thick-frame oval sunglasses; matches color and rounded oval silhouette closely.",
+        "uncertain": false,
+        "expectedId": "glasses"
+      },
+      {
+        "productId": "27c830d61af9322e90475a160d9019be",
+        "grade": 1,
+        "reason": "White sunglasses, but narrow sporty rectangular wrap shape differs from oval style.",
+        "uncertain": false,
+        "expectedId": "glasses"
+      },
+      {
+        "productId": "53b22acfa50095c778dec61a442be65e",
+        "grade": 2,
+        "reason": "Oval sunglasses silhouette is similar, but frame is striped black-and-white and includes chain detail.",
+        "uncertain": false,
+        "expectedId": "glasses"
+      },
+      {
+        "productId": "6bbe6f08276adf9e53366ce50c8a4cd7",
+        "grade": 3,
+        "reason": "White thick oval sunglasses with dark lenses; very close match to target.",
+        "uncertain": false,
+        "expectedId": "glasses"
+      },
+      {
+        "productId": "b8bf04bc03002728c2fbbaaadec295c0",
+        "grade": 3,
+        "reason": "White oval sunglasses with slim thick frame and dark lenses; faithful match overall.",
+        "uncertain": false,
+        "expectedId": "glasses"
+      },
+      {
+        "productId": "05526ddf55505496e8b0efd0151c5086",
+        "grade": 2,
+        "reason": "Silver delicate necklace, but pendant is a rectangular charm not a small curved/drop pendant like target.",
+        "uncertain": false,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "13fc8e29497391a5d030a72993828666",
+        "grade": 2,
+        "reason": "Correct category and silver color, but pendant is a larger rectangular engraved tag unlike the tiny delicate pendant shown.",
+        "uncertain": false,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "27fbcf5970a49041d3bdf650c2425a1c",
+        "grade": 2,
+        "reason": "Silver necklace with small pendant, yet the pendant is a chunky rectangular tag rather than the target's delicate small shaped pendant.",
+        "uncertain": false,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "5fe90e9fe243db1bcd54799c13b0ba0b",
+        "grade": 2,
+        "reason": "Similar silver necklace type, but pendant is a noticeable rectangular charm and overall less delicate than target.",
+        "uncertain": false,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "14d57a3016ecdcaba37df3ee22edd393",
+        "grade": 3,
+        "reason": "Slim silver chain bracelet closely matches the delicate white/silver bracelet in the target.",
+        "uncertain": false,
+        "expectedId": "bracelet"
+      },
+      {
+        "productId": "21110fda1ac1f1146437c3d19e173d5a",
+        "grade": 2,
+        "reason": "Silver bracelet, but it is a chunky chain style rather than a slim delicate bracelet.",
+        "uncertain": false,
+        "expectedId": "bracelet"
+      },
+      {
+        "productId": "23df50e891d50a54d8b3db7945b7fe18",
+        "grade": 0,
+        "reason": "Black leather bracelet/cuff; wrong color and very different style from the slim silver bracelet.",
+        "uncertain": false,
+        "expectedId": "bracelet"
+      },
+      {
+        "productId": "33141d04fede63b6eac8974c60605247",
+        "grade": 2,
+        "reason": "Silver bracelet, but the linked chain look is more pronounced and less delicate than the target.",
+        "uncertain": false,
+        "expectedId": "bracelet"
+      },
+      {
+        "productId": "3820089b37e1a807e6b2fe402aa007e3",
+        "grade": 1,
+        "reason": "Silver hand chain jewelry, but not a simple wrist bracelet like the target.",
+        "uncertain": false,
+        "expectedId": "bracelet"
+      },
+      {
+        "productId": "1ee03ca104110310a40c203ed398e70d",
+        "grade": 2,
+        "reason": "Small light-colored handbag with similar structured shape, but reads white not lilac and longer shoulder strap differs.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "8352a661a88baa15c7548a04834002bf",
+        "grade": 1,
+        "reason": "Small light shoulder bag, but cylindrical silhouette and perforated texture do not match the target handbag.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "959788bfe51a76e0c7653cc08978ba7b",
+        "grade": 0,
+        "reason": "Novelty panda bag; wrong color, shape, and style.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "b2ce90245dd3753e6391c01fadd084ee",
+        "grade": 1,
+        "reason": "Small handbag silhouette is somewhat similar, but black polka-dot color/pattern is completely different.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "ea9d6bc864222a088d345f2bdcbf9793",
+        "grade": 1,
+        "reason": "Light-colored bag, but slouchy crescent shoulder silhouette does not match the small structured handbag.",
+        "uncertain": false,
+        "expectedId": "bag"
+      }
+    ]
+  },
+  "fit7": {
+    "variant": "default",
+    "reviewer": "Codex visual review (AI; provisional)",
+    "complete": true,
+    "notes": "Missed visible black glasses; scoop vs V neckline; necklace chain color differs.",
+    "matches": [
+      {
+        "expectedId": "dress",
+        "predictionId": "6049f1f4-e196-4728-b003-a169484eb7a6",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": false
+        }
+      },
+      {
+        "expectedId": "gloves",
+        "predictionId": "97ca418a-61b1-490a-a347-481e564af250",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "hosiery",
+        "predictionId": "830d0807-3541-4782-8edc-c5de19f2be13",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      },
+      {
+        "expectedId": "shoes",
+        "predictionId": "d9c8bbc6-787f-4b86-9978-1b0980f19bad",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "necklace",
+        "predictionId": "d4723001-5162-4150-a103-6b99b6c7521e",
+        "attributes": {
+          "color": false,
+          "silhouette": true,
+          "details": true
+        }
+      }
+    ],
+    "products": [
+      {
+        "productId": "397889559a66ed1d5b47a816f29cc8b3",
+        "grade": 2,
+        "reason": "Black sleeveless mini with fitted waist and flared skirt, but neckline is straight/cowl not V and skirt is more gathered.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "52c276c0d262ef98d642341d72a765cc",
+        "grade": 2,
+        "reason": "Very similar black fit-and-flare mini silhouette, but it has a high mock neck instead of the visible V neckline.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "9ce6c86e0bbdceb1a08b395c4df9f08f",
+        "grade": 2,
+        "reason": "Black sleeveless skater-style mini with dropped waist flare, but neckline is deep scoop rather than V and overall cut is looser.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "a3d90e10bbf9390e2e7463a51cca11a7",
+        "grade": 2,
+        "reason": "Black sleeveless fit-and-flare mini, but neckline is high/boat not V and skirt has layered pleated ruffle detail unlike the simpler target.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "28f1069dc94b9c4798684b4d6543b6d6",
+        "grade": 1,
+        "reason": "Black gloves with light cuff, but short wrist-length leather gloves, not long opera gloves.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "6356dfdfea05e16116b757a62e73b986",
+        "grade": 2,
+        "reason": "Black long opera gloves match silhouette and color, but missing the distinct white upper cuff/trim.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "b32742040995240d74f0233d3166a05e",
+        "grade": 2,
+        "reason": "Black long opera gloves with similar length and shape, but no white cuff detail.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "d1748cce52fd9f9f80f8391d580b9a68",
+        "grade": 1,
+        "reason": "Black gloves with fluffy cuff detail, but they are short and the cuff is black, not white.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "e91faafc3b0397aeae690449f9a657b3",
+        "grade": 2,
+        "reason": "Black long glove silhouette is close, but it has dotted embellishment and a black beaded cuff instead of plain black with white upper trim.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "22056537c9dc5ed4b9c1101e505c493e",
+        "grade": 2,
+        "reason": "Packaging shows black thigh-high hosiery, but exact stocking details are unclear from pack art.",
+        "uncertain": true,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "2a38e80582402d0a1fdb5686e7193366",
+        "grade": 2,
+        "reason": "Black thigh-high stockings, but shown as sheer/lace-top rather than plain opaque style.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "33eae3a84d574c915faf1d349dc4b321",
+        "grade": 1,
+        "reason": "Thigh-high stockings category matches, but color is white with bow detail instead of plain black.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "c3a1f348e32b3428b53c34eb0e3bf740",
+        "grade": 2,
+        "reason": "Black thigh-high stockings with similar silhouette, but has visible red bow accents not in target.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "c42744abb715c6c54188a52b781d25ba",
+        "grade": 1,
+        "reason": "Thigh-high hosiery category matches, but red-and-black striped pattern differs strongly from plain black.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "320649a1ad578f40d0e838587f3356d5",
+        "grade": 3,
+        "reason": "Black thigh-high stockings with the same over-knee silhouette and plain opaque look.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "36b5b12ec988a59a3bef8531f303b91f",
+        "grade": 2,
+        "reason": "Black heel with gold bow, but rounded/closed toe with ankle strap and chunky platform differs from pointed pump.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "ca8d08f02f14e9076d73e83117d0d65c",
+        "grade": 2,
+        "reason": "Black pointed heels match silhouette and color, but missing the defining gold bow detail.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "ee3dc9b6fb2aadd4e4eb66417269493a",
+        "grade": 2,
+        "reason": "Black pointed stiletto with front embellishment, but embellishment is dark not gold and not clearly a bow.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "fc2fc8cdd75b6ca1113cb77d8d1b3527",
+        "grade": 2,
+        "reason": "Black shoe with gold bow-like detail, but toe looks more rounded/almond than sharply pointed and heel is not visible.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "495fd85a374e40638ebf561fe565b928",
+        "grade": 3,
+        "reason": "Black pointed heels with metallic gold bows at the toe; matches category, color, silhouette, and defining detail.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "5b5c66ee1e4e29773e84bdcb11b22fec",
+        "grade": 2,
+        "reason": "Pendant necklace with pink charm, but chain is silver not black and heart/bow pendant differs from target shape.",
+        "uncertain": true,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "5d083db05537d3e18e0b03506d12dfbd",
+        "grade": 2,
+        "reason": "Pink pendant necklace, but chain is silver not black and pendant shape differs from target charm.",
+        "uncertain": true,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "a438689f275c9855a253cbb1faa88b13",
+        "grade": 2,
+        "reason": "Black necklace with pendant, but pendant is dark heart-shaped rather than pink charm; pink only appears as small beads.",
+        "uncertain": false,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "c7a5f738ab0fbfd6a72f9eadab6a32c3",
+        "grade": 1,
+        "reason": "Necklace with some pink detail, but chain is gold and pendant is oval/bow design, not a black necklace with pink charm.",
+        "uncertain": false,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "feaed197e9948445b667c6833e8d3cbe",
+        "grade": 1,
+        "reason": "Pink jewelry piece only; appears to be a loose pendant/charm rather than a black necklace with visible chain.",
+        "uncertain": true,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "c20d7296c1c249ae55a1be2c24892c5d",
+        "grade": 2,
+        "reason": "Pendant necklace with pink charm, but chain appears silver not black and pendant shape/detail differs.",
+        "uncertain": false,
+        "expectedId": "necklace"
+      }
+    ]
+  },
+  "fit8": {
+    "variant": "default",
+    "reviewer": "Codex visual review (AI; provisional)",
+    "complete": true,
+    "notes": "Original AVIF rejected; corrected upload path recognizes six pieces. Lace-trim detail omitted.",
+    "matches": [
+      {
+        "expectedId": "head",
+        "predictionId": "8aad7b49-4bc3-4b6c-ad28-98a1b7759d12",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "dress",
+        "predictionId": "a7f979ec-c2d3-434f-b41c-a88692b781e8",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": false
+        }
+      },
+      {
+        "expectedId": "gloves",
+        "predictionId": "d7241c8c-5058-4dc5-9d43-5489e0afa69c",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      },
+      {
+        "expectedId": "hosiery",
+        "predictionId": "f172e7a3-040d-4ab7-96e4-777fdc1fac96",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "shoes",
+        "predictionId": "92888eb4-c05b-42d5-83a9-11b21a84a233",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      },
+      {
+        "expectedId": "bag",
+        "predictionId": "5fe69535-7a93-4ca4-a893-fae6f8ab02d9",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      }
+    ],
+    "products": [
+      {
+        "productId": "0cd57461c1f9d16bfb90584893214340",
+        "grade": 2,
+        "reason": "White small fascinator/headpiece with floral feel, but puff/feather detail differs from the distinct silver floral spray.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "22a84be9aab6ce2e759c56e766dff960",
+        "grade": 2,
+        "reason": "Small white hat with prominent floral decoration, but oversized side leaves/floral arrangement and shape differ from the compact floral cluster shown.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "7c2d2ec2b789c92d7c4047311000d39e",
+        "grade": 1,
+        "reason": "Light-colored headwear, but this is a beret rather than a small formal floral headpiece.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "99d10a97b79beae4bbe53e69697e5fce",
+        "grade": 1,
+        "reason": "White small hat in a formal style, but lacks the defining floral embellishment and the silhouette is a plain pillbox/boater.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "f43e7b016f1c28cfe3ad59ea5b2ab8a9",
+        "grade": 0,
+        "reason": "Gray beret; wrong color and wrong headwear style/category for the floral fascinator.",
+        "uncertain": false,
+        "expectedId": "head"
+      },
+      {
+        "productId": "81e2f9c0d33c8a1e3081c912675a3de0",
+        "grade": 2,
+        "reason": "White mini dress with straps and fitted shape, but straps are wider and neckline lacks the visible lace-trim camisole look.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "bfd14ca94fe45a0b79772d15763e3623",
+        "grade": 2,
+        "reason": "White strappy mini/slip dress, but satin drapey silhouette differs from the target's more structured fitted dress and lace-trim neckline is not clear.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "c0bcffee777a55feaa3d9a77b8406253",
+        "grade": 2,
+        "reason": "White strappy dress with fitted bodice, but it flares out instead of being a fitted mini and the neckline/details differ from the lace-trim target.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "76b6f4e7a560b53582eb28a939927267",
+        "grade": 2,
+        "reason": "White fitted strappy mini dress, but bustier top and no visible lace trim.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "dc73959bb71603ed1e2359e00f8e60d8",
+        "grade": 2,
+        "reason": "White bodycon strappy mini with similar shape, but smooth neckline and no visible lace trim/details.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "02e79866e26cfdc4aada3600eb8210cb",
+        "grade": 2,
+        "reason": "White opera-length gloves, but candidate has ruffled cuff/detail not seen on target.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "5bc973119d8777eaac02cbc70a25e489",
+        "grade": 2,
+        "reason": "White long gloves with similar length, but metallic/shiny silver finish differs from plain white target.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "be3b8c6dbd6c65a9e42fdae9ef0363ef",
+        "grade": 3,
+        "reason": "White opera gloves matching the target color and long fitted silhouette.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "c3b4a4aee8d1623661abd75fb432c5d9",
+        "grade": 3,
+        "reason": "White opera-length gloves with the same long sleek silhouette as the target.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "240026bab7f9d0f7c7aea741580a4c7a",
+        "grade": 3,
+        "reason": "White opera-length gloves matching the long fitted silhouette and plain style.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "9b9d3197bf43456e697c69fb7c6ff5c3",
+        "grade": 2,
+        "reason": "White long satin gloves, but they appear shorter and slouchier than the sleek opera gloves shown.",
+        "uncertain": false,
+        "expectedId": "gloves"
+      },
+      {
+        "productId": "0f77595077368d30831e5dcb3f3ce7ac",
+        "grade": 3,
+        "reason": "White fishnet full tights; matches color, category, and fishnet silhouette closely.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "40dcc9a44b911938f1e2ef82daf2a2e0",
+        "grade": 2,
+        "reason": "Fishnet hosiery, but appears black/nude and thigh-high/stocking style rather than white full tights.",
+        "uncertain": true,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "f1cf23cd14c4aeda52ac99b627f667cf",
+        "grade": 2,
+        "reason": "White fishnet hosiery, but these are thigh-high stockings, not full tights/pantyhose.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "297528b6b3d85384fa8bed5a265e8d17",
+        "grade": 3,
+        "reason": "White fishnet tights/stockings matching the target color, fishnet pattern, and leg silhouette.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "71bbb290d5f54bb8e792b51bc095ac87",
+        "grade": 2,
+        "reason": "White fishnet hosiery, but styled with a ruffled attached garter/skirt detail not seen in the target.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "046d2e70e06db4d3c4b03fd5dd591949",
+        "grade": 2,
+        "reason": "White platform mule heels; color and platform match, but target looks more like classic pumps, not crossover mules.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "75e362c7b2baea2915a97aaa78a8e1e9",
+        "grade": 2,
+        "reason": "White peep-toe platform pumps match the overall look, but the target heel shape/details are unclear and this pair has ruched front detail.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "ea536e23bc9411e00b8fe35942974ddf",
+        "grade": 1,
+        "reason": "Platform heels, but black with snakeskin trim instead of white.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "fcd6dc2b0d92ea792a8797cb0f156422",
+        "grade": 2,
+        "reason": "White platform heels with open toe, but chunky flared heel and ankle strap differ from the simpler target silhouette.",
+        "uncertain": true,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "5cff0aff173511acaacbf4b68154d92a",
+        "grade": 2,
+        "reason": "White platform pump heel matches color and platform style, but it is a closed-toe pump instead of the target’s open-toe/platform heel look.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "8dc92470e41b6497d619583e667d6961",
+        "grade": 2,
+        "reason": "White platform high heel with open toe is close, but the ankle-strap slingback design differs from the simpler target heel silhouette.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "070174153d1b7895a9616c4f45aa8451",
+        "grade": 1,
+        "reason": "Handbag, but patterned and elongated; not a small white mini bag with dark handle.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "1804b67ad6ac18a967725f774d383894",
+        "grade": 2,
+        "reason": "Light-colored handbag with dark edging/handles, but much larger open tote silhouette than the mini bag.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "361126f4aa418c56aaef09763765bf92",
+        "grade": 1,
+        "reason": "Light handbag, but slouchy hobo/bucket style and larger; lacks the small structured mini silhouette.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "70e61d1b8465335cea095f4315531477",
+        "grade": 2,
+        "reason": "Small white handbag in a mini silhouette, but handle is white not dark and front heart detail differs.",
+        "uncertain": false,
+        "expectedId": "bag"
+      }
+    ]
+  },
+  "fit9": {
+    "variant": "unified-dress",
+    "reviewer": "Codex visual review (AI; provisional)",
+    "complete": true,
+    "notes": "Unified dress accepted as equivalent reconstruction. Visible socks stop below knee rather than over knee.",
+    "matches": [
+      {
+        "expectedId": "dress",
+        "predictionId": "def0dbf2-878a-4b94-8a03-c640ca0c1d5f",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "hosiery",
+        "predictionId": "87c0ee86-0a41-4608-aefd-12d9a2762603",
+        "attributes": {
+          "color": true,
+          "silhouette": false,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "shoes",
+        "predictionId": "5b95b29b-5259-46c8-b035-51410bde17e6",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "bag",
+        "predictionId": "62bffcfb-c3c7-4be4-ab7e-2c72ff6e0140",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "glasses",
+        "predictionId": "da1a2a9b-bcf9-47de-9025-345caf5c988a",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      }
+    ],
+    "products": [
+      {
+        "productId": "09624a27c16e5fe3411bfc574b2a78c6",
+        "grade": 2,
+        "reason": "Black collared short-sleeve dress with fitted top and flared skirt, but pattern is tiny allover dots and lacks white collar, white waist panel, and ruffled hem.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "0c0f7bbca2977b671eeaf875f71b329a",
+        "grade": 2,
+        "reason": "Black-and-white polka-dot mini dress with flared skirt and ruffles, but it is a maid/lolita style with apron layers and very different bodice/collar details.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "2e8ee036bdc3652c67ab68b9e0a8ad85",
+        "grade": 2,
+        "reason": "Very close colors and polka-dot dress with white collar, but the silhouette is simpler and straighter, with no distinct white polka-dot waist panel or ruffled hem.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "518aeaf8becb7ed9f7d7500b4c7f7c21",
+        "grade": 2,
+        "reason": "Black dress with white collar and polka dots, but long sleeves and straight shift silhouette differ from the fitted bodice and flared mini shape; no ruffled hem.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "bf4c0fb49e4e490529b20b474dc9a6ee",
+        "grade": 1,
+        "reason": "Only matches broad black-and-white polka-dot dress category; lacks the fitted bodice, visible front white collar, waist panel, and ruffled hem.",
+        "uncertain": false,
+        "expectedId": "dress"
+      },
+      {
+        "productId": "13503804f075f4eaa33cd2183bb0ccf6",
+        "grade": 2,
+        "reason": "White ribbed knee-high socks; close category and color, but lacks the visible lace/cable-like decorative detail.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "3678197a621697081b0d347db952d7f6",
+        "grade": 1,
+        "reason": "White ribbed leg warmers/over-knee hosiery, but silhouette is much longer and footless unlike knee-high socks.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "4070ac451ccb8a07913ae79f70b9c14e",
+        "grade": 3,
+        "reason": "White knee-high socks with clear textured cable/rib detail matching the target closely.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "4ae2fc3f354adbc0d2a3e93ea2491d50",
+        "grade": 2,
+        "reason": "White knee-high ribbed socks; silhouette and color fit, but texture/detail is plainer and less decorative than target.",
+        "uncertain": false,
+        "expectedId": "hosiery"
+      },
+      {
+        "productId": "2db70643e2d5f08217c0f32d4093a3dc",
+        "grade": 1,
+        "reason": "Mary Jane shoes, but brown and rounded/flat rather than black-white pointed heels.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "3ed42b1e95936e7c6f3d298165a405a7",
+        "grade": 2,
+        "reason": "Black-and-white heeled Mary Janes with contrast panels, but toe looks rounded not pointed and shape/details differ.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "701bed1cf71f8e38ea25999c7b8a05de",
+        "grade": 2,
+        "reason": "Very similar black-white heeled Mary Janes with contrast panels, but toe is rounded and heel/style differs from the pointed target.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "bc5404f7acb9f5b1f07ffbd5ee91a211",
+        "grade": 2,
+        "reason": "Black-and-white heeled shoe with contrasting panels and a more pointed toe, but strap placement and overall cut differ from target.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "d96d20c93df215e66027929da5843f0c",
+        "grade": 1,
+        "reason": "Black-and-white Mary Jane heels, but chunky platform style with rounded toe, not sleek pointed contrast-panel heels.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "49e05e20d2b8090b504f1e11cef9dff3",
+        "grade": 2,
+        "reason": "Black quilted shoulder bag, but candidate is a flatter rectangular flap bag with chain strap; target looks more compact and puffy/tiered.",
+        "uncertain": true,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "5e8a5c6370d816d9765dd03c20ea0fe2",
+        "grade": 2,
+        "reason": "Matches black color and quilted shoulder-bag category, but silhouette is a structured flap bag rather than the target's smaller puffier shape.",
+        "uncertain": true,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "c12a10d7bd48f04288051290a73a1d9e",
+        "grade": 2,
+        "reason": "Black quilted shoulder bag with similar size, but flap silhouette and decorative chain/charm details differ from the simpler puffier target bag.",
+        "uncertain": true,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "e40e5a4217cad38df2b578866c9df5c4",
+        "grade": 2,
+        "reason": "Black quilted bag matches color and quilting, but candidate is a flap/clutch style with turn-lock hardware rather than a small shoulder bag silhouette.",
+        "uncertain": false,
+        "expectedId": "bag"
+      },
+      {
+        "productId": "aeb52eb473665c670b2f1c84ae1b2b07",
+        "grade": 3,
+        "reason": "White oval sunglasses with thick rounded frame, matching the target closely.",
+        "uncertain": false,
+        "expectedId": "glasses"
+      },
+      {
+        "productId": "b9bf121b598debe9152ade620d65d81a",
+        "grade": 2,
+        "reason": "White oval sunglasses, but the frame is more elongated and cat-eye/angled than the target.",
+        "uncertain": false,
+        "expectedId": "glasses"
+      },
+      {
+        "productId": "eda0036203e8fe4195e113ca6600ff74",
+        "grade": 3,
+        "reason": "White oval sunglasses with smooth rounded oval silhouette very similar to the target.",
+        "uncertain": false,
+        "expectedId": "glasses"
+      },
+      {
+        "productId": "dac0145044e98bc4e8df80e6f0bf5c64",
+        "grade": 3,
+        "reason": "White oval sunglasses with dark lenses; matches the target color and silhouette closely.",
+        "uncertain": false,
+        "expectedId": "glasses"
+      }
+    ]
+  },
+  "fit10": {
+    "variant": "default",
+    "reviewer": "Codex visual review (AI; provisional)",
+    "complete": true,
+    "notes": "Camisole vs halter construction, missing rolled cuffs, and high-top vs low/mid sneakers reduce attribute score.",
+    "matches": [
+      {
+        "expectedId": "top",
+        "predictionId": "86a00729-bef9-483b-92f7-f4f46aa91c8d",
+        "attributes": {
+          "color": true,
+          "silhouette": false,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "jeans",
+        "predictionId": "ca55e21d-2b70-443f-bc1a-de943d6a5ae0",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": false
+        }
+      },
+      {
+        "expectedId": "shoes",
+        "predictionId": "ca63b468-90a7-4350-a23a-6b76261e3784",
+        "attributes": {
+          "color": true,
+          "silhouette": false,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "necklace",
+        "predictionId": "efe167e1-ee0d-4faa-b641-80b0fa09fbbf",
+        "attributes": {
+          "color": true,
+          "silhouette": true,
+          "details": true
+        }
+      },
+      {
+        "expectedId": "bracelets",
+        "predictionId": "25710111-cae4-49db-901e-a770da3e2f28",
+        "attributes": {
+          "color": true,
+          "silhouette": true
+        }
+      }
+    ],
+    "products": [
+      {
+        "productId": "3cfa212dccf61ff2ad20b2d22762ebb0",
+        "grade": 1,
+        "reason": "White camisole with V-neck, but spaghetti straps and loose tank shape, not fitted halter.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "403b9924a655c9fe78786780aaeac993",
+        "grade": 2,
+        "reason": "White halter-style top, but it is loose woven/satin with high split neckline, not fitted camisole with deep V cups.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "416bfb055aaf8c21ca4a8ab554185338",
+        "grade": 2,
+        "reason": "White fitted camisole/crop top with V neckline, but straps are regular shoulder straps, not halter, and length is shorter.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "a0a00bad3ceae20fc18458f22b8413eb",
+        "grade": 0,
+        "reason": "Blue-and-white striped short-sleeve tee; wrong garment type and color pattern.",
+        "uncertain": false,
+        "expectedId": "top"
+      },
+      {
+        "productId": "1272756f344b9026297001ea70724d07",
+        "grade": 1,
+        "reason": "Blue denim jeans, but full-length and not cropped; no rolled cuffs.",
+        "uncertain": false,
+        "expectedId": "jeans"
+      },
+      {
+        "productId": "24712e2889bdec1856e85fcf307cbb0e",
+        "grade": 2,
+        "reason": "Blue wide-leg jeans with a loose shape, but full-length and hem is not rolled/cuffed.",
+        "uncertain": false,
+        "expectedId": "jeans"
+      },
+      {
+        "productId": "3d09e20b66beba62d9d47076838025d9",
+        "grade": 1,
+        "reason": "Blue denim only; silhouette looks straighter and image does not show cropped hem or rolled cuffs.",
+        "uncertain": true,
+        "expectedId": "jeans"
+      },
+      {
+        "productId": "9618f9bdcd5324c48a5b20cc66d43915",
+        "grade": 2,
+        "reason": "Light blue wide-leg jeans close in color and shape, but they are full-length and lack rolled cuffs.",
+        "uncertain": false,
+        "expectedId": "jeans"
+      },
+      {
+        "productId": "ed0ff8c91464ca6c00316259b0a22080",
+        "grade": 1,
+        "reason": "Blue loose jeans, but tapered/barrel shape with patch pockets; not cropped wide-leg and no rolled cuffs.",
+        "uncertain": false,
+        "expectedId": "jeans"
+      },
+      {
+        "productId": "ff681ec21176232072ffec9a637b8f59",
+        "grade": 2,
+        "reason": "Blue wide-leg cropped jeans, but cuffs are plain not rolled and wash/details differ.",
+        "uncertain": false,
+        "expectedId": "jeans"
+      },
+      {
+        "productId": "2df3db845c3e1e5d0345dd06e538eae2",
+        "grade": 1,
+        "reason": "Sneakers with white and black, but high-top and orange panels instead of white low-tops with black panels.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "5d002c07719e6dd38e288e1fe5e88f1f",
+        "grade": 1,
+        "reason": "Black and white sneakers, but they are high-top Converse-style canvas shoes, not low-top panel sneakers.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "6a385f7da2a03f5776b0a2a9af817f13",
+        "grade": 1,
+        "reason": "Black-and-white lace-up shoes, but bulky high-top sneakers/boots rather than white low-top sneakers with black side panels.",
+        "uncertain": false,
+        "expectedId": "shoes"
+      },
+      {
+        "productId": "300bb2abf663d47a820e7cae2812097b",
+        "grade": 2,
+        "reason": "Gold delicate necklace with small pendant, but pendant is eye-shaped and larger than target.",
+        "uncertain": true,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "50ef9c20b46f21c5a6ae0dd0dbcb2cc4",
+        "grade": 1,
+        "reason": "Gold necklace, but beaded all around and no small central pendant like target.",
+        "uncertain": false,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "71f9698144a9e9bc504de4ba1f070ce8",
+        "grade": 2,
+        "reason": "Gold delicate layered necklace with small pendant, but it is double-layered unlike the single target necklace.",
+        "uncertain": true,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "b46df3d54a2ef8ac206a6bc346aa91b9",
+        "grade": 0,
+        "reason": "Silver-toned chain with large medallion pendant; wrong color and much heavier style.",
+        "uncertain": false,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "e7f30944a552bea4450b627bb651a15a",
+        "grade": 2,
+        "reason": "Gold delicate necklace with single pendant, but pendant is a large blue stone rather than a tiny subtle charm.",
+        "uncertain": false,
+        "expectedId": "necklace"
+      },
+      {
+        "productId": "08dfe6133c7add56a806e02c08fd3425",
+        "grade": 2,
+        "reason": "Gold bracelet/bangle and wide cuff style match broadly, but target appears simpler/plain from the tiny crop.",
+        "uncertain": true,
+        "expectedId": "bracelets"
+      },
+      {
+        "productId": "6a72f21ded4721719f974b3d746f8eac",
+        "grade": 1,
+        "reason": "Gold bracelets, but this is a stacked arm-cuff set and much more elaborate than the single simple target bracelet.",
+        "uncertain": false,
+        "expectedId": "bracelets"
+      },
+      {
+        "productId": "7211237899300f81ef8326669158f88f",
+        "grade": 0,
+        "reason": "Bracelet category matches, but color is silver and fish motif is unlike the target's gold bracelet.",
+        "uncertain": false,
+        "expectedId": "bracelets"
+      },
+      {
+        "productId": "c2576b3aeccd9a7250ff39daab3488e8",
+        "grade": 2,
+        "reason": "Gold bangle/cuff matches color and category, but textured domed shape differs from the likely smoother target bracelet.",
+        "uncertain": true,
+        "expectedId": "bracelets"
+      }
+    ]
+  }
+}

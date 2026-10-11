@@ -1,0 +1,2166 @@
+{
+  "version": 1,
+  "annotationStatus": "AI-reviewed visual reference draft; alternative-construction policy approved by user",
+  "rubric": {
+    "0": "Wrong garment or unrelated item",
+    "1": "Broad category/aesthetic only",
+    "2": "Related but a defining color, silhouette or detail differs",
+    "3": "Faithful category, silhouette, colors and defining details"
+  },
+  "cases": [
+    {
+      "id": "fit1",
+      "file": "fit1.jpg",
+      "sha256": "25881c5ac2f355be6fd743c1feb61f7d43d0d195e57dbb5b1101255670110f1d",
+      "family": "ornate",
+      "split": "development",
+      "crop": null,
+      "variants": [
+        {
+          "id": "default",
+          "pieces": [
+            {
+              "id": "corset",
+              "name": "White floral lace corset",
+              "categories": [
+                "top"
+              ],
+              "attributes": {
+                "color": [
+                  "white",
+                  "ivory"
+                ],
+                "silhouette": "fitted corset",
+                "details": [
+                  "floral lace",
+                  "off-shoulder trim"
+                ]
+              },
+              "bbox": {
+                "x": 0.3,
+                "y": 0.24,
+                "w": 0.35,
+                "h": 0.27
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "bottom",
+              "name": "White lace micro skirt or shorts",
+              "categories": [
+                "bottom"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "mini",
+                "details": [
+                  "lace trim"
+                ]
+              },
+              "bbox": {
+                "x": 0.29,
+                "y": 0.43,
+                "w": 0.36,
+                "h": 0.15
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "shoes",
+              "name": "White lace-up platform heels",
+              "categories": [
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "platform high heels",
+                "details": [
+                  "floral ankle and calf straps"
+                ]
+              },
+              "bbox": {
+                "x": 0.39,
+                "y": 0.67,
+                "w": 0.3,
+                "h": 0.31
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "bag",
+              "name": "Pink embellished shoulder bag",
+              "categories": [
+                "bag"
+              ],
+              "attributes": {
+                "color": [
+                  "pink"
+                ],
+                "silhouette": "small rectangular shoulder bag",
+                "details": [
+                  "beaded or quilted texture"
+                ]
+              },
+              "bbox": {
+                "x": 0.48,
+                "y": 0.36,
+                "w": 0.27,
+                "h": 0.15
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "head",
+              "name": "White brimmed cap",
+              "categories": [
+                "headwear"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "small cap"
+              },
+              "bbox": {
+                "x": 0.35,
+                "y": 0,
+                "w": 0.25,
+                "h": 0.1
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "necklace",
+              "name": "Statement silver necklace",
+              "categories": [
+                "jewelry"
+              ],
+              "attributes": {
+                "color": [
+                  "silver"
+                ],
+                "silhouette": "statement necklace",
+                "details": [
+                  "layered or jeweled"
+                ]
+              },
+              "bbox": {
+                "x": 0.4,
+                "y": 0.19,
+                "w": 0.19,
+                "h": 0.09
+              },
+              "importance": "accessory"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Lower white garment can be shorts or a miniskirt. Lace sleeves may be integrated into the corset; do not require an extra garment."
+      ]
+    },
+    {
+      "id": "fit2",
+      "file": "fit2.jpeg",
+      "sha256": "33aec4066cacb4dbbe185b34e1e95ff1dc6b0c4745f68449e6676241d020a5bf",
+      "family": "ornate",
+      "split": "holdout",
+      "crop": null,
+      "variants": [
+        {
+          "id": "default",
+          "pieces": [
+            {
+              "id": "dress",
+              "name": "Pink and white frilled lolita dress",
+              "categories": [
+                "dress"
+              ],
+              "attributes": {
+                "color": [
+                  "pink",
+                  "white"
+                ],
+                "silhouette": "bell-shaped full skirt",
+                "details": [
+                  "lace",
+                  "multiple ruffle tiers",
+                  "decorative bows"
+                ]
+              },
+              "bbox": {
+                "x": 0.21,
+                "y": 0.29,
+                "w": 0.55,
+                "h": 0.46
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "head",
+              "name": "Pink ornate bonnet",
+              "categories": [
+                "headwear"
+              ],
+              "attributes": {
+                "color": [
+                  "pink"
+                ],
+                "silhouette": "large bonnet",
+                "details": [
+                  "bows",
+                  "lace"
+                ]
+              },
+              "bbox": {
+                "x": 0.3,
+                "y": 0.11,
+                "w": 0.29,
+                "h": 0.16
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "hosiery",
+              "name": "White knee-high stockings",
+              "categories": [
+                "hosiery"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "knee-high",
+                "details": [
+                  "ribbed or lace texture"
+                ]
+              },
+              "bbox": {
+                "x": 0.39,
+                "y": 0.74,
+                "w": 0.2,
+                "h": 0.15
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "shoes",
+              "name": "Pink bow platform Mary Janes",
+              "categories": [
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "pink"
+                ],
+                "silhouette": "platform Mary Jane",
+                "details": [
+                  "bows",
+                  "straps"
+                ]
+              },
+              "bbox": {
+                "x": 0.39,
+                "y": 0.82,
+                "w": 0.22,
+                "h": 0.17
+              },
+              "importance": "primary"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "fit3",
+      "file": "fit3.jpeg",
+      "sha256": "e17ca89fc537a58b90209979c0a3593b1c39b513bf81ca1f08ef32e1a59a94dd",
+      "family": "alternative",
+      "split": "development",
+      "crop": null,
+      "variants": [
+        {
+          "id": "default",
+          "pieces": [
+            {
+              "id": "top",
+              "name": "Black puff-sleeve fitted top",
+              "categories": [
+                "top"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "fitted",
+                "details": [
+                  "puff sleeves"
+                ]
+              },
+              "bbox": {
+                "x": 0.34,
+                "y": 0.37,
+                "w": 0.25,
+                "h": 0.17
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "skirt",
+              "name": "Black and red layered miniskirt",
+              "categories": [
+                "bottom"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "red"
+                ],
+                "silhouette": "flared mini skirt",
+                "details": [
+                  "ruffled red hem"
+                ]
+              },
+              "bbox": {
+                "x": 0.33,
+                "y": 0.51,
+                "w": 0.31,
+                "h": 0.13
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "warmers",
+              "name": "Black furry leg warmers",
+              "categories": [
+                "hosiery",
+                "other",
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "wide lower-leg covering",
+                "details": [
+                  "furry"
+                ]
+              },
+              "bbox": {
+                "x": 0.36,
+                "y": 0.66,
+                "w": 0.25,
+                "h": 0.22
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "shoes",
+              "name": "Red platform heels",
+              "categories": [
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "red"
+                ],
+                "silhouette": "platform heel"
+              },
+              "bbox": {
+                "x": 0.43,
+                "y": 0.85,
+                "w": 0.16,
+                "h": 0.05
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "fishnet",
+              "name": "Black fishnet stockings",
+              "categories": [
+                "hosiery"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "fishnet tights",
+                "details": [
+                  "fishnet"
+                ]
+              },
+              "bbox": {
+                "x": 0.41,
+                "y": 0.63,
+                "w": 0.15,
+                "h": 0.06
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "head",
+              "name": "Black red bear-ear cap",
+              "categories": [
+                "headwear"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "red"
+                ],
+                "silhouette": "cap",
+                "details": [
+                  "bear ears",
+                  "red trim"
+                ]
+              },
+              "bbox": {
+                "x": 0.36,
+                "y": 0.22,
+                "w": 0.24,
+                "h": 0.1
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "tie",
+              "name": "Red necktie",
+              "categories": [
+                "other"
+              ],
+              "attributes": {
+                "color": [
+                  "red"
+                ],
+                "silhouette": "long necktie"
+              },
+              "bbox": {
+                "x": 0.48,
+                "y": 0.39,
+                "w": 0.08,
+                "h": 0.1
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "bear",
+              "name": "Red and black teddy accessory",
+              "categories": [
+                "bag",
+                "other"
+              ],
+              "attributes": {
+                "color": [
+                  "red",
+                  "black"
+                ],
+                "silhouette": "teddy bear accessory",
+                "details": [
+                  "bear shape"
+                ]
+              },
+              "bbox": {
+                "x": 0.51,
+                "y": 0.45,
+                "w": 0.15,
+                "h": 0.16
+              },
+              "importance": "accessory"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Furry lower-leg covering may be described as warmers or boots; red footwear must remain represented."
+      ]
+    },
+    {
+      "id": "fit4",
+      "file": "fit4.jpeg",
+      "sha256": "55afbea3330017630046a9f90334b19df90d3f8c26df157498300999590e9208",
+      "family": "streetwear",
+      "split": "development",
+      "crop": null,
+      "variants": [
+        {
+          "id": "default",
+          "pieces": [
+            {
+              "id": "jacket",
+              "name": "Pink white cropped fluffy jacket",
+              "categories": [
+                "outerwear"
+              ],
+              "attributes": {
+                "color": [
+                  "pink",
+                  "white"
+                ],
+                "silhouette": "cropped jacket",
+                "details": [
+                  "furry",
+                  "long sleeves"
+                ]
+              },
+              "bbox": {
+                "x": 0.3,
+                "y": 0.24,
+                "w": 0.35,
+                "h": 0.32
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "top",
+              "name": "White cropped top",
+              "categories": [
+                "top"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "crop top"
+              },
+              "bbox": {
+                "x": 0.43,
+                "y": 0.29,
+                "w": 0.17,
+                "h": 0.14
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "skirt",
+              "name": "White pleated miniskirt with belt",
+              "categories": [
+                "bottom"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "pleated mini",
+                "details": [
+                  "black belt"
+                ]
+              },
+              "bbox": {
+                "x": 0.36,
+                "y": 0.47,
+                "w": 0.27,
+                "h": 0.11
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "head",
+              "name": "Pink white furry hat",
+              "categories": [
+                "headwear"
+              ],
+              "attributes": {
+                "color": [
+                  "pink",
+                  "white"
+                ],
+                "silhouette": "large furry hat"
+              },
+              "bbox": {
+                "x": 0.32,
+                "y": 0.05,
+                "w": 0.35,
+                "h": 0.13
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "warmers",
+              "name": "Pink white furry leg warmers",
+              "categories": [
+                "hosiery",
+                "other",
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "pink",
+                  "white"
+                ],
+                "silhouette": "wide leg warmers",
+                "details": [
+                  "fluffy"
+                ]
+              },
+              "bbox": {
+                "x": 0.37,
+                "y": 0.64,
+                "w": 0.4,
+                "h": 0.29
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "shoes",
+              "name": "Black platform shoes",
+              "categories": [
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "platform shoes"
+              },
+              "bbox": {
+                "x": 0.42,
+                "y": 0.88,
+                "w": 0.31,
+                "h": 0.09
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "bag",
+              "name": "Small black shoulder bag",
+              "categories": [
+                "bag"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "small shoulder bag",
+                "details": [
+                  "textured"
+                ]
+              },
+              "bbox": {
+                "x": 0.63,
+                "y": 0.59,
+                "w": 0.15,
+                "h": 0.11
+              },
+              "importance": "accessory"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Furry lower-leg covering may be warmers over platform shoes or boots."
+      ]
+    },
+    {
+      "id": "fit5",
+      "file": "fit5.jpg",
+      "sha256": "89e24fe29f3fcb8bd4e4a9b7db25420317e3ce6a40b0ff3e78fdff9c076fcf1c",
+      "family": "classic",
+      "split": "development",
+      "crop": null,
+      "variants": [
+        {
+          "id": "default",
+          "pieces": [
+            {
+              "id": "dress",
+              "name": "Brown black checked pinafore minidress",
+              "categories": [
+                "dress"
+              ],
+              "attributes": {
+                "color": [
+                  "brown",
+                  "black"
+                ],
+                "silhouette": "fitted mini pinafore",
+                "details": [
+                  "gingham or houndstooth checks",
+                  "thin straps",
+                  "belt"
+                ]
+              },
+              "bbox": {
+                "x": 0.32,
+                "y": 0.29,
+                "w": 0.32,
+                "h": 0.32
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "top",
+              "name": "Black fitted long-sleeve top",
+              "categories": [
+                "top"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "fitted long sleeve",
+                "details": [
+                  "high neck"
+                ]
+              },
+              "bbox": {
+                "x": 0.33,
+                "y": 0.26,
+                "w": 0.4,
+                "h": 0.27
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "head",
+              "name": "Black beret",
+              "categories": [
+                "headwear"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "beret"
+              },
+              "bbox": {
+                "x": 0.31,
+                "y": 0.07,
+                "w": 0.37,
+                "h": 0.09
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "tights",
+              "name": "Dark sheer tights",
+              "categories": [
+                "hosiery"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "brown"
+                ],
+                "silhouette": "sheer tights"
+              },
+              "bbox": {
+                "x": 0.36,
+                "y": 0.59,
+                "w": 0.22,
+                "h": 0.18
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "warmers",
+              "name": "White leg warmers",
+              "categories": [
+                "hosiery",
+                "other"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "scrunched leg warmers",
+                "details": [
+                  "layered folds"
+                ]
+              },
+              "bbox": {
+                "x": 0.34,
+                "y": 0.73,
+                "w": 0.3,
+                "h": 0.2
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "shoes",
+              "name": "Black platform heels",
+              "categories": [
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "platform heels"
+              },
+              "bbox": {
+                "x": 0.35,
+                "y": 0.87,
+                "w": 0.32,
+                "h": 0.12
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "bag",
+              "name": "Black white shoulder bag",
+              "categories": [
+                "bag"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "white"
+                ],
+                "silhouette": "small rectangular shoulder bag",
+                "details": [
+                  "flap",
+                  "buckle"
+                ]
+              },
+              "bbox": {
+                "x": 0.51,
+                "y": 0.48,
+                "w": 0.23,
+                "h": 0.11
+              },
+              "importance": "accessory"
+            }
+          ]
+        },
+        {
+          "id": "separates",
+          "pieces": [
+            {
+              "id": "top",
+              "name": "Black fitted long-sleeve top",
+              "categories": [
+                "top"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "fitted long sleeve",
+                "details": [
+                  "high neck"
+                ]
+              },
+              "bbox": {
+                "x": 0.33,
+                "y": 0.26,
+                "w": 0.4,
+                "h": 0.27
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "head",
+              "name": "Black beret",
+              "categories": [
+                "headwear"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "beret"
+              },
+              "bbox": {
+                "x": 0.31,
+                "y": 0.07,
+                "w": 0.37,
+                "h": 0.09
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "tights",
+              "name": "Dark sheer tights",
+              "categories": [
+                "hosiery"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "brown"
+                ],
+                "silhouette": "sheer tights"
+              },
+              "bbox": {
+                "x": 0.36,
+                "y": 0.59,
+                "w": 0.22,
+                "h": 0.18
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "warmers",
+              "name": "White leg warmers",
+              "categories": [
+                "hosiery",
+                "other"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "scrunched leg warmers",
+                "details": [
+                  "layered folds"
+                ]
+              },
+              "bbox": {
+                "x": 0.34,
+                "y": 0.73,
+                "w": 0.3,
+                "h": 0.2
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "shoes",
+              "name": "Black platform heels",
+              "categories": [
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "platform heels"
+              },
+              "bbox": {
+                "x": 0.35,
+                "y": 0.87,
+                "w": 0.32,
+                "h": 0.12
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "bag",
+              "name": "Black white shoulder bag",
+              "categories": [
+                "bag"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "white"
+                ],
+                "silhouette": "small rectangular shoulder bag",
+                "details": [
+                  "flap",
+                  "buckle"
+                ]
+              },
+              "bbox": {
+                "x": 0.51,
+                "y": 0.48,
+                "w": 0.23,
+                "h": 0.11
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "pinafore-top",
+              "name": "Brown black checked pinafore minidress (upper separate)",
+              "categories": [
+                "top"
+              ],
+              "attributes": {
+                "color": [
+                  "brown",
+                  "black"
+                ],
+                "silhouette": "fitted mini pinafore",
+                "details": [
+                  "gingham or houndstooth checks",
+                  "thin straps",
+                  "belt"
+                ]
+              },
+              "bbox": {
+                "x": 0.32,
+                "y": 0.29,
+                "w": 0.32,
+                "h": 0.192
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "pinafore-skirt",
+              "name": "Brown black checked pinafore minidress (lower separate)",
+              "categories": [
+                "bottom"
+              ],
+              "attributes": {
+                "color": [
+                  "brown",
+                  "black"
+                ],
+                "silhouette": "fitted mini pinafore",
+                "details": [
+                  "gingham or houndstooth checks",
+                  "thin straps",
+                  "belt"
+                ]
+              },
+              "bbox": {
+                "x": 0.32,
+                "y": 0.482,
+                "w": 0.32,
+                "h": 0.128
+              },
+              "importance": "primary"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Dress or equivalent separates accepted; judge visible construction rather than hidden game assets."
+      ]
+    },
+    {
+      "id": "fit6-left",
+      "file": "fit6.jpg",
+      "sha256": "7d62aec14af3097e65eb2725df7922e42524b74d87b2d03a1e35e6e2e3d91dbe",
+      "family": "classic",
+      "split": "development",
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "w": 0.5,
+        "h": 1
+      },
+      "variants": [
+        {
+          "id": "default",
+          "pieces": [
+            {
+              "id": "top",
+              "name": "White tie-front long sleeve blouse",
+              "categories": [
+                "top"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "cropped tie front",
+                "details": [
+                  "long sleeves",
+                  "front knot"
+                ]
+              },
+              "bbox": {
+                "x": 0.25,
+                "y": 0.33,
+                "w": 0.67,
+                "h": 0.43
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "skirt",
+              "name": "Green floral long skirt",
+              "categories": [
+                "bottom"
+              ],
+              "attributes": {
+                "color": [
+                  "green"
+                ],
+                "silhouette": "long skirt",
+                "details": [
+                  "floral"
+                ]
+              },
+              "bbox": {
+                "x": 0.32,
+                "y": 0.64,
+                "w": 0.62,
+                "h": 0.36
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "head",
+              "name": "Cream wide-brim sunhat",
+              "categories": [
+                "headwear"
+              ],
+              "attributes": {
+                "color": [
+                  "cream"
+                ],
+                "silhouette": "wide brim hat",
+                "details": [
+                  "ribbon"
+                ]
+              },
+              "bbox": {
+                "x": 0.2,
+                "y": 0.02,
+                "w": 0.79,
+                "h": 0.33
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "bag",
+              "name": "Tan shoulder tote",
+              "categories": [
+                "bag"
+              ],
+              "attributes": {
+                "color": [
+                  "tan"
+                ],
+                "silhouette": "long shoulder tote"
+              },
+              "bbox": {
+                "x": 0.78,
+                "y": 0.42,
+                "w": 0.16,
+                "h": 0.36
+              },
+              "importance": "accessory"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "fit6-right",
+      "file": "fit6.jpg",
+      "sha256": "7d62aec14af3097e65eb2725df7922e42524b74d87b2d03a1e35e6e2e3d91dbe",
+      "family": "classic",
+      "split": "development",
+      "crop": {
+        "x": 0.46,
+        "y": 0,
+        "w": 0.54,
+        "h": 1
+      },
+      "variants": [
+        {
+          "id": "default",
+          "pieces": [
+            {
+              "id": "dress",
+              "name": "Pale blue floral puff-sleeve dress",
+              "categories": [
+                "dress"
+              ],
+              "attributes": {
+                "color": [
+                  "pale blue",
+                  "white"
+                ],
+                "silhouette": "fitted long dress",
+                "details": [
+                  "floral",
+                  "puff sleeves",
+                  "thin straps"
+                ]
+              },
+              "bbox": {
+                "x": 0,
+                "y": 0.37,
+                "w": 0.65,
+                "h": 0.63
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "glasses",
+              "name": "White oval sunglasses",
+              "categories": [
+                "other",
+                "headwear"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "oval sunglasses",
+                "details": [
+                  "on head"
+                ]
+              },
+              "bbox": {
+                "x": 0.13,
+                "y": 0.01,
+                "w": 0.34,
+                "h": 0.1
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "necklace",
+              "name": "Delicate necklace",
+              "categories": [
+                "jewelry"
+              ],
+              "attributes": {
+                "color": [
+                  "silver"
+                ],
+                "silhouette": "delicate necklace",
+                "details": [
+                  "small pendant"
+                ]
+              },
+              "bbox": {
+                "x": 0.21,
+                "y": 0.34,
+                "w": 0.22,
+                "h": 0.1
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "bag",
+              "name": "Pale lilac handbag",
+              "categories": [
+                "bag"
+              ],
+              "attributes": {
+                "color": [
+                  "lilac"
+                ],
+                "silhouette": "small handbag"
+              },
+              "bbox": {
+                "x": 0.46,
+                "y": 0.89,
+                "w": 0.24,
+                "h": 0.11
+              },
+              "importance": "accessory"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "fit7",
+      "file": "fir7.webp",
+      "sha256": "25a5783f9a7e8422cfbf84db919c8c4247fa4c4dfacc26c0fb060ec36d0567a2",
+      "family": "alternative",
+      "split": "development",
+      "crop": null,
+      "variants": [
+        {
+          "id": "default",
+          "pieces": [
+            {
+              "id": "dress",
+              "name": "Black fitted skater minidress",
+              "categories": [
+                "dress"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "fitted waist flared mini",
+                "details": [
+                  "sleeveless",
+                  "V neckline"
+                ]
+              },
+              "bbox": {
+                "x": 0.44,
+                "y": 0.35,
+                "w": 0.12,
+                "h": 0.31
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "gloves",
+              "name": "Black long gloves with white trim",
+              "categories": [
+                "other"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "white"
+                ],
+                "silhouette": "opera gloves",
+                "details": [
+                  "white upper cuff"
+                ]
+              },
+              "bbox": {
+                "x": 0.3,
+                "y": 0.38,
+                "w": 0.4,
+                "h": 0.1
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "hosiery",
+              "name": "Black thigh-high stockings",
+              "categories": [
+                "hosiery",
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "thigh-high"
+              },
+              "bbox": {
+                "x": 0.46,
+                "y": 0.65,
+                "w": 0.07,
+                "h": 0.29
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "shoes",
+              "name": "Black pointed heels with gold bows",
+              "categories": [
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "gold"
+                ],
+                "silhouette": "pointed heels",
+                "details": [
+                  "gold bow"
+                ]
+              },
+              "bbox": {
+                "x": 0.47,
+                "y": 0.9,
+                "w": 0.06,
+                "h": 0.1
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "glasses",
+              "name": "Black rectangular eyeglasses",
+              "categories": [
+                "other"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "rectangular glasses"
+              },
+              "bbox": {
+                "x": 0.45,
+                "y": 0.25,
+                "w": 0.06,
+                "h": 0.04
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "necklace",
+              "name": "Black necklace with pink pendant",
+              "categories": [
+                "jewelry"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "pink"
+                ],
+                "silhouette": "pendant necklace",
+                "details": [
+                  "pink charm"
+                ]
+              },
+              "bbox": {
+                "x": 0.47,
+                "y": 0.34,
+                "w": 0.05,
+                "h": 0.11
+              },
+              "importance": "accessory"
+            }
+          ]
+        },
+        {
+          "id": "separates",
+          "pieces": [
+            {
+              "id": "gloves",
+              "name": "Black long gloves with white trim",
+              "categories": [
+                "other"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "white"
+                ],
+                "silhouette": "opera gloves",
+                "details": [
+                  "white upper cuff"
+                ]
+              },
+              "bbox": {
+                "x": 0.3,
+                "y": 0.38,
+                "w": 0.4,
+                "h": 0.1
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "hosiery",
+              "name": "Black thigh-high stockings",
+              "categories": [
+                "hosiery",
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "thigh-high"
+              },
+              "bbox": {
+                "x": 0.46,
+                "y": 0.65,
+                "w": 0.07,
+                "h": 0.29
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "shoes",
+              "name": "Black pointed heels with gold bows",
+              "categories": [
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "gold"
+                ],
+                "silhouette": "pointed heels",
+                "details": [
+                  "gold bow"
+                ]
+              },
+              "bbox": {
+                "x": 0.47,
+                "y": 0.9,
+                "w": 0.06,
+                "h": 0.1
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "glasses",
+              "name": "Black rectangular eyeglasses",
+              "categories": [
+                "other"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "rectangular glasses"
+              },
+              "bbox": {
+                "x": 0.45,
+                "y": 0.25,
+                "w": 0.06,
+                "h": 0.04
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "necklace",
+              "name": "Black necklace with pink pendant",
+              "categories": [
+                "jewelry"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "pink"
+                ],
+                "silhouette": "pendant necklace",
+                "details": [
+                  "pink charm"
+                ]
+              },
+              "bbox": {
+                "x": 0.47,
+                "y": 0.34,
+                "w": 0.05,
+                "h": 0.11
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "top",
+              "name": "Black fitted skater minidress (upper separate)",
+              "categories": [
+                "top"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "fitted waist flared mini",
+                "details": [
+                  "sleeveless",
+                  "V neckline"
+                ]
+              },
+              "bbox": {
+                "x": 0.44,
+                "y": 0.35,
+                "w": 0.12,
+                "h": 0.186
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "skirt",
+              "name": "Black fitted skater minidress (lower separate)",
+              "categories": [
+                "bottom"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "fitted waist flared mini",
+                "details": [
+                  "sleeveless",
+                  "V neckline"
+                ]
+              },
+              "bbox": {
+                "x": 0.44,
+                "y": 0.536,
+                "w": 0.12,
+                "h": 0.124
+              },
+              "importance": "primary"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Dress or equivalent separates accepted; judge visible construction rather than hidden game assets."
+      ]
+    },
+    {
+      "id": "fit8",
+      "file": "fit8.avif",
+      "sha256": "4e11f02174e8e06607c6a217e9becf4c9a4f2844671f7ac74036ade7cff55e74",
+      "family": "classic",
+      "split": "development",
+      "crop": null,
+      "variants": [
+        {
+          "id": "default",
+          "pieces": [
+            {
+              "id": "dress",
+              "name": "White fitted strappy mini dress",
+              "categories": [
+                "dress"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "fitted mini",
+                "details": [
+                  "thin straps",
+                  "lace trim"
+                ]
+              },
+              "bbox": {
+                "x": 0.43,
+                "y": 0.21,
+                "w": 0.07,
+                "h": 0.25
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "gloves",
+              "name": "White long gloves",
+              "categories": [
+                "other"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "opera gloves"
+              },
+              "bbox": {
+                "x": 0.41,
+                "y": 0.28,
+                "w": 0.1,
+                "h": 0.2
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "hosiery",
+              "name": "White fishnet stockings",
+              "categories": [
+                "hosiery"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "fishnet tights",
+                "details": [
+                  "fishnet"
+                ]
+              },
+              "bbox": {
+                "x": 0.43,
+                "y": 0.44,
+                "w": 0.06,
+                "h": 0.42
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "shoes",
+              "name": "White platform heels",
+              "categories": [
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "platform heels"
+              },
+              "bbox": {
+                "x": 0.42,
+                "y": 0.84,
+                "w": 0.07,
+                "h": 0.07
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "head",
+              "name": "White floral headpiece",
+              "categories": [
+                "headwear"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "small hat or headpiece",
+                "details": [
+                  "floral"
+                ]
+              },
+              "bbox": {
+                "x": 0.43,
+                "y": 0.01,
+                "w": 0.09,
+                "h": 0.12
+              },
+              "importance": "accessory"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Original AVIF upload is rejected by the baseline; report separately from visual recognition."
+      ]
+    },
+    {
+      "id": "fit9",
+      "file": "fit9.jpeg",
+      "sha256": "687d1d711cd06bfcc4601c0b255f11d5d148675c0ead2c0a8a42c70fea408026",
+      "family": "classic",
+      "split": "holdout",
+      "crop": null,
+      "variants": [
+        {
+          "id": "default",
+          "pieces": [
+            {
+              "id": "top",
+              "name": "Black puff-sleeve blouse with white collar",
+              "categories": [
+                "top"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "white"
+                ],
+                "silhouette": "cropped blouse",
+                "details": [
+                  "puff sleeves",
+                  "white collar",
+                  "white bow"
+                ]
+              },
+              "bbox": {
+                "x": 0.33,
+                "y": 0.28,
+                "w": 0.25,
+                "h": 0.2
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "corset",
+              "name": "White black polka-dot corset",
+              "categories": [
+                "top"
+              ],
+              "attributes": {
+                "color": [
+                  "white",
+                  "black"
+                ],
+                "silhouette": "fitted corset",
+                "details": [
+                  "polka dots",
+                  "black boning"
+                ]
+              },
+              "bbox": {
+                "x": 0.35,
+                "y": 0.4,
+                "w": 0.21,
+                "h": 0.13
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "skirt",
+              "name": "White black polka-dot ruffled miniskirt",
+              "categories": [
+                "bottom"
+              ],
+              "attributes": {
+                "color": [
+                  "white",
+                  "black"
+                ],
+                "silhouette": "ruffled mini",
+                "details": [
+                  "polka dots"
+                ]
+              },
+              "bbox": {
+                "x": 0.34,
+                "y": 0.49,
+                "w": 0.24,
+                "h": 0.1
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "hosiery",
+              "name": "White knee-high socks",
+              "categories": [
+                "hosiery"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "knee-high",
+                "details": [
+                  "lace or ribbed texture"
+                ]
+              },
+              "bbox": {
+                "x": 0.4,
+                "y": 0.67,
+                "w": 0.16,
+                "h": 0.19
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "shoes",
+              "name": "Black white pointed heels",
+              "categories": [
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "white"
+                ],
+                "silhouette": "pointed heels",
+                "details": [
+                  "contrast panels"
+                ]
+              },
+              "bbox": {
+                "x": 0.4,
+                "y": 0.81,
+                "w": 0.16,
+                "h": 0.14
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "bag",
+              "name": "Black quilted shoulder bag",
+              "categories": [
+                "bag"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "small shoulder bag",
+                "details": [
+                  "quilted"
+                ]
+              },
+              "bbox": {
+                "x": 0.55,
+                "y": 0.45,
+                "w": 0.16,
+                "h": 0.1
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "glasses",
+              "name": "White oval sunglasses",
+              "categories": [
+                "other",
+                "headwear"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "oval sunglasses",
+                "details": [
+                  "on head"
+                ]
+              },
+              "bbox": {
+                "x": 0.4,
+                "y": 0.16,
+                "w": 0.17,
+                "h": 0.05
+              },
+              "importance": "accessory"
+            }
+          ]
+        },
+        {
+          "id": "dress-with-corset",
+          "pieces": [
+            {
+              "id": "corset",
+              "name": "White black polka-dot corset",
+              "categories": [
+                "top"
+              ],
+              "attributes": {
+                "color": [
+                  "white",
+                  "black"
+                ],
+                "silhouette": "fitted corset",
+                "details": [
+                  "polka dots",
+                  "black boning"
+                ]
+              },
+              "bbox": {
+                "x": 0.35,
+                "y": 0.4,
+                "w": 0.21,
+                "h": 0.13
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "hosiery",
+              "name": "White knee-high socks",
+              "categories": [
+                "hosiery"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "knee-high",
+                "details": [
+                  "lace or ribbed texture"
+                ]
+              },
+              "bbox": {
+                "x": 0.4,
+                "y": 0.67,
+                "w": 0.16,
+                "h": 0.19
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "shoes",
+              "name": "Black white pointed heels",
+              "categories": [
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "white"
+                ],
+                "silhouette": "pointed heels",
+                "details": [
+                  "contrast panels"
+                ]
+              },
+              "bbox": {
+                "x": 0.4,
+                "y": 0.81,
+                "w": 0.16,
+                "h": 0.14
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "bag",
+              "name": "Black quilted shoulder bag",
+              "categories": [
+                "bag"
+              ],
+              "attributes": {
+                "color": [
+                  "black"
+                ],
+                "silhouette": "small shoulder bag",
+                "details": [
+                  "quilted"
+                ]
+              },
+              "bbox": {
+                "x": 0.55,
+                "y": 0.45,
+                "w": 0.16,
+                "h": 0.1
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "glasses",
+              "name": "White oval sunglasses",
+              "categories": [
+                "other",
+                "headwear"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "oval sunglasses",
+                "details": [
+                  "on head"
+                ]
+              },
+              "bbox": {
+                "x": 0.4,
+                "y": 0.16,
+                "w": 0.17,
+                "h": 0.05
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "dress",
+              "name": "Black white puff-sleeve polka-dot minidress",
+              "categories": [
+                "dress"
+              ],
+              "attributes": {
+                "color": [
+                  "black",
+                  "white"
+                ],
+                "silhouette": "cropped blouse",
+                "details": [
+                  "white collar",
+                  "polka-dot skirt"
+                ]
+              },
+              "bbox": {
+                "x": 0.33,
+                "y": 0.28,
+                "w": 0.25,
+                "h": 0.31
+              },
+              "importance": "primary"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "A combined black/white polka-dot dress plus corset is an acceptable alternate construction."
+      ]
+    },
+    {
+      "id": "fit10",
+      "file": "fit10.webp",
+      "sha256": "5180b2fd7f716d92226f00715689cb68ce9dcc6b6bbee8b7d5e43506786d817b",
+      "family": "streetwear",
+      "split": "holdout",
+      "crop": null,
+      "variants": [
+        {
+          "id": "default",
+          "pieces": [
+            {
+              "id": "top",
+              "name": "White halter camisole",
+              "categories": [
+                "top"
+              ],
+              "attributes": {
+                "color": [
+                  "white"
+                ],
+                "silhouette": "fitted halter top",
+                "details": [
+                  "V neckline"
+                ]
+              },
+              "bbox": {
+                "x": 0.43,
+                "y": 0.26,
+                "w": 0.14,
+                "h": 0.25
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "jeans",
+              "name": "Blue loose cropped wide-leg jeans",
+              "categories": [
+                "bottom"
+              ],
+              "attributes": {
+                "color": [
+                  "blue"
+                ],
+                "silhouette": "loose cropped wide leg",
+                "details": [
+                  "denim",
+                  "rolled cuffs"
+                ]
+              },
+              "bbox": {
+                "x": 0.44,
+                "y": 0.47,
+                "w": 0.2,
+                "h": 0.38
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "shoes",
+              "name": "White black sneakers",
+              "categories": [
+                "shoes"
+              ],
+              "attributes": {
+                "color": [
+                  "white",
+                  "black"
+                ],
+                "silhouette": "low-top sneakers",
+                "details": [
+                  "black panels"
+                ]
+              },
+              "bbox": {
+                "x": 0.45,
+                "y": 0.82,
+                "w": 0.2,
+                "h": 0.14
+              },
+              "importance": "primary"
+            },
+            {
+              "id": "necklace",
+              "name": "Delicate gold pendant necklace",
+              "categories": [
+                "jewelry"
+              ],
+              "attributes": {
+                "color": [
+                  "gold"
+                ],
+                "silhouette": "delicate necklace",
+                "details": [
+                  "small pendant"
+                ]
+              },
+              "bbox": {
+                "x": 0.46,
+                "y": 0.26,
+                "w": 0.07,
+                "h": 0.05
+              },
+              "importance": "accessory"
+            },
+            {
+              "id": "bracelets",
+              "name": "Gold and light bracelets",
+              "categories": [
+                "jewelry"
+              ],
+              "attributes": {
+                "color": [
+                  "gold"
+                ],
+                "silhouette": "bracelets"
+              },
+              "bbox": {
+                "x": 0.37,
+                "y": 0.05,
+                "w": 0.16,
+                "h": 0.11
+              },
+              "importance": "accessory"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    }
+  ]
+}

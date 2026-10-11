@@ -57,10 +57,11 @@ function useWardrobeState() {
     const generation = epoch.current, version = (searchVersions.current[g.id] || 0) + 1; searchVersions.current[g.id] = version;
     setSearching(s => [...new Set([...s, g.id])]); setError('');
     try {
-      const result = await api<{ products: ProductListing[]; warnings: string[]; isDemo: boolean }>('search', { garment: g, filters: currentFilters, imageId });
+      const result = await api<{ products: ProductListing[]; warnings: string[]; isDemo: boolean; strictMatching?: boolean }>('search', { garment: g, filters: currentFilters, imageId });
       if (generation !== epoch.current || searchVersions.current[g.id] !== version) return;
       setProducts(s => ({ ...s, [g.id]: result.products }));
-      setInventory(s => ({ ...s, ...Object.fromEntries(result.products.map(p => [p.id, p])) }));
+      setInventory(s => ({ ...(result.strictMatching ? Object.fromEntries(Object.entries(s).filter(([, p]) => p.garmentId !== g.id)) : s), ...Object.fromEntries(result.products.map(p => [p.id, p])) }));
+      if (result.strictMatching) setSelected(s => { if (result.products.some(p => p.id === s[g.id])) return s; const next = { ...s }; delete next[g.id]; return next; });
       if (autoSelect && result.products[0]) setSelected(s => ({ ...s, [g.id]: result.products[0].id }));
       if (result.warnings.length) setNotice(result.warnings.join(' '));
     } catch(e) { if (generation === epoch.current && searchVersions.current[g.id] === version) setError((e as Error).message); }
@@ -82,7 +83,7 @@ function useWardrobeState() {
   };
   const useExample = async () => { reset(); setScreenshot(sampleRef); await analyze(sampleRef); };
   const upload = async (file: File, kind: 'screenshot' | 'person', consent = false) => {
-    if (file.size > 8 * 1024 * 1024 || !['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) { setError('Choose a PNG, JPEG or WebP under 8 MB.'); return; }
+    if (file.size > 8 * 1024 * 1024 || !['image/png', 'image/jpeg', 'image/webp', 'image/avif'].includes(file.type)) { setError('Choose a PNG, JPEG, WebP or AVIF under 8 MB.'); return; }
     const generation = kind === 'person' ? epoch.current : ++epoch.current;
     if (kind === 'screenshot') setSearching([]);
     setBusy(kind === 'person' ? 'Preparing your photo' : 'Uploading your screenshot'); setError('');
