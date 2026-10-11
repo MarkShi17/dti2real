@@ -51,3 +51,14 @@ it('broadens empty precise searches instead of leaving an obvious garment unmatc
   const result=await liveSearch(garment,defaultFilters);
   expect(result.products).toHaveLength(1);expect(result.warnings.join(' ')).toMatch(/broader/i);
 });
+
+it('defaults to simple Sunburst outfit and pose edits without requiring vision credentials', () => {
+  vi.stubEnv('DEMO_MODE', 'false'); vi.stubEnv('TRYON_PROVIDER', ''); vi.stubEnv('POSE_PROVIDER', '');
+  vi.stubEnv('OUTFIT_PROMPT_MODE', 'simple'); vi.stubEnv('OPENAI_API_KEY', 'image-test');
+  vi.stubEnv('VISION_API_KEY', ''); vi.stubEnv('VISION_MODEL', '');
+  const status = providerStatus();
+  expect(status.tryon).toMatchObject({ name: 'openai_outfit', mode: 'live' });
+  expect(status.pose).toMatchObject({ name: 'openai_outfit', mode: 'live' });
+  expect(status.tryon.detail).toContain('every selected product');
+  expect(status.tryon.detail).not.toMatch(/GPT-5.4|review/i);
+});

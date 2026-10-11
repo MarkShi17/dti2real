@@ -49,7 +49,7 @@ test('manual corrections, price filters, own-photo consent, honest demo limits a
   await expect(page.getByTestId('wardrobe-image')).toHaveCount(0);
   await expect(page.getByTestId('wardrobe-placeholder')).toBeVisible();
   await expect(page.getByAltText('Your selected person reference')).toHaveAttribute('src', /^\/api\/assets\//);
-  await expect(page.getByText('Your 3D avatar remains available.', { exact: false })).toBeVisible();
+  await expect(page.getByTestId('avatar-stage')).toHaveCount(0);
   await page.getByRole('button', { name: 'Delete my session', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Keep my session' })).toBeFocused();
   await page.keyboard.press('Tab'); await expect(page.getByRole('button', { name: 'Delete session', exact: true })).toBeFocused();

@@ -46,7 +46,7 @@ export class FileStorage implements StorageProvider {
     });
   }
   async putImage(id: string, input: Buffer, kind: ImageRef['kind']): Promise<ImageRef> {
-    const image = await normalizeImage(input);
+    const image = await normalizeImage(input, 1600, { lossless: kind === 'render' || kind === 'product' });
     return locked(id, async () => {
       const d = await this.read(id);
       if (Object.keys(d.images).length >= 100) throw new AppError('Session image limit reached. Delete this session to start fresh.', 413);

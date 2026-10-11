@@ -14,7 +14,7 @@ vi.mock('@/lib/security', async original => ({ ...await original<typeof import('
 let root: string;
 beforeEach(async () => {
   root = await mkdtemp(join(tmpdir(), 'dti-outfit-'));
-  vi.stubEnv('DATA_DIR', root); vi.stubEnv('DEMO_MODE', 'false'); vi.stubEnv('TRYON_PROVIDER', 'openai_outfit'); vi.stubEnv('POSE_PROVIDER', 'openai_outfit'); vi.stubEnv('OPENAI_API_KEY', 'image-key'); vi.stubEnv('VISION_API_KEY', 'vision-key'); vi.stubEnv('VISION_MODEL', 'gpt-5.4');
+  vi.stubEnv('DATA_DIR', root); vi.stubEnv('DEMO_MODE', 'false'); vi.stubEnv('OUTFIT_PROMPT_MODE', 'reviewed'); vi.stubEnv('TRYON_PROVIDER', 'openai_outfit'); vi.stubEnv('POSE_PROVIDER', 'openai_outfit'); vi.stubEnv('OPENAI_API_KEY', 'image-key'); vi.stubEnv('VISION_API_KEY', 'vision-key'); vi.stubEnv('VISION_MODEL', 'gpt-5.4');
   const image = await readFile('public/demo/base-runway.webp');
   vi.mocked(fetchImage).mockResolvedValue(image);
   vi.spyOn(OpenAIOutfit.prototype, 'analyze').mockImplementation(async (_screenshot, refs) => ({ plan: { pieces: refs.map(r => ({ garmentId: r.garment.id, productId: r.product.id, placement: 'Natural', over: [], under: [], visibleEdges: 'Hems', tucking: 'Untucked', closure: 'Open', accessoryPosition: 'Contact' })), unmapped: [], instructions: 'Layer naturally' } satisfies LayeringPlan, latencyMs: 1, usage: undefined }));
@@ -123,4 +123,28 @@ it('keeps a nineteen-minute job active, expires at twenty minutes and rejects a 
   await task.run();
   expect(Object.values((await storage.read(sid)).renders)).toHaveLength(0);
   expect(OpenAIOutfit.prototype.edit).not.toHaveBeenCalled();
+});
+
+it('uses the simple Sunburst path for every selected item without layering analysis, reviews or repairs', async () => {
+  vi.stubEnv('OUTFIT_PROMPT_MODE', 'simple');
+  const image = await readFile('public/demo/base-runway.webp');
+  const edit = vi.spyOn(OpenAIOutfit.prototype, 'editSimple').mockResolvedValue({ image, latencyMs: 1 });
+  const { sid, input } = await setup();
+  const task = await queueTryon(sid, input); await task.run();
+  const result = (await storage.read(sid)).jobs[task.job.id].result!;
+  expect(edit).toHaveBeenCalledTimes(1);
+  expect(edit.mock.calls[0][0].references.map(r => r.product.id)).toEqual(input.productIds);
+  expect(OpenAIOutfit.prototype.analyze).not.toHaveBeenCalled();
+  expect(OpenAIOutfit.prototype.edit).not.toHaveBeenCalled();
+  expect(OpenAIOutfit.prototype.review).not.toHaveBeenCalled();
+  expect(result.productIds).toEqual(input.productIds);
+  expect(result.outfit?.reviews).toEqual([]);
+  expect(result.note).not.toMatch(/passed.*checks/i);
+  const cached = await queueTryon(sid, input);
+  expect(cached.job.result?.id).toBe(result.id);
+  const pose = await queuePose(sid, result.id, 'hip'); await pose.run();
+  expect((await storage.read(sid)).jobs[pose.job.id].status).toBe('completed');
+  expect(edit).toHaveBeenCalledTimes(2);
+  expect(edit.mock.calls[1][0].references.map(r => r.product.id)).toEqual(input.productIds);
+  expect(OpenAIOutfit.prototype.review).not.toHaveBeenCalled();
 });

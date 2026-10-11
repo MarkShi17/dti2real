@@ -21,7 +21,7 @@ async function setup() {
   const products = DEMO_GARMENTS.flatMap(demoProducts).map(p => ({ ...p, id: `test-${p.id}`, isDemo: false, imageUrl: 'https://test.example/garment.webp' }));
   await storage.update(sid, d => { products.forEach(p => { d.products[p.id] = p; }); });
   const person = await storage.putImage(sid, await readFile('public/demo/base-runway.webp'), 'person');
-  const input = { personId: person.id, garments: DEMO_GARMENTS, productIds: products.filter(p => p.id.endsWith('-0')).map(p => p.id), force: false };
+  const input = { personId: person.id, garments: DEMO_GARMENTS, productIds: products.filter(p => p.id.endsWith('-0') && ['top', 'bottom'].includes(p.category || '')).map(p => p.id), force: false };
   return { sid, input };
 }
 it('applies bottoms then tops, preserves personal pose, and reuses only the unchanged lower layer after a top swap', async () => {

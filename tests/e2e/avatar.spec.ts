@@ -1,3 +1,5 @@
+import { test as hiddenAvatar } from '@playwright/test';
+hiddenAvatar.skip(true, '3D avatar is hidden; photo-only coverage is in photo-only.spec.ts.');
 import { test, expect, ready, section, seeded } from './helpers';
 import type { Page } from '@playwright/test';
 

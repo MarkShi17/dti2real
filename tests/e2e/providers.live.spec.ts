@@ -17,6 +17,14 @@ async function analyze(page: Page) {
   await expect(page.locator('.product-card').first()).toBeVisible();
 }
 async function generate(page: Page) {
+  // Explicit legacy adapter contracts use only its supported core garments.
+  await saved(page, state => Object.keys((state.selected || {}) as object).length === 3);
+  const { state } = await (await page.request.get('/api/session')).json();
+  const hasDress = state.garments.some((g: Garment) => g.visible && g.category === 'dress');
+  const garments = state.garments.map((g: Garment) => ({ ...g, visible: g.visible && (hasDress ? g.category === 'dress' : ['top', 'bottom'].includes(g.category)) }));
+  expect((await page.request.patch('/api/session', { data: { ...state, garments } })).ok()).toBe(true);
+  await ready(page);
+  if ((page.viewportSize()?.width || 1000) < 650) await page.getByRole('button', { name: '3 Fitting room', exact: true }).click();
   await page.locator('.render-button').click();
   await expect(page.getByRole('button', { name: 'Save look', exact: true })).toBeEnabled({ timeout: 20000 });
   await expect(page.getByTestId('wardrobe-image')).toHaveAttribute('src', /^\/api\/assets\//);
@@ -108,7 +116,7 @@ test('failed hosted generation preserves the previous result and retry is an act
   expect((await calls(request)).filter(c => c.provider === 'tryon-submit')).toHaveLength(5);
 });
 test('missing and corrupt model outputs never become successful renders', async ({ page, request }) => {
-  await analyze(page); await configure(request, { tryon: 'empty' }); await page.locator('.render-button').click();
+  await analyze(page); await page.getByRole('button', { name: 'Hide Test boots', exact: true }).click(); await configure(request, { tryon: 'empty' }); await page.locator('.render-button').click();
   await expect(page.getByRole('alert').filter({ hasText: 'without an image' })).toBeVisible({ timeout: 15000 });
   await expect(page.getByRole('button', { name: 'Save look', exact: true })).toBeDisabled();
   await configure(request, { tryon: 'corrupt' }); await page.locator('.render-button').click();

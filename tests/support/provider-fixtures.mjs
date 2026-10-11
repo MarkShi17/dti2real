@@ -10,7 +10,7 @@ import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 
 if (process.env.DTI2IRL_TEST_PROVIDER_FIXTURES !== '1') throw new Error('Provider fixtures require explicit test-only launch');
-for (const name of ['VISION_API_KEY', 'SERPAPI_KEY', 'FASHN_API_KEY', 'POSE_API_KEY', 'EBAY_CLIENT_ID', 'EBAY_CLIENT_SECRET', 'SEGMENTATION_TOKEN', 'FASHN_LOCAL_TOKEN', 'POSE_LOCAL_TOKEN']) {
+for (const name of ['OPENAI_API_KEY', 'VISION_API_KEY', 'SERPAPI_KEY', 'FASHN_API_KEY', 'POSE_API_KEY', 'EBAY_CLIENT_ID', 'EBAY_CLIENT_SECRET', 'SEGMENTATION_TOKEN', 'FASHN_LOCAL_TOKEN', 'POSE_LOCAL_TOKEN']) {
   if (process.env[name] && !process.env[name].startsWith('test-only-')) throw new Error('Real credentials are forbidden in the fixture process');
 }
 const host = 'dti2irl-fixtures.example.com';
@@ -103,6 +103,12 @@ globalThis.fetch = async (input, init = {}) => {
     if (settings.ebay === 'failure') return json({}, 503);
     if (settings.ebay === 'empty') return json({ total: 0 });
     return json({ itemSummaries: [{ itemId: 'fixture-ebay', title: `TEST FIXTURE pre-owned ${url.searchParams.get('q')}`, itemWebUrl: `https://example.com/fixture/ebay?q=${encodeURIComponent(url.searchParams.get('q'))}`, image: { imageUrl: `https://${host}/ebay.webp` }, price: { value: '30', currency: 'USD' }, condition: 'Pre-owned', conditionId: '3000' }] });
+  }
+  if (url.hostname === 'api.openai.com' && url.pathname === '/v1/images/edits') {
+    calls.push({ provider: 'sunburst', model: body.model, imageCount: body.images?.length, prompt: body.prompt });
+    if (settings.tryon === 'failed') return json({}, 503);
+    const image = await sharp(await photo('silver-runway.webp')).resize(1024, 1536).png().toBuffer();
+    return json({ data: [{ b64_json: image.toString('base64') }], usage: { testFixture: true } });
   }
   if (url.hostname === 'api.fashn.ai') {
     if (url.pathname.endsWith('/run')) {
